@@ -13,12 +13,30 @@ header {
     right: 0;
 }
 
-.onda2 {
-    animation: movaOnda2 10s ease-in-out infinite alternate
+.onda1 {
+    animation: movaOnda1 0s ease-in-out infinite alternate
 }
 
-@keyframes movaOnda2 {
+@keyframes movaOnda1 {
     from {
-        transform: translateX(200px)
+        transform: translateX(100px)
     }
+}
+
+.scroll {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+  
+.section {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
 }

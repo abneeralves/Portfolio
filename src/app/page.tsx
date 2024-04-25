@@ -3,10 +3,15 @@ import Main from "@/components/Main"
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      <Main />
-    </>
-    
+    <div className="scroll">
+      <div className="section">
+        <Header />
+      </div>
+
+      <div className="section">
+        <Main />
+      </div>
+    </div>
+
   )
 }
