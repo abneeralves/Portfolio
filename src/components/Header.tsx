@@ -1,27 +1,91 @@
+'use client'
 import Image from 'next/image'
 import LetraA from '../../public/A.png'
+import HTML from '../../public/HTML.png'
+import CSS from '../../public/CSS.png'
+import JS from '../../public/JS.png'
+import REACT from '../../public/REACT.png'
+import BT from '../../public/BOOTSTRAP.png'
+import NEXT from '../../public/NEXT.png'
+import TAILWIND from '../../public/TAILWIND.png'
+import TS from '../../public/TS.png'
 
-export default function Header () {
+import React, { useEffect, useRef, useState } from 'react'
+
+const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+    const [isVisible, setIsVisible] = useState (true)
+    const imageRef = useRef<HTMLImageElement>(null);
+
+    useEffect (() => {
+        const intevalId = setInterval (() => {
+            setIsVisible((prev) => !prev)
+        }, 2000)
+
+        return () => clearInterval(intevalId)
+    }, [])
+
+
     return (
         <header className="h-screen bg-gray-900">
             <nav className="flex justify-between">
                 <div>
-                    <Image className='mx-64 mt-28' src={LetraA} alt='Letra A' width={70} />
+                    <a href=""><Image className='mx-64 mt-28' src={LetraA} alt='Letra A' width={70} /></a>  
                 </div>
 
                 <div>
                     <ul className="flex items-center">
-                        <li className="mt-32 mr-11 text-xl text-white">Projetos</li>
-                        <li className="mt-32 mr-11 text-xl text-white">Skills</li>
-                        <li className="mt-32 mr-64 text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li>
+                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md ">Sobre</li></a>
+                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
+                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
+                       <a href=""><li className="mt-32 mr-64 text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
                     </ul>
                 </div>
             </nav>
 
-            {/* <div className='flex'>
-                <h1 className={`text-6xl mt-32 ml-64 mr-32 text-sky-300 ${OpenS.className}`}>&lt;Abner Alves /&gt;</h1>
-                <p></p>
-            </div> */}
+            <div className=''>
+                <div>
+                    <p className='text-3xl mt-20 ml-64 text-white'>Olá, meu nome é</p>
+                    <h1 className="text-6xl ml-64 mr-32 mt-5 text-sky-300">&lt;Abner Alves /&gt;</h1>
+                    <p className='text-3xl ml-64 mt-5 text-white'>Desenvolvedor Front-end</p>
+                </div>
+
+               
+                {/* <ul className='flex'>
+
+                    <li>
+                        <Image className={`filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='' width={50} />
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='' width={50}/>
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='' width={50} />
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='' width={50}/>
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={BT} alt='' width={50}/>
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='' width={50}/> 
+                    </li>
+
+                    <li>
+                        <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='' width={50}/> 
+                    </li>
+
+                    <li>
+                        <Image className={`invert filter brightness-50 duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='' width={50}/> 
+                    </li>
+                </ul> */}
+                
+            </div>
             
             <svg className='ondas' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path className='onda2' fill="#0099ff" fill-opacity="1" d="M0,0L30,37.3C60,75,120,149,180,154.7C240,160,300,96,360,74.7C420,53,480,75,540,101.3C600,128,660,160,720,154.7C780,149,840,107,900,90.7C960,75,1020,85,1080,96C1140,107,1200,117,1260,106.7C1320,96,1380,64,1410,48L1440,32L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path>
@@ -31,3 +95,5 @@ export default function Header () {
         </header>
     )
 }
+
+export default AutoHideImage

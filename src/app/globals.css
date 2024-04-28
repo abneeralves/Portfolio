@@ -13,13 +13,29 @@ header {
     right: 0;
 }
 
-.onda1 {
-    animation: movaOnda1 0s ease-in-out infinite alternate
+.Icone2 {
+    animation: movaIcone2 4s ease-in-out infinite alternate
 }
 
-@keyframes movaOnda1 {
+@keyframes movaIcone2 {
     from {
-        transform: translateX(100px)
+        transform: translate(15px, 15px)
+    }
+    to {
+        transform: translate(0, 0px)
+    }
+}
+
+.Icone {
+    animation: movaIcone 2s ease-in-out infinite alternate
+}
+
+@keyframes movaIcone {
+    from {
+        transform: translate(10px, 10px)
+    }
+    to {
+        transform: translate(0, -5px)
     }
 }
 
