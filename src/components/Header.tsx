@@ -42,15 +42,15 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
                 </div>
             </nav>
 
-            <div className=''>
+            <div className='flex items-center h-2/4 ml-64'>
                 <div>
-                    <p className='text-3xl mt-20 ml-64 text-white'>Olá, meu nome é</p>
-                    <h1 className="text-6xl ml-64 mr-32 mt-5 text-sky-300">&lt;Abner Alves /&gt;</h1>
-                    <p className='text-3xl ml-64 mt-5 text-white'>Desenvolvedor Front-end</p>
+                    <p className='text-3xl text-white'>Olá, meu nome é</p>
+                    <h1 className="text-6xl mt-3 text-sky-300">&lt;Abner Alves /&gt;</h1>
+                    <p className='text-3xl mt-3 text-white'>e eu sou Desenvolvedor Front-end.</p>
                 </div>
 
                
-                {/* <ul className='flex'>
+                 {/* <ul className='flex justify-end mr-56 items-center'>
 
                     <li>
                         <Image className={`filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='' width={50} />
@@ -83,7 +83,7 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
                     <li>
                         <Image className={`invert filter brightness-50 duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='' width={50}/> 
                     </li>
-                </ul> */}
+                </ul>  */}
                 
             </div>
             
