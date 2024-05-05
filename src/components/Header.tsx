@@ -9,6 +9,10 @@ import BT from '../../public/BOOTSTRAP.png'
 import NEXT from '../../public/NEXT.png'
 import TAILWIND from '../../public/TAILWIND.png'
 import TS from '../../public/TS.png'
+import { Open_Sans, Comic_Neue } from 'next/font/google'
+
+const OpenS = Open_Sans({subsets: ['latin']})
+const ComicN = Comic_Neue({subsets: ['latin'], weight: '400'})
 
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -27,6 +31,7 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 
     return (
         <header className="h-screen bg-gray-900">
+
             <nav className="flex justify-between">
                 <div>
                     <a href=""><Image className='mx-64 mt-28' src={LetraA} alt='Letra A' width={70} /></a>  
@@ -44,9 +49,9 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 
             <div className='flex items-center h-2/4 ml-64'>
                 <div>
-                    <p className='text-3xl text-white'>Olá, meu nome é</p>
-                    <h1 className="text-6xl mt-3 text-sky-300">&lt;Abner Alves /&gt;</h1>
-                    <p className='text-3xl mt-3 text-white'>e eu sou Desenvolvedor Front-end.</p>
+                    <p className={`text-3xl text-white italic ${OpenS.className}`}>Olá, meu nome é</p>
+                    <h1 className={`text-7xl mt-3 text-sky-300 ${ComicN.className}`}>&lt;Abner Alves /&gt;</h1>
+                    <p className={`text-3xl mt-3 text-white ${OpenS.className}`}>e eu sou Desenvolvedor Front-end.</p>
                 </div>
 
                
