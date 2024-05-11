@@ -11,28 +11,31 @@ export default function Header () {
     return (
         <header className="h-screen bg-gradient-to-b from-gray-900 to-zinc-950 ">
 
-            <nav className="flex justify-between">
-                <div className='mx-64 mt-28 flex items-center hover:rotate-180 transition-transform duration-300'>
-                    <p className='text-sky-500 text-3xl -m-2'>&lt;</p>
-                    <a href=""><Image className='' src={LetraA} alt='Letra A' width={70} /></a>
-                    <p className='text-sky-500 text-3xl -m-1'>/&gt;</p>
+            <nav className="flex justify-around">
+                <div className=' mt-28 flex items-center hover:rotate-180 transition-transform duration-300 cursor-pointer'>
+                    <p className='text-sky-500 text-2xl xl:text-3xl -m-2'>&lt;</p>
+                    <Image className='' src={LetraA} alt='Letra A' width={50} />
+                    <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>/&gt;</p>
                 </div>
 
                 <div>
-                    <ul className="flex items-center">
+                    <ul className="flex items-center ">
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md ">Sobre</li></a>
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
-                       <a href=""><li className="mt-32 mr-64 text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
+                       <a href=""><li className="mt-32  text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
                     </ul>
                 </div>
             </nav>
 
-            <div className='flex items-center h-2/4 ml-64'>
+            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-64 2xl:ml-80'>
                 <div>
-                    <p className={`text-4xl text-white ${OpenS.className}`}>👋 Olá, meu nome é</p>
-                    <h1 className={`text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
-                    <p className={`text-3xl text-white ${OpenS.className}`}>e eu sou Estudante e Desenvolvedor Front-end.</p>
+                    <div className='flex'>
+                        <p className='text-3xl 2xl:text-4xl acena'>👋</p>
+                        <p className={`text-3xl 2xl:text-4xl text-white ${OpenS.className}`}>Olá, meu nome é</p>
+                    </div>
+                    <h1 className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
+                    <p className={`text-2xl 2xl:text-3xl text-white ${OpenS.className}`}>e eu sou Estudante e Desenvolvedor Front-end.</p>
                 </div>
             </div>
             

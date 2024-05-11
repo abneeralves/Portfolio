@@ -56,3 +56,14 @@ header {
     object-position: center;
     width: 100%;
 }
+
+@keyframes acenando {
+    0% { transform: translateX(0);  }
+    25% { transform: translateX(0px) rotate(10deg); }
+    75% { transform: translateX(0px) rotate(-10deg); }
+    100% { transform: translateX(0) ; }
+}
+  
+.acena {
+    animation: acenando 1s ease-in-out infinite;
+}
