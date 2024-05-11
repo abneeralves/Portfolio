@@ -30,9 +30,9 @@ export default function Header () {
 
             <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-64 2xl:ml-80'>
                 <div>
-                    <div className='flex'>
+                    <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
-                        <p className={`text-3xl 2xl:text-4xl text-white ${OpenS.className}`}>Olá, meu nome é</p>
+                        <p className={`text-3xl 2xl:text-3xl text-white ${OpenS.className}`}>Olá, meu nome é</p>
                     </div>
                     <h1 className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
                     <p className={`text-2xl 2xl:text-3xl text-white ${OpenS.className}`}>e eu sou Estudante e Desenvolvedor Front-end.</p>

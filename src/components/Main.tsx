@@ -12,8 +12,11 @@ export default function Main () {
                 </div>
 
                 <div className='col-span-2 flex flex-col items-center mt-5'>
-                    <h1 className='text-white text-3xl '>Deixa eu me Apresentar.</h1>
-                    <p></p>
+                    <h1 className='text-white text-3xl '>Deixa-me Apresentar.</h1>
+                    <p className='text-white text-2xl mt-10 mr-10'>Meu nome é Abner, um entusiasta da tecnologia de 19 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou um estudante dedicado do 3º semestre na UNIVOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
+                    <br />
+                    <br />
+                    Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
                 </div>
             </div>
         </main>
