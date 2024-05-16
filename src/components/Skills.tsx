@@ -34,45 +34,45 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 
             <div className=''>
                 <div className='flex justify-center '>
-                    <h1 className='text-white text-5xl '>Habilidades.</h1>
+                    <h1 className='text-white text-3xl md:text-5xl'>Habilidades.</h1>
                 </div>
 
                 <div className='flex flex-col items-center justify-center mt-5'>
-                    <ul className='grid grid-cols-5 '>
+                    <ul className='grid grid-cols-5'>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='' width={45} />
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='' width={50}/>
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='' width={50} />
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='' width={50}/>
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={GIT} alt='' width={50}/> 
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={BT} alt='' width={50}/>
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='' width={50}/> 
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`filter duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='' width={50}/> 
                         </li>
 
-                        <li className='p-10 rounded-lg border m-2'>
+                        <li className='flex items-center justify-center rounded-lg border p-3 m-1 sm:p-5 sm:m-2 lg:p-10 lg:m-3'>
                             <Image className={`invert filter brightness-50 duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='' width={50}/> 
                         </li>
                     </ul>  
