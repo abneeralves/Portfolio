@@ -11,6 +11,9 @@ import TS from '../../public/TS.png'
 import GIT from '../../public/GIT.png'
 
 import React, { useEffect, useRef, useState } from 'react'
+import {Exo_2} from 'next/font/google'
+
+const Exo = Exo_2({subsets: ['latin'], weight: '400'})
 
 const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
 
@@ -33,8 +36,9 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
             </svg> 
 
             <div className=''>
-                <div className='flex justify-center '>
-                    <h1 className='text-white text-3xl md:text-5xl'>Habilidades.</h1>
+                <div className='flex justify-center items-end'>
+                    <span className='border-l-4 border-blue-600 mr-2 h-10'></span>
+                    <h1 className={`text-white text-3xl md:text-5xl  ${Exo.className}`}>Habilidades.</h1>
                 </div>
 
                 <div className='flex flex-col items-center justify-center mt-5'>

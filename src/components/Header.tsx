@@ -1,15 +1,15 @@
 'use client'
 import Image from 'next/image'
 import LetraA from '../../public/A.png'
-import { Open_Sans, Bebas_Neue } from 'next/font/google'
 
-const OpenS = Open_Sans({subsets: ['latin']})
+import { Exo_2, Bebas_Neue } from 'next/font/google'
+const Exo = Exo_2({subsets: ['latin']})
 const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 
 export default function Header () {
 
     return (
-        <header className="h-screen bg-gradient-to-b from-gray-900 to-zinc-950 ">
+        <header className="h-screen"  style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
 
             <nav className="flex justify-around">
                 <div className=' mt-28 flex items-center hover:rotate-180 transition-transform duration-300 cursor-pointer'>
@@ -19,7 +19,7 @@ export default function Header () {
                 </div>
 
                 <div>
-                    <ul className="flex items-center ">
+                    <ul className={`flex items-center ${Exo.className}`}>
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md ">Sobre</li></a>
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
                         <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
@@ -28,14 +28,18 @@ export default function Header () {
                 </div>
             </nav>
 
-            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-64 2xl:ml-80'>
+            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-62 2xl:ml-80 relative'>
                 <div>
                     <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
-                        <p className={`text-3xl 2xl:text-3xl text-white ${OpenS.className}`}>Olá, meu nome é</p>
+                        <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Olá, meu nome é</p>
                     </div>
-                    <h1 className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
-                    <p className={`text-2xl 2xl:text-3xl text-white ${OpenS.className}`}>e eu sou Estudante e Desenvolvedor Front-end.</p>
+                        <h1 className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
+                    <div className='flex items-end'>
+                        <span className='text-white text-2xl mr-1'>&lt;</span>
+                        <p className={`text-2xl 2xl:text-3xl text-white ${Exo.className}`}>and I'm a Frond-end Developer.</p>
+                        <span className='text-white text-2xl ml-2'>/&gt;</span>
+                    </div>
                 </div>
             </div>
             

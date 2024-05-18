@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import Main from "@/components/Main"
+import Projetos from '@/components/Projetos'
 import Skill from "@/components/Skills"
 
 export default function Home() {
@@ -11,6 +12,10 @@ export default function Home() {
 
       <div className="section">
         <Main />
+      </div>
+
+      <div className="section">
+        <Projetos />
       </div>
 
       <div className="section">
