@@ -8,7 +8,7 @@ export default function Main () {
     return (
         <main className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-blue-950 h-full">
             
-            <div className='md:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6  rounded-2xl hover:shadow-md hover:shadow-gray-300'>
+            <div className='md:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6  rounded-2xl hover:shadow-lg hover:shadow-blue-600'>
                 <div className='col-span-1 flex items-center justify-center p-5'>
                     <Image className='w-full h-full 2xl:h-[625px] rounded-xl' src={FtAbner} alt='Foto Abner'/>
                 </div>
