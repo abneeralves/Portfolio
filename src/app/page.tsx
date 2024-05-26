@@ -6,19 +6,19 @@ import Skill from "@/components/Skills"
 export default function Home() {
   return (
     <div className="scroll">
-      <div className="section">
+      <div className="">
         <Header />
       </div>
 
-      <div className="section">
+      <div className="">
         <Main />
       </div>
 
-      <div className="section">
+      <div className="">
         <Projetos />
       </div>
 
-      <div className="section">
+      <div className="">
         <Skill />
       </div>
     </div>
