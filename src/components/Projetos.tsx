@@ -12,6 +12,7 @@ import REACT from '../../public/REACT.png'
 import NEXT from '../../public/NEXT.png'
 import TAILWIND from '../../public/TAILWIND.png'
 import TS from '../../public/TS.png'
+import GitHub from '../../public/GitHub.png'
 import { Exo_2, Bebas_Neue } from "next/font/google"
 
 const Exo = Exo_2({subsets: ['latin'], weight: '400'})
@@ -46,13 +47,19 @@ export default function Projetos () {
                             <p className={`text-white mt-2 ml-5 text-left ${Exo.className}`}>"Não há nada como criar um projeto inspirado na minha marca de carros favorita, a Porsche."</p>
                         </div>
 
-                        <div className="flex items-center mt-5 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={TS} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={TAILWIND} alt="" width={20}/>
-                            <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={NEXT} alt="" width={30}/>
+                        <div className="flex justify-between mx-5 my-5">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={TS} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={NEXT} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={TAILWIND} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                     </li>
                     
@@ -64,12 +71,17 @@ export default function Projetos () {
                             <p className="text-white mt-2 ml-5 text-left">"Inspirado pelo design do site do Mario, a maior relíquia dos jogos."</p>
                         </div>
 
-                        <div className="flex items-center mt-5 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={TAILWIND} alt="" width={20}/>
+                        <div className="flex justify-between mx-5 my-5">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                         
                     </li>
@@ -82,11 +94,17 @@ export default function Projetos () {
                             <p className={`text-white mt-2 ml-5 text-left ${Exo.className}`}>"Clone do site da maior plataforma de streaming de filmes e series, a Netflix."</p>
                         </div>
 
-                        <div className="flex items-center mt-5 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                        <div className="flex justify-between mx-5 my-5">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                         
                     </li>
@@ -99,10 +117,16 @@ export default function Projetos () {
                             <p className={`text-white mt-2 ml-5 text-left ${Exo.className}`}>"Nada melhor do que uma calculadora IMC para descobrir se você está dentro do peso ideal."</p>   
                         </div>
 
-                        <div className="flex items-center mt-5 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                        <div className="flex justify-between mx-5 my-5">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                         
                     </li>
@@ -115,11 +139,17 @@ export default function Projetos () {
                             <p className={`text-white mt-2 ml-5 text-left ${Exo.className}`}>"Fornece informações precisas sobre seu endereço."</p>
                         </div>
 
-                        <div className="flex items-center mt-10 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                        <div className="flex justify-between mx-5 my-5 xl:my-11">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={REACT} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                     </li>
 
@@ -131,10 +161,16 @@ export default function Projetos () {
                             <p className={`text-white mt-2 ml-5 text-left ${Exo.className}`}>"Já fez as contas do dia? Aqui está a sua calculadora pronta para ajudar."</p>
                         </div>
 
-                        <div className="flex items-center mt-5 ml-5 gap-1">
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
-                            <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                        <div className="flex justify-between mx-5 my-5">
+                            <div className="flex items-center gap-1">
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={HTML} alt="" width={20}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={CSS} alt="" width={25}/>
+                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src={JS} alt="" width={20}/>
+                            </div>
+
+                            <div className="flex items-center">
+                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src={GitHub} alt="" width={20}/>
+                            </div>
                         </div>
                     </li>
                 </ul>

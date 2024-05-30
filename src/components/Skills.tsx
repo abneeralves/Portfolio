@@ -53,36 +53,44 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
                 <div className='flex flex-col items-center justify-center mt-32'>
                     <ul className='grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-5 '>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter ransition-opacity duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='' width={45} />
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter ransition-opacity duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='' width={45} />
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>HTML</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='' width={50}/>
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='' width={50}/>
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>CSS</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='' width={50} />
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='' width={50} />
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>JavaScript</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='' width={50}/>
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='' width={50}/>
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>TypeScript</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={GIT} alt='' width={50}/> 
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32  ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={GIT} alt='' width={50}/> 
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Git</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='' width={50}/> 
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='' width={50}/>
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>React</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='' width={50}/> 
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='' width={50}/>
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 mt-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Tailwind</h1>
                         </li>
 
-                        <li className='flex items-center justify-center rounded-lg border border-blue-600'>
-                            <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 my-5 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='' width={50}/> 
+                        <li className='flex flex-col items-center justify-center rounded-lg border border-blue-600'>
+                            <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 mt-3 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='' width={50}/>
+                            <h1 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Next js</h1>
                         </li>
                     </ul>  
                 </div>
