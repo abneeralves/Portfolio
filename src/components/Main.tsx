@@ -1,28 +1,47 @@
 import Image from 'next/image'
 import FtAbner from '../../public/FtAbner.jpg'
-import Linkd from '../../public/linkedin.png'
-import GitHub from '../../public/GitHub.png'
-import { Exo_2 } from 'next/font/google'
+import { Exo_2, Bebas_Neue } from 'next/font/google'
 
 const Exo = Exo_2({subsets: ['latin'], weight: '400'})
+const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 
 export default function Main () {
     return (
         <main className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-blue-950 h-full">
             
-            <div className='md:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-2xl hover:shadow-lg hover:shadow-blue-600'>
+            <div className='xl:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-2xl hover:shadow-lg hover:shadow-blue-600'>
                 <div className='col-span-1 flex items-center justify-center p-5'>
                     <Image className='w-full h-full 2xl:h-[625px] rounded-xl' src={FtAbner} alt='Foto Abner'/>
                 </div>
 
                 <div className='col-span-1'>
-                    <div className='mt-10'>
-                        <h1 className={`text-blue-400 text-2xl xl:text-3xl 2xl:mt-5 ml-5 md:ml-0 ${Exo.className}`}>Deixa-me Apresentar.</h1>
-                        <p className={`text-white text-md lg:text-xl 2xl:text-2xl lg:mt-5 p-5 md:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 19 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou um estudante dedicado do 3º semestre na UNIVOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
+                    <div className="relative flex justify-center items-end">
+                        <div className="flex justify-center items-center mt-20">
+                            <div className="z-20 absolute">
+                                <h1 className={`sm:text-7xl text-4xl text-blue-300 mt-16 ${BebasN.className}`}>Sobre Mim.</h1>
+                            </div>
+
+                            <div className="z-10 absolute flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-20 text-blue-900 mr-3">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                                </svg>
+
+                                <h2 className={`sm:text-9xl text-6xl  text-blue-900 ${BebasN.className}`}>About</h2>
+                            </div>
+                        </div>  
+                    </div>
+
+                    <div className='mt-24'>
+                        <p className={`text-white text-md lg:text-xl xl:mt-5 p-5 pb-0 xl:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 19 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou um estudante dedicado do 3º semestre na UNIVOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
                         <br />
                         <br />
                         Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
-                    </div>  
+                    </div> 
+                    
+                    <div className='flex flex-col m-5 xl:ml-0 2xl:ml-0 xl:mr-8 2xl:mt-10'>
+                        <p className={`text-zinc-500 text-lg mb-2 ${Exo.className}`}>OBS: Você pode encontrar este projeto no <span className='text-blue-200 underline decoration-1'><a href="https://github.com/abneeralves/Portfolio" target="_blank">GitHub.</a></span></p>
+                        <a className={`p-2 bg-blue-600 w-full rounded-md text-center text-white hover:shadow-md hover:shadow-blue-200 ${Exo.className}`} href="">Download Curriculo.</a>
+                    </div>
                 </div>
             </div>
         </main>
