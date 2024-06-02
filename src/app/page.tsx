@@ -1,27 +1,18 @@
 import Header from "@/components/Header"
 import Main from "@/components/Main"
 import Projetos from '@/components/Projetos'
-import Skill from "@/components/Skills"
+import Habilidades from "@/components/Skills"
+import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
-    <div className="scroll">
-      <div className="">
-        <Header />
-      </div>
-
-      <div className="">
-        <Main />
-      </div>
-
-      <div className="">
-        <Projetos />
-      </div>
-
-      <div className="">
-        <Skill />
-      </div>
-    </div>
-
+    <>
+      <Header />
+      <Main />
+      <Projetos />
+      <Habilidades />
+      <Footer />
+    </>
+      
   )
 }
