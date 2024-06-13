@@ -11,7 +11,7 @@ const Exo = Exo_2({subsets: ['latin'], weight: '400'})
 
 export default function Footer () {
     return (
-        <footer className="flex flex-col items-center bg-blue-950 h-full" style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
+        <footer id="contatos" className="flex flex-col items-center bg-blue-950 h-full" style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#172554" fill-opacity="1" d="M0,160L34.3,186.7C68.6,213,137,267,206,245.3C274.3,224,343,128,411,128C480,128,549,224,617,224C685.7,224,754,128,823,101.3C891.4,75,960,117,1029,160C1097.1,203,1166,245,1234,218.7C1302.9,192,1371,96,1406,48L1440,0L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
             </svg>
@@ -42,23 +42,23 @@ export default function Footer () {
                     <ul className='grid grid-cols-2 gap-3 2xl:grid-cols-5 2xl:gap-5 mt-5'>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-green-500'>
-                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2" src={Whats} alt='Icone HTML' width={30} /></a>
+                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone HTML' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-purple-500'>
-                            <a href=""><Image className="{mx-16 xl:mx-14 my-3 hover:-translate-y-2" src={Instagram} alt='Icone HTML' width={30} /></a>
+                            <a href=""><Image className="{mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone HTML' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-500'>
-                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2" src={Twitter}  alt='Icone CSS' width={30}/></a>
+                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone CSS' width={30}/></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-white'>
-                            <a href=""><Image className="invert mx-16 xl:mx-14 my-3 hover:-translate-y-2" src={GitHub} alt='Icone JavaScript' width={30} /></a>
+                            <a href=""><Image className="invert mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone JavaScript' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-500'>
-                            <a href=""><Image className="mx-16 xl:mx-20 my-3 hover:-translate-y-2" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
+                            <a href=""><Image className="mx-16 xl:mx-20 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
                         </li>
                     </ul>
                     

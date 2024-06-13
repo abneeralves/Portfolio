@@ -12,18 +12,18 @@ export default function Header () {
         <header className="h-screen"  style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
 
             <nav className="flex justify-around">
-                <div className=' mt-28 flex items-center hover:rotate-180 transition-transform duration-300 cursor-pointer'>
+                <div className='mt-28 flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer'>
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-2'>&lt;</p>
-                    <Image className='' src={LetraA} alt='Letra A' width={50} />
+                    <Image src={LetraA} alt='Letra A' width={50} />
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>/&gt;</p>
                 </div>
 
                 <div>
                     <ul className={`flex items-center ${Exo.className}`}>
-                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md ">Sobre</li></a>
-                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
-                        <a href=""><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
-                       <a href=""><li className="mt-32  text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
+                        <a href="#sobre"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Sobre</li></a>
+                        <a href="#projetos"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
+                        <a href="#skills"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
+                        <a href="#contatos"><li className="mt-32  text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
                     </ul>
                 </div>
             </nav>
@@ -34,10 +34,30 @@ export default function Header () {
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
                         <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Olá, meu nome é</p>
                     </div>
-                        <h1 className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 ${BebasN.className}`}>Abner Alves.</h1>
+
+                    <div className='flex'>
+                        <div className='flex'>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 duration-300 ease-in-out hover:cursor-pointer hover:text-blue-700 ${BebasN.className}`}>A</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>b</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>n</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>e</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>r</p>
+                        </div>
+
+                        <div className='flex ml-5'>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>A</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>l</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>v</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>e</p>
+                            <p className={`text-8xl 2xl:text-9xl mt-2 text-sky-500 hover:-translate-y-2 hover:cursor-pointer duration-300 ease-in-out hover:text-blue-700 ${BebasN.className}`}>s</p>
+                        </div>
+
+                    </div>
+                    
+
                     <div className='flex items-end'>
                         <span className='text-white text-2xl mr-1'>&lt;</span>
-                        <p className={`text-2xl 2xl:text-3xl text-white ${Exo.className}`}>and I'm a Frond-end Developer.</p>
+                        <p className={`text-2xl 2xl:text-3xl text-white ${Exo.className}`}>and I'm a Front-end Developer.</p>
                         <span className='text-white text-2xl ml-2'>/&gt;</span>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
     }, [])
 
     return (
-        <div className='flex flex-col items-center bg-blue-950 h-full'>
+        <div id='skills' className='flex flex-col items-center bg-blue-950 h-full'>
             <div className="relative flex justify-center items-end">
                 <div className="flex justify-center items-center mt-32">
                     <div className="z-20 absolute">
