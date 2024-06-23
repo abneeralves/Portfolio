@@ -18,7 +18,7 @@ export default function Header () {
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>/&gt;</p>
                 </div>
 
-                <div>
+                <div data-aos="fade-left">
                     <ul className={`flex items-center ${Exo.className}`}>
                         <a href="#sobre"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Sobre</li></a>
                         <a href="#projetos"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
@@ -28,7 +28,7 @@ export default function Header () {
                 </div>
             </nav>
 
-            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-62 2xl:ml-80 relative'>
+            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-62 2xl:ml-80 relative' data-aos="fade-right">
                 <div>
                     <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>

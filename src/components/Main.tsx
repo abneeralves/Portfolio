@@ -9,13 +9,13 @@ export default function Main () {
     return (
         <main id='sobre' className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-blue-950 h-full pt-10">
             
-            <div className='xl:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-2xl hover:shadow-lg hover:shadow-blue-600'>
+            <div className='xl:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-2xl hover:shadow-lg hover:shadow-blue-600'  data-aos="fade-up">
                 <div className='col-span-1 flex items-center justify-center p-5'>
                     <Image className='w-full h-full 2xl:h-[625px] rounded-xl' src={FtAbner} alt='Foto Abner'/>
                 </div>
 
                 <div className='col-span-1'>
-                    <div className="relative flex justify-center items-end">
+                    <div className="relative flex justify-center items-end" data-aos="fade-right">
                         <div className="flex justify-center items-center mt-20">
                             <div className="z-20 absolute">
                                 <h1 className={`sm:text-7xl text-4xl text-blue-300 mt-16 ${BebasN.className}`}>Sobre Mim.</h1>
@@ -31,14 +31,14 @@ export default function Main () {
                         </div>  
                     </div>
 
-                    <div className='mt-24'>
+                    <div className='mt-24' data-aos="fade-up">
                         <p className={`text-white text-md lg:text-xl xl:mt-5 p-5 pb-0 xl:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 19 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou um estudante dedicado do 3º semestre na UNIVOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
                         <br />
                         <br />
                         Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
                     </div> 
                     
-                    <div className='flex flex-col m-5 xl:ml-0 2xl:ml-0 xl:mr-8 2xl:mt-10'>
+                    <div className='flex flex-col m-5 xl:ml-0 2xl:ml-0 xl:mr-8 2xl:mt-10' data-aos="fade-up">
                         <p className={`text-zinc-500 text-lg mb-2 ${Exo.className}`}>OBS: Você pode encontrar este projeto no <span className='text-blue-200 underline decoration-1'><a href="https://github.com/abneeralves/Portfolio" target="_blank">GitHub.</a></span></p>
                         <a className={`flex items-center justify-center p-2 w-full rounded-md text-center text-white border-2 border-blue-500 hover:shadow-lg hover:shadow-blue-400 hover:bg-white hover:text-black ${Exo.className}`} href=""><span className='mr-1'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
                             <path d="M8.75 2.75a.75.75 0 0 0-1.5 0v5.69L5.03 6.22a.75.75 0 0 0-1.06 1.06l3.5 3.5a.75.75 0 0 0 1.06 0l3.5-3.5a.75.75 0 0 0-1.06-1.06L8.75 8.44V2.75Z" />

@@ -28,7 +28,7 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
 
     return (
         <div id='skills' className='flex flex-col items-center bg-blue-950 h-full'>
-            <div className="relative flex justify-center items-end">
+            <div className="relative flex justify-center items-end" data-aos="fade-right">
                 <div className="flex justify-center items-center mt-32">
                     <div className="z-20 absolute">
                         <h1 className={`sm:text-7xl text-6xl text-blue-300 mt-16 ${BebasN.className}`}>Habilidades.</h1>
@@ -47,42 +47,42 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
             <div className='flex flex-col items-center justify-center mt-32 mb-5'>
                 <ul className='grid grid-cols-2 gap-3 2xl:grid-cols-4 2xl:gap-5 '>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter ransition-opacity duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='Icone HTML' width={45} />
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>HTML</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 md:mx-44 2xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='Icone CSS' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>CSS</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='Icone JavaScript' width={50} />
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>JavaScript</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='Icone TypeScript' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>TypeScript</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 xl:mx-32  ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={GIT} alt='Icone GIT' width={50}/> 
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Git</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='Icone React' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>React</h3>
                     </li>
  
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='Icone Tailwind' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 mt-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Tailwind</h3>
                     </li>
 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700'>
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 mt-3 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='Icone Nextjs' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Next js</h3>
                     </li>

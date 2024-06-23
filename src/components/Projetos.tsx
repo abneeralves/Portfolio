@@ -21,7 +21,7 @@ const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 export default function Projetos () {
     return (
         <div className="bg-blue-950 h-full">
-            <div className="relative flex justify-center items-end">
+            <div className="relative flex justify-center items-end" data-aos="fade-right">
                 <div className="flex justify-center items-center mt-64">
                     <div className="z-20 absolute">
                         <h1 className={`sm:text-7xl text-6xl text-blue-300 mt-16 ${BebasN.className}`}>Projetos.</h1>
@@ -38,7 +38,7 @@ export default function Projetos () {
 
             <div  className="flex flex-col items-center justify-center mt-24">
                 <ul className="grid md:grid-cols-2 2xl:grid-cols-3 gap-5">
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
 
                         <Image className="rounded-md" src={Porscher} alt="Imagem principal Porsche" />
 
@@ -66,7 +66,7 @@ export default function Projetos () {
                         </div>
                     </li>
                     
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
                         <Image className="rounded-md" src={Mario} alt="Imagem principal Mario" />
 
                         <div className="mt-5">
@@ -92,7 +92,7 @@ export default function Projetos () {
                         
                     </li>
 
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
                         <Image className="rounded-md" src={Netflix} alt="Imagem principal Netflix" />
 
                         <div className="mt-5">
@@ -118,7 +118,7 @@ export default function Projetos () {
                         
                     </li>
 
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
                         <Image className="rounded-md" src={IMC} alt="Imagem projeto Calculadora IMC" />
                         
                         <div className="mt-5">
@@ -143,7 +143,7 @@ export default function Projetos () {
                         
                     </li>
 
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
                         <Image className="rounded-md" src={Cep} alt="Imagem Porjeto Cep" />
 
                         <div className="mt-5">
@@ -168,7 +168,7 @@ export default function Projetos () {
                         </div>
                     </li>
 
-                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl mb-32 hover:shadow-lg hover:shadow-blue-600">
+                    <li className="bg-gray-900 w-96 xl:w-[415px] h-96 rounded-xl mb-32 hover:shadow-lg hover:shadow-blue-600" data-aos="fade-up">
                         <Image className="rounded-md" src={Calc} alt="Imagem Porjeto Calculadora" />
 
                         <div className="mt-5">
