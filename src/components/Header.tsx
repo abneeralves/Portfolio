@@ -2,29 +2,86 @@
 import Image from 'next/image'
 import LetraA from '../../public/A.png'
 
+import Whats from '../../public/whatsapp.png'
+import Instagram from '../../public/instagram.png'
+import Twitter from '../../public/twitter.png'
+import Linkedin from '../../public/Linkedin.png'
+import GitHub from '../../public/GitHub.png'
+
 import { Exo_2, Bebas_Neue } from 'next/font/google'
+import { useState } from 'react'
 const Exo = Exo_2({subsets: ['latin']})
 const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 
-export default function Header () {
+const Header: React.FC = () => {
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen)
+    } 
 
     return (
-        <header className="h-screen"  style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
+        <header className="h-screen" style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
 
             <nav className="flex justify-around">
-                <div className='mt-28 flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer'>
+                <div className='mt-28 flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer z-20'>
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-2'>&lt;</p>
                     <Image src={LetraA} alt='Letra A' width={50} />
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>/&gt;</p>
                 </div>
 
-                <div data-aos="fade-left">
+                <div className={`flex items-center justify-center mt-28 md:hidden ${isMenuOpen ? 'md:flex' : 'md:hidden'}`}>
+                    <svg onClick={toggleMenu} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`text-sky-500 size-10 cursor-pointer z-20 ${isMenuOpen ? 'hidden' : 'flex'}`}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+
+                    <svg onClick={toggleMenu} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`text-sky-500 size-10 cursor-pointer z-20 ${isMenuOpen ? 'flex' : 'hidden'}`}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </div>
+
+                <div className='hidden md:flex'>
                     <ul className={`flex items-center ${Exo.className}`}>
                         <a href="#sobre"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Sobre</li></a>
                         <a href="#projetos"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
                         <a href="#skills"><li className="mt-32 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
                         <a href="#contatos"><li className="mt-32  text-xl text-white bg-blue-600 p-2 rounded-xl">Contatos</li></a>
                     </ul>
+                </div>
+
+                <div className={`absolute z-10 md:hidden ${isMenuOpen ? 'flex' : 'hidden'}`}>
+                    <div className='flex flex-col justify-center items-center w-screen h-screen rounded-xl bg-zinc-900 bg-opacity-85'>
+                        <div className=''>
+                            <ul className={`m-5 ${Exo.className}`}>
+                                <a href="#sobre"><li className="mt-5 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Sobre</li></a>
+                                <a href="#projetos"><li className="mt-5 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Projetos</li></a>
+                                <a href="#skills"><li className="mt-5 mr-5 text-xl text-white rounded-md p-1 hover:bg-blue-600 hover:rounded-md">Skills</li></a>
+                                <a href="#contatos"><li className="mt-5 mr-5 text-xl text-white p-1 hover:bg-blue-600 hover:rounded-md">Contatos</li></a>
+                            </ul>
+                        </div>
+
+                        <div className="flex flex-col items-center">
+                            <ul className='flex mt-5'>
+
+                                <li className='flex mx-2 flex-col items-center justify-center'>
+                                    <a href=""><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone HTML' width={25} /></a>
+                                </li>
+
+                                <li className='flex mx-2 flex-col items-center justify-center'>
+                                    <a href=""><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone CSS' width={25}/></a>
+                                </li>
+                        
+                                <li className='flex mx-2 flex-col items-center justify-center'>
+                                    <a href=""><Image className="invert hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone JavaScript' width={25} /></a>
+                                </li>
+
+                                <li className='flex mx-2 flex-col items-center justify-center'>
+                                    <a href=""><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -69,3 +126,5 @@ export default function Header () {
         </header>
     )
 }
+
+export default Header
