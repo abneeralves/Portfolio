@@ -42,23 +42,23 @@ export default function Footer () {
                     <ul className='grid grid-cols-2 gap-3 2xl:grid-cols-5 2xl:gap-5 mt-5'>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-green-500'>
-                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone HTML' width={30} /></a>
+                            <a href="https://wa.me/5511999078219" target="_blank" rel="noopener noreferrer"><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone HTML' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-purple-500'>
-                            <a href=""><Image className="{mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone HTML' width={30} /></a>
+                            <a href="https://www.instagram.com/abneer_alves/" target="_blank" rel="noopener noreferrer"><Image className="{mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone HTML' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-500'>
-                            <a href=""><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone CSS' width={30}/></a>
+                            <a href="https://twitter.com/abneer_alves" target="_blank" rel="noopener noreferrer"><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone CSS' width={30}/></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-white'>
-                            <a href=""><Image className="invert mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone JavaScript' width={30} /></a>
+                            <a href="https://github.com/abneeralves" target="_blank" rel="noopener noreferrer"><Image className="invert mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone JavaScript' width={30} /></a>
                         </li>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-500'>
-                            <a href=""><Image className="mx-16 xl:mx-20 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
+                            <a href="https://www.linkedin.com/in/abner-alves-/" target="_blank" rel="noopener noreferrer"><Image className="mx-16 xl:mx-20 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
                         </li>
                     </ul>
                     
