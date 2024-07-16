@@ -3,7 +3,7 @@ import Image from 'next/image'
 import LetraA from '../../public/A.png'
 
 import Whats from '../../public/whatsapp.png'
-import Instagram from '../../public/instagram.png'
+import Instagram from '../../public/Instagram.png'
 import Twitter from '../../public/twitter.png'
 import Linkedin from '../../public/Linkedin.png'
 import GitHub from '../../public/GitHub.png'
@@ -65,23 +65,23 @@ const Header: React.FC = () => {
                             <ul className='flex mt-5'>
 
                             <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://wa.me/5511999078219" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone HTML' width={25} /></a>
+                                    <a href="https://wa.me/5511999078219" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone Whats' width={25} /></a>
                                 </li>
 
                                 <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://www.instagram.com/abneer_alves/" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone HTML' width={25} /></a>
+                                    <a href="https://www.instagram.com/abneer_alves/" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Instagram} alt='Icone instagram' width={25} /></a>
                                 </li>
 
                                 <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://twitter.com/abneer_alves" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone CSS' width={25}/></a>
+                                    <a href="https://twitter.com/abneer_alves" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone Twitter' width={25}/></a>
                                 </li>
                         
                                 <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://github.com/abneeralves" target="_blank" rel="noopener noreferrer"><Image className="invert hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone JavaScript' width={25} /></a>
+                                    <a href="https://github.com/abneeralves" target="_blank" rel="noopener noreferrer"><Image className="invert hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone GitHub' width={25} /></a>
                                 </li>
 
                                 <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://www.linkedin.com/in/abner-alves-/" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone TypeScript' width={30} /></a>
+                                    <a href="https://www.linkedin.com/in/abner-alves-/" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Linkedin} alt='Icone Linkedin' width={30} /></a>
                                 </li>
                             </ul>
                         </div>
