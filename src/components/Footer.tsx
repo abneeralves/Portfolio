@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Whats from '../../public/whatsapp.png'
-import Instagram from '../../public/instagram.png'
+import Instagram from '../../public/Instagram.png'
 import Twitter from '../../public/twitter.png'
 import Linkedin from '../../public/Linkedin.png'
 import GitHub from '../../public/GitHub.png'
