@@ -1,4 +1,4 @@
-'use client'
+
 import Image from 'next/image'
 import HTML from '../../public/HTML.png'
 import CSS from '../../public/CSS.png'
@@ -8,24 +8,11 @@ import NEXT from '../../public/NEXT.png'
 import TAILWIND from '../../public/TAILWIND.png'
 import TS from '../../public/TS.png'
 import GIT from '../../public/GIT.png'
-import React, { useEffect, useRef, useState } from 'react'
 import { Bebas_Neue } from "next/font/google"
 
 const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 
-const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
-
-    const [isVisible, setIsVisible] = useState (true)
-    const imageRef = useRef<HTMLImageElement>(null);
-
-    useEffect (() => {
-        const intevalId = setInterval (() => {
-            setIsVisible((prev) => !prev)
-        }, 2000)
-
-        return () => clearInterval(intevalId)
-    }, [])
-
+export default function skills () {
     return (
         <div id='skills' className='flex flex-col items-center bg-blue-950 h-full'>
             <div className="relative flex justify-center items-end" data-aos="fade-right">
@@ -48,48 +35,46 @@ const AutoHideImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => 
                 <ul className='grid grid-cols-2 gap-3 2xl:grid-cols-4 2xl:gap-5 '>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter ransition-opacity duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={HTML} alt='Icone HTML' width={45} />
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>HTML</h3>
+                        <Image className={`filter ransition-opacity duration-1000 mx-16 xl:mx-32 my-2`} src={HTML} alt='Icone HTML' width={45} />
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>HTML</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 md:mx-44 2xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} ref={imageRef} src={CSS}  alt='Icone CSS' width={50}/>
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>CSS</h3>
+                        <Image className={`filter duration-1000 mx-16 md:mx-44 2xl:mx-32 my-2`} src={CSS}  alt='Icone CSS' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>CSS</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={JS} alt='Icone JavaScript' width={50} />
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>JavaScript</h3>
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2`} src={JS} alt='Icone JavaScript' width={50} />
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>JavaScript</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TS} alt='Icone TypeScript' width={50}/>
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>TypeScript</h3>
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2`} src={TS} alt='Icone TypeScript' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>TypeScript</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 xl:mx-32  ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={GIT} alt='Icone GIT' width={50}/> 
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Git</h3>
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 `} src={GIT} alt='Icone GIT' width={50}/> 
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>Git</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={REACT} alt='Icone React' width={50}/>
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>React</h3>
-                    </li>
- 
-                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={TAILWIND} alt='Icone Tailwind' width={50}/>
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 mt-2 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Tailwind</h3>
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2`} src={REACT} alt='Icone React' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000`}>React</h3>
                     </li>
 
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
-                        <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 mt-3 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`} src={NEXT} alt='Icone Nextjs' width={50}/>
-                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1 ${isVisible ? 'filter brightness-50' : 'filter brightness-100'}`}>Next js</h3>
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 my-2`} src={TAILWIND} alt='Icone Tailwind' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 mt-2`}>Tailwind</h3>
+                    </li>
+
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
+                        <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 mt-3`} src={NEXT} alt='Icone Nextjs' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1`}>Next js</h3>
                     </li>
                 </ul>  
             </div>
         </div>
     )
 }
-
-export default AutoHideImage

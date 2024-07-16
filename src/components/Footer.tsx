@@ -39,7 +39,7 @@ export default function Footer () {
                 </div>
 
                 <div className="flex flex-col items-center mt-5">
-                    <ul className='grid grid-cols-2 gap-3 2xl:grid-cols-5 2xl:gap-5 mt-5'>
+                    <ul className='grid grid-cols-2 gap-3 lg:grid-cols-5 lg:gap-5 mt-5'>
 
                         <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-green-500'>
                             <a href="https://wa.me/5511999078219" target="_blank" rel="noopener noreferrer"><Image className="mx-16 xl:mx-14 my-3 hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone HTML' width={30} /></a>

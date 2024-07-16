@@ -12,7 +12,6 @@ import REACT from '../../public/REACT.png'
 import NEXT from '../../public/NEXT.png'
 import TAILWIND from '../../public/TAILWIND.png'
 import TS from '../../public/TS.png'
-import GitHub from '../../public/GitHub.png'
 import { Exo_2, Bebas_Neue } from "next/font/google"
 
 const Exo = Exo_2({subsets: ['latin'], weight: '400'})
