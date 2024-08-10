@@ -35,7 +35,7 @@ export default function Footer () {
             <div className="flex flex-col items-center mt-44" data-aos="fade-up">
                 <div className="flex flex-col items-center">
                     <h3 className={`text-white text-xl ${Exo.className}`}>Enviar um Email para:</h3>
-                    <p className={`text-white text-3xl mt-2 ${Exo.className}`}>abneralvesmuniz76@gmail.com</p>   
+                    <p className={`text-white text-2xl xl:text-3xl mt-2 ${Exo.className}`}>abneralvesmuniz76@gmail.com</p>   
                 </div>
 
                 <div className="flex flex-col items-center mt-5">

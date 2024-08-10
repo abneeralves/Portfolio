@@ -89,7 +89,7 @@ const Header: React.FC = () => {
                 </div>
             </nav>
 
-            <div className='flex items-center h-2/4 ml-10 lg:ml-44 xl:ml-62 2xl:ml-80 relative' data-aos="fade-right">
+            <div className='flex items-center justify-center md:justify-normal md:ml-28 h-2/4 lg:ml-44 xl:ml-62 2xl:ml-80 relative' data-aos="fade-right">
                 <div>
                     <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
