@@ -93,7 +93,7 @@ const Header: React.FC = () => {
                 <div>
                     <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
-                        <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Olá, meu nome é</p>
+                        <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Hi, my name is</p>
                     </div>
 
                     <div className='flex'>
