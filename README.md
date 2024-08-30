@@ -8,7 +8,8 @@
 
 ## 💻 Descrição
 
-*Portfólio pessoal em desenvolvimento*
+*Neste portfólio, você encontrará um resumo sobre mim, uma coleção dos meus projetos, e uma aba de contatos.
+Os projetos apresentados aqui mostram não apenas o meu trabalho, mas também a minha evolução como desenvolvedor. Ao longo do tempo, tenho aprimorado minhas habilidades para criar interfaces cada vez mais intuitivas, funcionais e de alto desempenho. Sinta-se à vontade para explorar e entrar em contato se tiver alguma dúvida ou quiser discutir oportunidades de colaboração!*
 
 ## 🚀 Tecnologias
 
