@@ -8,6 +8,7 @@ import NEXT from '../../public/NEXT.png'
 import TAILWIND from '../../public/TAILWIND.png'
 import TS from '../../public/TS.png'
 import GIT from '../../public/GIT.png'
+import LINUX from '../../public/LINUX.png'
 import { Bebas_Neue } from "next/font/google"
 
 const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
@@ -72,6 +73,11 @@ export default function skills () {
                     <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
                         <Image className={`invert filter brightness-50 duration-1000 mx-16 xl:mx-32 mt-3`} src={NEXT} alt='Icone Nextjs' width={50}/>
                         <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1`}>Next js</h3>
+                    </li>
+
+                    <li className='flex flex-col items-center justify-center rounded-lg bg-gray-900 hover:shadow-lg hover:shadow-blue-700' data-aos="fade-up">
+                        <Image className={`filter duration-1000 mx-16 xl:mx-32 mt-3`} src={LINUX} alt='Icone Nextjs' width={50}/>
+                        <h3 className={`text-zinc-200 font-bold filter ransition-opacity duration-1000 my-1`}>Linux</h3>
                     </li>
                 </ul>  
             </div>
