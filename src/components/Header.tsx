@@ -93,7 +93,7 @@ const Header: React.FC = () => {
                 <div>
                     <div className='flex items-center'>
                         <p className='text-3xl 2xl:text-4xl acena'>👋</p>
-                        <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Hi, my name is</p>
+                        <p className={`text-3xl 2xl:text-3xl text-white ${Exo.className}`}>Olá, meu nome é</p>
                     </div>
 
                     <div className='flex'>
@@ -118,7 +118,7 @@ const Header: React.FC = () => {
 
                     <div className='flex items-end'>
                         <span className='text-white text-2xl mr-1'>&lt;</span>
-                        <p className={`text-2xl 2xl:text-3xl text-white ${Exo.className}`}>and I'm a Front-end Developer.</p>
+                        <p className={`text-2xl 2xl:text-3xl text-white ${Exo.className}`}>e sou Desenvolvedor Front-end.</p>
                         <span className='text-white text-2xl ml-2'>/&gt;</span>
                     </div>
                 </div>

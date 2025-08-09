@@ -32,7 +32,7 @@ export default function Main () {
                     </div>
 
                     <div className='mt-24' data-aos="fade-up">
-                        <p className={`text-white text-md lg:text-xl xl:mt-5 p-5 pb-0 xl:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 20 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou um estudante dedicado do 5º semestre na UNIVOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
+                        <p className={`text-white text-md lg:text-xl xl:mt-5 p-5 pb-0 xl:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 20 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou graduado em Análise e Desenvolvimento de Sistemas pela UNINOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
                         <br />
                         <br />
                         Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
