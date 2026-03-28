@@ -10,8 +10,8 @@ import GitHub from '../../public/GitHub.png'
 
 import { Exo_2, Bebas_Neue } from 'next/font/google'
 import { useState } from 'react'
-const Exo = Exo_2({subsets: ['latin']})
-const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
+const Exo = Exo_2({ subsets: ['latin'] })
+const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
 const Header: React.FC = () => {
 
@@ -19,10 +19,10 @@ const Header: React.FC = () => {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
-    } 
+    }
 
     return (
-        <header className="h-screen" style={{ backgroundImage: 'radial-gradient(circle at center, #111837 15%, #09090b 70%)'}}>
+        <header className="h-screen bg-gray-950 relative overflow-hidden">
 
             <nav className="flex justify-around">
                 <div className='mt-28 flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer z-20'>
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                         <div className="flex flex-col items-center">
                             <ul className='flex mt-5'>
 
-                            <li className='flex mx-2 flex-col items-center justify-center'>
+                                <li className='flex mx-2 flex-col items-center justify-center'>
                                     <a href="https://wa.me/5511999078219" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Whats} alt='Icone Whats' width={25} /></a>
                                 </li>
 
@@ -73,9 +73,9 @@ const Header: React.FC = () => {
                                 </li>
 
                                 <li className='flex mx-2 flex-col items-center justify-center'>
-                                    <a href="https://twitter.com/abneer_alves" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Twitter}  alt='Icone Twitter' width={25}/></a>
+                                    <a href="https://twitter.com/abneer_alves" target="_blank" rel="noopener noreferrer"><Image className="hover:-translate-y-2 duration-300 ease-in-out" src={Twitter} alt='Icone Twitter' width={25} /></a>
                                 </li>
-                        
+
                                 <li className='flex mx-2 flex-col items-center justify-center'>
                                     <a href="https://github.com/abneeralves" target="_blank" rel="noopener noreferrer"><Image className="invert hover:-translate-y-2 duration-300 ease-in-out" src={GitHub} alt='Icone GitHub' width={25} /></a>
                                 </li>
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
                         </div>
 
                     </div>
-                    
+
 
                     <div className='flex items-end'>
                         <span className='text-white text-2xl mr-1'>&lt;</span>
@@ -123,10 +123,46 @@ const Header: React.FC = () => {
                     </div>
                 </div>
             </div>
-            
-            <svg className='ondas' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#2563EB" fill-opacity="10000" d="M0,320L34.3,288C68.6,256,137,192,206,181.3C274.3,171,343,213,411,224C480,235,549,213,617,170.7C685.7,128,754,64,823,64C891.4,64,960,128,1029,160C1097.1,192,1166,192,1234,160C1302.9,128,1371,64,1406,32L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
-            </svg>
+
+            <svg
+  viewBox="0 0 1440 590"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+  className="absolute bottom-0 left-0 w-full pointer-events-none"
+>
+  <defs>
+    <linearGradient id="blueGradientPro" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#38bdf8" />   {/* mais vibrante */}
+      <stop offset="35%" stopColor="#3b82f6" />
+      <stop offset="70%" stopColor="#2563eb" />
+      <stop offset="100%" stopColor="#1e3a8a" />
+    </linearGradient>
+  </defs>
+
+  <path
+    d="M 0,600 L 0,90 C 53.34,88.83 106.68,87.67 149,82 C 191.31,76.32 222.60,66.13 265,75 C 307.39,83.86 360.87,111.80 413,115 C 465.12,118.19 515.87,96.66 567,82 C 618.12,67.33 669.62,59.55 722,69 C 774.37,78.44 827.61,105.11 870,101 C 912.38,96.88 943.89,61.96 989,53 C 1034.10,44.03 1092.79,61.00 1150,66 C 1207.20,70.99 1262.91,63.99 1311,66 C 1359.08,68.00 1399.54,79.00 1440,90 L 1440,600 Z"
+    fill="url(#blueGradientPro)"
+    fillOpacity="0.2"
+  />
+
+  <path
+    d="M 0,600 L 0,210 C 43.07,220.72 86.14,231.45 131,223 C 175.85,214.54 222.49,186.90 278,185 C 333.50,183.09 397.87,206.92 454,227 C 510.12,247.07 557.99,263.38 594,250 C 630.00,236.61 654.12,193.51 703,190 C 751.87,186.48 825.50,222.54 881,238 C 936.49,253.45 973.86,248.30 1018,239 C 1062.13,229.69 1113.03,216.22 1162,214 C 1210.96,211.77 1257.98,220.79 1304,222 C 1350.01,223.20 1395.00,216.60 1440,210 L 1440,600 Z"
+    fill="url(#blueGradientPro)"
+    fillOpacity="0.4"
+  />
+
+  <path
+    d="M 0,600 L 0,330 C 41.51,343.15 83.02,356.30 129,353 C 174.97,349.69 225.42,329.92 278,321 C 330.57,312.07 385.26,314.00 432,317 C 478.73,319.99 517.50,324.06 567,318 C 616.49,311.93 676.71,295.73 728,294 C 779.28,292.26 821.62,304.98 861,316 C 900.37,327.01 936.78,336.31 992,336 C 1047.21,335.68 1121.25,325.76 1167,319 C 1212.74,312.23 1230.21,308.63 1271,311 C 1311.78,313.36 1375.89,321.68 1440,330 L 1440,600 Z"
+    fill="url(#blueGradientPro)"
+    fillOpacity="0.65"
+  />
+
+  <path
+    d="M 0,600 L 0,450 C 54.07,457.28 108.15,464.57 158,458 C 207.84,451.42 253.44,430.98 291,436 C 328.55,441.01 358.05,471.47 413,475 C 467.94,478.52 548.33,455.12 596,444 C 643.66,432.87 658.59,434.02 696,443 C 733.40,451.97 793.27,468.76 853,461 C 912.72,453.23 972.31,420.93 1022,425 C 1071.68,429.06 1111.45,469.51 1157,475 C 1202.54,480.48 1253.87,450.99 1302,441 C 1350.12,431.00 1395.06,440.50 1440,450 L 1440,600 Z"
+    fill="url(#blueGradientPro)"
+    fillOpacity="1"
+  />
+</svg>
         </header>
     )
 }
