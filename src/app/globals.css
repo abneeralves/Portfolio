@@ -22,7 +22,7 @@ header {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2563eb; 
+    background: #2563eb;
     border-radius: 6px;
 }
 
@@ -37,7 +37,7 @@ header {
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
-  
+
 .section {
     object-fit: cover;
     object-position: center;
@@ -45,12 +45,80 @@ header {
 }
 
 @keyframes acenando {
-    0% { transform: translateX(0);  }
-    25% { transform: translateX(0px) rotate(10deg); }
-    75% { transform: translateX(0px) rotate(-10deg); }
-    100% { transform: translateX(0) ; }
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(0px) rotate(10deg);
+    }
+
+    75% {
+        transform: translateX(0px) rotate(-10deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
-  
+
 .acena {
     animation: acenando 1s ease-in-out infinite;
+}
+
+@keyframes waveMove {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.wave {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.wave-1 {
+    animation: waveMove 20s linear infinite;
+}
+
+.wave-2 {
+    animation: waveMove 15s linear infinite reverse;
+}
+
+/* .wave-3 {
+    animation: waveMove 10s linear infinite;
+} */
+
+.wave-4 {
+    animation: waveMove 10s linear infinite;
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
+.animate-float-heart {
+  animation-name: float-heart;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

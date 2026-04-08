@@ -2,16 +2,16 @@ import Image from 'next/image'
 import FtAbner from '../../public/FtAbner.jpg'
 import { Exo_2, Bebas_Neue } from 'next/font/google'
 
-const Exo = Exo_2({subsets: ['latin'], weight: '400'})
-const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
+const Exo = Exo_2({ subsets: ['latin'], weight: '400' })
+const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
-export default function Main () {
+export default function Main() {
     return (
-        <main id='sobre' className="flex flex-col items-center justify-center bg-gradient-to-b from-blue-600 to-blue-950 h-full pt-10">
-            
-            <div className='xl:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-2xl hover:shadow-lg hover:shadow-blue-600'  data-aos="fade-up">
+        <main id='sobre' className="flex flex-col items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-blue-950 h-full pt-10">
+
+            <div className='xl:grid grid-cols-2 2xl:grid-cols-2 2xl:gap-4 bg-gray-900 lg:h-6/6 w-4/6 rounded-[3rem] hover:shadow-lg hover:shadow-blue-600' data-aos="fade-up">
                 <div className='col-span-1 flex items-center justify-center p-5'>
-                    <Image className='w-full h-full 2xl:h-[625px] rounded-xl' src={FtAbner} alt='Foto Abner'/>
+                    <Image className='w-full h-full 2xl:h-[625px] rounded-3xl' src={FtAbner} alt='Foto Abner' />
                 </div>
 
                 <div className='col-span-1'>
@@ -28,16 +28,16 @@ export default function Main () {
 
                                 <h2 className={`sm:text-9xl text-6xl  text-blue-900 ${BebasN.className}`}>About</h2>
                             </div>
-                        </div>  
+                        </div>
                     </div>
 
                     <div className='mt-24' data-aos="fade-up">
                         <p className={`text-white text-md lg:text-xl xl:mt-5 p-5 pb-0 xl:pl-0 2xl:mt-5 ${Exo.className}`}>Meu nome é Abner, um entusiasta da tecnologia de 20 anos, atualmente imerso no mundo do desenvolvimento front-end. Sou graduado em Análise e Desenvolvimento de Sistemas pela UNINOVE, buscando constantemente expandir meus horizontes e mergulhar nas complexidades do desenvolvimento web.
-                        <br />
-                        <br />
-                        Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
-                    </div> 
-                    
+                            <br />
+                            <br />
+                            Com um olhar curioso e uma paixão pela resolução de problemas, estou sempre pronto para abraçar novos desafios e aprender com cada experiência. Meu objetivo é não apenas dominar as tecnologias atuais, mas também explorar novas áreas, especialmente no desenvolvimento back-end.</p>
+                    </div>
+
                     <div className='flex flex-col m-5 xl:ml-0 2xl:ml-0 xl:mr-8 2xl:mt-10' data-aos="fade-up">
                         <p className={`text-zinc-500 text-lg mb-2 ${Exo.className}`}>OBS: Você pode encontrar este projeto no <span className='text-blue-200 underline decoration-1'><a href="https://github.com/abneeralves/Portfolio" target="_blank" rel="noopener noreferrer">GitHub.</a></span></p>
                         <a className={`flex items-center justify-center p-2 w-full rounded-md text-center text-white border-2 border-blue-500 hover:shadow-lg hover:shadow-blue-400 hover:bg-white hover:text-black ${Exo.className}`} href="/CurriculoAbner.pdf" download="CurriculoAbner.pdf"><span className='mr-1'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
