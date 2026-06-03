@@ -98,27 +98,34 @@ header {
 }
 
 @keyframes float-heart {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
 
-  10% {
-    opacity: 1;
-  }
+    10% {
+        opacity: 1;
+    }
 
-  90% {
-    opacity: 1;
-  }
+    90% {
+        opacity: 1;
+    }
 
-  100% {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
 }
 
 .animate-float-heart {
-  animation-name: float-heart;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+    animation-name: float-heart;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.outline-name {
+    color: #171330;
+    -webkit-text-stroke: 2px #22d3ee;
+    text-shadow:
+    0 0 8px rgba(34, 211, 238, 0.25);
 }
