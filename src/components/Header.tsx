@@ -26,15 +26,16 @@ export default function Header() {
     const firstNameProfession = "FULL";
     const midNameProfession = "STACK";
     const lastNameProfession = "DEVELOPER";
+    const lastNameProfessionMobile = "DEV";
 
     const StyleClass =
-        `text-8xl 2xl:text-[14rem] 
+        `text-9xl lg:text-[11rem] 2xl:text-[14rem] 
     hover:-translate-y-2 hover:text-[#ffd401] 
     hover:cursor-pointer duration-300 
     ease-in-out outline-name tracking-widest`;
 
     const highlightStyleClass =
-        `text-8xl 2xl:text-[14rem] 
+        `text-9xl lg:text-[11rem] 2xl:text-[14rem] 
     text-[#ffd401] hover:-translate-y-2 
     hover:text-[#ffd401] hover:cursor-pointer 
     duration-300 ease-in-out tracking-widest `;
@@ -42,6 +43,7 @@ export default function Header() {
     return (
         <header className="h-screen bg-[#171330] relative overflow-hidden">
             <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 md:px-14 pt-8 border-b border-white/5 pb-5 z-20 bg-[#171330]">
+            
                 <div className='flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer z-20'>
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>&lt;</p>
                     <Image src="/imgHeader/A.png" alt='Letra A' width={30} height={30} />
@@ -76,9 +78,73 @@ export default function Header() {
                 </button>
             </nav>
 
-            <div className='flex items-center justify-center relative' data-aos="fade-right">
+            <div className='flex items-center justify-center h-full w-full' data-aos="fade-right">
 
-                <div className='flex'>
+                <div className='mt-28 md:flex xl:hidden'>
+                    <div>
+                        <div className="flex">
+                            {firstName.split("").map((letter, index) => (
+                                <p
+                                    key={index}
+                                    className={`
+                                        ${StyleClass}
+                                        ${teko.className}
+                                        auto-hover
+                                    `}
+                                    style={{
+                                        animationDelay: `${index * 1}s`,
+                                    }}
+                                >
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+
+                        <div className="flex">
+                            {midName.split("").map((letter) => (
+                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+
+                        <div className="flex">
+                            {lastName.split("").map((letter) => (
+                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex">
+                            {lastNameProfessionMobile.split("").map((letter) => (
+                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+
+                        <div className="flex">
+                            {firstNameProfession.split("").map((letter) => (
+                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+
+                        <div className="flex">
+                            {midNameProfession.split("").map((letter) => (
+                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                    {letter}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className='hidden xl:flex'>
                     <div>
                         <div className="flex">
                             {lastName.split("").map((letter) => (
@@ -131,7 +197,7 @@ export default function Header() {
                         </div>
                     </div>
 
-                    <div className='ml-20'>
+                    <div className='ml-20 '>
                         <div className="flex">
                             {lastNameProfession.split("").map((letter) => (
                                 <p key={letter} className={`${StyleClass} ${teko.className}`}>
