@@ -42,7 +42,7 @@ export default function Header() {
 
     return (
         <header className="h-screen bg-[#171330] relative overflow-hidden">
-            <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 md:px-14 pt-8 border-b border-white/5 pb-5 z-20 bg-[#171330]">
+            <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 md:px-14 pt-8 border-b border-white/5 pb-5 z-30 bg-[#171330]">
             
                 <div className='flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer z-20'>
                     <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>&lt;</p>

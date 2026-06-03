@@ -19,7 +19,7 @@ const BebasN = Bebas_Neue({subsets: ['latin'], weight: '400'})
 
 export default function Projetos () {
     return (
-        <div className="bg-blue-950 h-full">
+        <div className="bg-white h-full">
             <div className="relative flex justify-center items-end" data-aos="fade-right">
                 <div className="flex justify-center items-center mt-64">
                     <div className="z-20 absolute">
