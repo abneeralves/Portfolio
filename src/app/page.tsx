@@ -1,7 +1,7 @@
 'use client'
 import Header from "@/components/Header"
 import Main from "@/components/Main"
-import Projetos from '@/components/Projetos'
+import Projects from '@/components/Projects'
 import Habilidades from "@/components/Skills"
 import Footer from "@/components/Footer"
 
@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Header data-aos="fade-up"/>
       <Main />
-      {/* <Projetos /> */}
+      <Projects />
       <Habilidades />
       <Footer />
     </>

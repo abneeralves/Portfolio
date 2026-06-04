@@ -3,7 +3,7 @@ import { Exo_2, Bebas_Neue } from 'next/font/google'
 const Exo = Exo_2({ subsets: ['latin'], weight: '400' })
 const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 
-const squares = [1, 2, 3, 4]
+const squares = [1, 2, 3]
 
 export default function Main() {
     return (
@@ -23,7 +23,7 @@ export default function Main() {
                 ))}
             </div>
 
-            <div className='relative z-10 my-10 md:px-10' data-aos="fade-up">
+            <div className='relative z-10 my-20 md:px-10' data-aos="fade-up">
                 
                 <div>
                     <div className="relative mt-5" data-aos="fade-right">
@@ -50,7 +50,7 @@ export default function Main() {
                         </div>
                     </div>
 
-                    <div className='mt-20 2xl:pr-64 ' data-aos="fade-up">
+                    <div className='mt-20 2xl:w-[1000px]' data-aos="fade-up">
                         <p className={`text-white text-xl p-5 pb-0 md:text-2xl xl:mt-5 xl:pl-0 2xl:mt-5 ${Exo.className}`}>
                             Meu nome é Abner, tenho 21 anos e sou Desenvolvedor Full Stack apaixonado por tecnologia e inovação. Sou graduado em Análise e Desenvolvimento de Sistemas pela UNINOVE e estou sempre em busca de novos conhecimentos para evoluir minhas habilidades e aprofundar minha atuação no desenvolvimento de software.
 
