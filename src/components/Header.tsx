@@ -4,21 +4,12 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { Anton, Fira_Code } from 'next/font/google'
 
-const teko = Anton({ subsets: ['latin'], weight: '400' })
+const anton = Anton({ subsets: ['latin'], weight: '400' })
 const FiraCode = Fira_Code({ subsets: ['latin'] })
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) }
-
-    type Names = {
-        firstName: string;
-        midName: string;
-        lastName: string;
-        firstNameProfession: string;
-        midNameProfession: string;
-        lastNameProfession: string;
-    }
 
     const firstName = "ABNER";
     const midName = "ALVES";
@@ -51,7 +42,7 @@ export default function Header() {
                 </div>
 
                 <ul className={`hidden md:flex items-center gap-1 ${FiraCode.className}`}>
-                    {['inicio', 'Sobre', 'Projetos', 'Skills'].map((item) => (
+                    {['inicio', 'Sobre', 'Projetos', 'Experiência', 'Skills'].map((item) => (
                         <a key={item} href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`}>
                             <li className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-2 rounded-lg cursor-pointer">
                                 {item}
@@ -88,7 +79,7 @@ export default function Header() {
                                     key={index}
                                     className={`
                                         ${StyleClass}
-                                        ${teko.className}
+                                        ${anton.className}
                                         auto-hover
                                     `}
                                     style={{
@@ -102,7 +93,7 @@ export default function Header() {
 
                         <div className="flex">
                             {midName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -110,7 +101,7 @@ export default function Header() {
 
                         <div className="flex">
                             {lastName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -120,7 +111,7 @@ export default function Header() {
                     <div>
                         <div className="flex">
                             {lastNameProfessionMobile.split("").map((letter) => (
-                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${highlightStyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -128,7 +119,7 @@ export default function Header() {
 
                         <div className="flex">
                             {firstNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${highlightStyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -136,7 +127,7 @@ export default function Header() {
 
                         <div className="flex">
                             {midNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${highlightStyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${highlightStyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -148,7 +139,7 @@ export default function Header() {
                     <div>
                         <div className="flex">
                             {lastName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -160,7 +151,7 @@ export default function Header() {
                                     key={index}
                                     className={`
                                         ${highlightStyleClass}
-                                        ${teko.className}
+                                        ${anton.className}
                                         auto-hover
                                     `}
                                     style={{
@@ -174,7 +165,7 @@ export default function Header() {
 
                         <div className="flex">
                             {midName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -182,7 +173,7 @@ export default function Header() {
 
                         <div className="flex">
                             {lastName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -190,7 +181,7 @@ export default function Header() {
 
                         <div className="flex">
                             {firstName.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -200,7 +191,7 @@ export default function Header() {
                     <div className='ml-20 '>
                         <div className="flex">
                             {lastNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -208,7 +199,7 @@ export default function Header() {
 
                         <div className="flex">
                             {firstNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -216,7 +207,7 @@ export default function Header() {
 
                         <div className="flex">
                             {midNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}
@@ -224,7 +215,7 @@ export default function Header() {
 
                         <div className="flex">
                             {lastNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${highlightStyleClass} ${teko.className} tracking-[0.5rem]`}>
+                                <p key={letter} className={`${highlightStyleClass} ${anton.className} tracking-[0.5rem]`}>
                                     {letter}
                                 </p>
                             ))}
@@ -232,7 +223,7 @@ export default function Header() {
 
                         <div className="flex">
                             {firstNameProfession.split("").map((letter) => (
-                                <p key={letter} className={`${StyleClass} ${teko.className}`}>
+                                <p key={letter} className={`${StyleClass} ${anton.className}`}>
                                     {letter}
                                 </p>
                             ))}

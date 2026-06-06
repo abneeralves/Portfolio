@@ -6,24 +6,17 @@ header {
     position: relative;
 }
 
-.ondas {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
 ::-webkit-scrollbar {
     width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #27272a;
+    background: #171330;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2563eb;
-    border-radius: 6px;
+    background: #ffd401;
+    border-radius: 10px;
 }
 
 .scroll {
@@ -64,37 +57,6 @@ header {
 
 .acena {
     animation: acenando 1s ease-in-out infinite;
-}
-
-@keyframes waveMove {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.wave {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-.wave-1 {
-    animation: waveMove 20s linear infinite;
-}
-
-.wave-2 {
-    animation: waveMove 15s linear infinite reverse;
-}
-
-/* .wave-3 {
-    animation: waveMove 10s linear infinite;
-} */
-
-.wave-4 {
-    animation: waveMove 10s linear infinite;
 }
 
 @keyframes float-heart {

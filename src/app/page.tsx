@@ -2,6 +2,7 @@
 import Header from "@/components/Header"
 import Main from "@/components/Main"
 import Projects from '@/components/Projects'
+import Experience from "@/components/Experience"
 import Habilidades from "@/components/Skills"
 import Footer from "@/components/Footer"
 
@@ -22,6 +23,7 @@ export default function Home() {
       <Header data-aos="fade-up"/>
       <Main />
       <Projects />
+      <Experience />
       <Habilidades />
       <Footer />
     </>
