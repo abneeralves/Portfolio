@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="PT-br">
       <body className={inter.className}>{children}</body>
-      <link rel="shortcut icon" href="A.png" type="image/x-icon" />
+      <link rel="shortcut icon" href="/imgHeader/A.png" type="image/x-icon" />
     </html>
   );
 }

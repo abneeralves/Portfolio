@@ -9,29 +9,33 @@ type Project = {
     image: string,
     title: string,
     describe: string,
-    featured: boolean
+    featured: boolean,
+    skill: string[]
 }
 
 const projects: Project[] = [
     {
-        image: '/imageProjects/imagePorsche.png',
+        image: '/imageProjects/video-porsche.mp4',
         title: 'Landing Page Porsche',
         featured: true,
         describe: 'Projeto Porsche é uma aplicação front-end desenvolvida com foco em design, responsividade e performance. Inspirada na identidade visual da Porsche, a página apresenta uma interface moderna, seções informativas, galeria de veículos e animações que proporcionam uma experiência visual envolvente. O projeto foi criado para demonstrar conhecimentos em desenvolvimento web e construção de interfaces responsivas.',
+        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg' ]
     },
     {
         image: '/imageProjects/imageMario.png',
         title: 'Projeto Mario Bros',
         featured: false,
-        describe: ''
+        describe: '',
+        skill: ['/SVGs/html.svg', '/SVGs/css.svg']
     },
     {
         image: '/imageProjects/imageNetflix.png',
         title: 'Projeto Netflix',
         featured: false,
-        describe: ''
+        describe: '',
+        skill: ['/SVGs/html.svg', '/SVGs/css.svg']
+    
     }
-
 ]
 
 export default function Projects() {
@@ -40,7 +44,7 @@ export default function Projects() {
             <div className="relative flex justify-center items-end" data-aos="fade-right">
                 <div className="flex justify-center items-center mt-64">
                     <div className="z-20 absolute">
-                        <h1 className={`sm:text-8xl text-6xl text-[#ffd401] mt-16  ${BebasN.className}`}>Projetos.</h1>
+                        <h1 className={`sm:text-8xl text-6xl text-[#ffd401] mt-16 ${BebasN.className}`}>Projetos.</h1>
                     </div>
 
                     <div className="z-10 absolute flex items-center">
@@ -67,7 +71,7 @@ export default function Projects() {
                                 : ''
                             }`} data-aos="fade-up">
 
-                            <Image className="rounded-t-xl" src={projects.image} alt="Foto Projeto" width={1000} height={100} />
+                            <video autoPlay muted loop playsInline className="rounded-t-xl" src={projects.image} width={1000} height={100} />
 
                             <div className="mx-2">
                                 <div>
@@ -78,14 +82,13 @@ export default function Projects() {
                                 </div>
 
 
-                                <div className="flex items-center gap-1">
-                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone HTML" width={20} height={10}/>
-                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone CSS" width={25} height={10}/>
-                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone TypeScript" width={20} height={10}/>
-                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone React" width={20} height={10}/>
-                                <Image className="invert cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone Nextjs" width={20} height={10} />
-                                <Image className="cursor-pointer transition-transform hover:-translate-y-2" src='/imgProjetos/imgPorsche.png' alt="Icone Tailwind" width={20} height={10}/>
+                                
+                                <div className="flex gap-1">
+                                    {projects.skill.map((icon) => (
+                                    <Image className="cursor-pointer transition-transform hover:-translate-y-1" src={icon} alt="Icone HTML" width={25} height={10}/>
+                                ))}
                                 </div>
+                                
 
                                 <div className="w-full py-3">
                                     <a
