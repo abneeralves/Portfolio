@@ -1,16 +1,8 @@
-'use client'
-
-import Image from 'next/image'
-import { useState } from 'react'
-import { Anton, Fira_Code } from 'next/font/google'
+import { Anton } from 'next/font/google'
 
 const anton = Anton({ subsets: ['latin'], weight: '400' })
-const FiraCode = Fira_Code({ subsets: ['latin'] })
 
 export default function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) }
-
     const firstName = "ABNER";
     const midName = "ALVES";
     const lastName = "MUNIZ";
@@ -33,42 +25,6 @@ export default function Header() {
 
     return (
         <header className="h-screen bg-[#171330] relative overflow-hidden">
-            <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 md:px-14 pt-8 border-b border-white/5 pb-5 z-30 bg-[#171330]">
-            
-                <div className='flex items-center hover:rotate-180 transition-transform duration-500 cursor-pointer z-20'>
-                    <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>&lt;</p>
-                    <Image src="/imgHeader/A.png" alt='Letra A' width={30} height={30} />
-                    <p className='text-sky-500 text-2xl xl:text-3xl -m-1'>/&gt;</p>
-                </div>
-
-                <ul className={`hidden md:flex items-center gap-1 ${FiraCode.className}`}>
-                    {['inicio', 'Sobre', 'Projetos', 'Experiência', 'Skills'].map((item) => (
-                        <a key={item} href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`}>
-                            <li className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-2 rounded-lg cursor-pointer">
-                                {item}
-                            </li>
-                        </a>
-                    ))}
-                    <a href="#contatos">
-                        <li className="text-sm font-semibold text-[#0A0E1A] bg-[#ffd401] hover:bg-[#B39501] transition-colors px-5 py-2 rounded-lg cursor-pointer">
-                            Contatos
-                        </li>
-                    </a>
-                </ul>
-
-                <button onClick={toggleMenu} className="md:hidden text-sky-400 z-20">
-                    {isMenuOpen ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    )}
-                </button>
-            </nav>
-
             <div className='flex items-center justify-center h-full w-full' data-aos="fade-right">
 
                 <div className='mt-28 md:flex xl:hidden'>
