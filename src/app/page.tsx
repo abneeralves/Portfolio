@@ -21,7 +21,7 @@ export default function Home() {
       <Header data-aos="fade-up" />
       <Main />
       <Projects />
-      {/* <Experience /> */}
+      <Experience />
       <Habilidades />
       <Footer />
     </>

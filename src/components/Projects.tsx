@@ -79,7 +79,7 @@ export default function Projects() {
                             data-aos="fade-up"
                             data-aos-delay={index * 100}
                         >
-                            <div className={`w-full overflow-hidden ${project.featured ? 'h-[620px]' : 'h-[305px]'}`}>
+                            <div className={`w-full overflow-hidden ${project.featured ? 'h-[623px]' : 'h-[305px]'}`}>
                                 {project.mediaType === 'video' ? (
                                     <video
                                         autoPlay
