@@ -213,8 +213,8 @@ export default function Experience() {
                                     />
                                 </div>
 
-                                <div className={`absolute top-1/2 -translate-y-1/2 hidden md:block h-[2px] bg-gradient-to-r transition-opacity duration-300 $`}
-                                />
+                                <div className={`absolute top-1/2 -translate-y-1/2 hidden md:block h-[2px] bg-gradient-to-r transition-opacity duration-300 $`}/>
+                                
                                 <span className={`pointer-events-none select-none absolute inset-y-0 hidden md:flex items-center justify-center w-1/2 text-[650px] leading-none transition-all duration-700 ${anton.className} ${isLeft ? 'right-0' : 'left-0 pr-20'
                                     } ${isActive ? 'text-[#171330]/60 scale-105' : 'text-[#171330]/[0.05]'} ${isArriving ? 'scale-110' : ''
                                     }`}
@@ -269,7 +269,7 @@ export default function Experience() {
                                                 href={project.linkProject}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`group flex items-center justify-center w-full py-3 bg-[#ffd401] text-[#0A0E1A] font-semibold hover:bg-white transition-colors duration-300 rounded-xl gap-2 text-sm tracking-wide ${Exo.className}`}
+                                                className={`group flex items-center justify-center w-full py-3 bg-[#ffd401] text-[#0A0E1A] font-semibold hover:bg-[#B39501] transition-colors duration-300 rounded-xl gap-2 text-sm tracking-wide ${Exo.className}`}
                                             >
                                                 Saiba mais
                                                 <svg
