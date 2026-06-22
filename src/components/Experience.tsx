@@ -21,7 +21,7 @@ const projects: Project[] = [
         image: '/imgExperience/experiencia-que-conecta.png',
         title: 'Assistente de Tecnologia | Grupo UAU',
         describe: 'Desenvolvedor do Grupo UAU, com experiência na criação de soluções web e atuação em diferentes produtos da empresa. Participei do desenvolvimento das landing pages da Scarlet e da UAUBox, sendo responsável pela construção do front-end e pela implementação de interfaces modernas, responsivas e alinhadas às necessidades do negócio. \n\n  Atualmente, atuo no desenvolvimento da UAUTeam, plataforma de afiliados do Grupo UAU, trabalhando como Desenvolvedor Full Stack. No dia a dia, desenvolvo e evoluo funcionalidades no front-end e no back-end, criando interfaces intuitivas e responsivas, realizando integrações com APIs, implementando regras de negócio, consumindo e disponibilizando serviços, além de apoiar a análise de builds, execução de aplicações e monitoramento de logs em ambiente de cloud.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg'],
+        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg', '/SVGs/postgresql.svg'],
         linkProject: 'https://www.grupouau.com/'
     },
     {
@@ -42,7 +42,7 @@ const projects: Project[] = [
         image: '/imgExperience/uau-team.png',
         title: 'UauTeam',
         describe: 'Atualmente atuo no desenvolvimento da UAUTeam, infraestrutura completa para marcas operarem programas de afiliados com recursos como cupons em massa, social analytics, gamificação, seeding, métricas em tempo real e pagamento automático via Pix, tudo na sua marca e no seu domínio. Participo ativamente tanto do desenvolvimento front-end quanto back-end, contribuindo na criação de novas funcionalidades, integrações e manutenção da aplicação, sempre com foco em performance, escalabilidade e experiência do usuário.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg'],
+        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg', '/SVGs/postgresql.svg'],
         linkProject: 'https://uauteam.vercel.app/'
     }
 ]
