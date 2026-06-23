@@ -62,15 +62,6 @@ const codeSymbols = [
     { symbol: '( )', top: '58%', left: '72%', size: '2.5rem', duration: '11.5s', delay: '2.2s' },
     { symbol: '#', top: '72%', left: '52%', size: '2.75rem', duration: '8.8s', delay: '1.2s' },
     { symbol: '#', top: '88%', left: '45%', size: '2rem', duration: '10.8s', delay: '2.8s' },
-
-    { symbol: '{ }', top: '5%', left: '28%', size: '2rem', duration: '9.3s', delay: '1.4s' },
-    { symbol: ';', top: '10%', left: '56%', size: '2.75rem', duration: '8.4s', delay: '2.1s' },
-    { symbol: '</>', top: '6%', left: '76%', size: '2.25rem', duration: '10.1s', delay: '0.6s' },
-    { symbol: '( )', top: '24%', left: '8%', size: '2rem', duration: '11.2s', delay: '1.9s' },
-    { symbol: '#', top: '30%', left: '46%', size: '3rem', duration: '8.7s', delay: '0.8s' },
-    { symbol: '</>', top: '38%', left: '70%', size: '2rem', duration: '12s', delay: '2.4s' },
-
-
 ]
 
 export default function Experience() {
