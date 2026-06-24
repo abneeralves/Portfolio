@@ -570,39 +570,6 @@ export default function Main() {
                     </div>
                 </div>
             </div>
-
-            <svg className="absolute bottom-0 left-0 w-full z-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <defs>
-                    <pattern
-                        id="grid"
-                        width="37.5"
-                        height="40"
-                        patternUnits="userSpaceOnUse"
-                    >
-                        <path
-                            d="M 40 0 L 0 0 0 40"
-                            fill="none"
-                            stroke="#171330"
-                            strokeWidth="1"
-                            opacity="0.08"
-                        />
-                    </pattern>
-                    <clipPath id="waveClip">
-                        <path d="M0,288L80,293.3C160,299,320,309,480,298.7C640,288,800,256,960,202.7C1120,149,1280,75,1360,37.3L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" />
-                    </clipPath>
-                </defs>
-
-                <path
-                    fill="#FFFFFF"
-                    d="M0,288L80,293.3C160,299,320,309,480,298.7C640,288,800,256,960,202.7C1120,149,1280,75,1360,37.3L1440,0L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-                />
-
-                <rect
-                    width="1440"
-                    height="320"
-                    fill="url(#grid)"
-                />
-            </svg>
         </main>
     )
 }
