@@ -24,7 +24,7 @@ export default function Header() {
     duration-300 ease-in-out tracking-widest `;
 
     return (
-        <header className="h-screen bg-[#171330] relative overflow-hidden">
+        <header id='inicio' className="h-screen bg-[#171330] relative overflow-hidden">
             <div className='flex items-center justify-center h-full w-full' data-aos="fade-right">
 
                 <div className='mt-28 md:flex xl:hidden'>

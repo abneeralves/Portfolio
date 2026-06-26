@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Fira_Code } from 'next/font/google'
 
 const FiraCode = Fira_Code({ subsets: ['latin'] })
-const NAV_ITEMS = ['inicio', 'Sobre', 'Projetos', 'Experiência', 'Skills']
+const NAV_ITEMS = ['inicio', 'Sobre', 'Projetos', 'Experiência', 'Habilidades']
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)

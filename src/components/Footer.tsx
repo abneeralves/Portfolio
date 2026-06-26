@@ -1,5 +1,7 @@
 import { Bebas_Neue, Exo_2 } from "next/font/google"
 import { GitHubCalendar } from "react-github-calendar"
+import CountUp from "react-countup";
+import { TypeAnimation } from 'react-type-animation'
 import Image from "next/image"
 
 const BebasN = Bebas_Neue({
@@ -21,35 +23,35 @@ type Social = {
 
 const socials: Social[] = [
     {
-        name: "WhatsApp",
+        name: 'Whatsapp',
         icon: '/SVGs/whatsapp.svg',
         href: "https://wa.me/5511999078219",
         shadow: "hover:shadow-green-500/40",
         invert: false
     },
     {
-        name: "Instagram",
+        name: 'Instagram',
         icon: '/SVGs/instagram.svg',
         href: "https://www.instagram.com/abneer_alves/",
         shadow: "hover:shadow-pink-500/40",
         invert: false
     },
     {
-        name: "Twitter",
+        name: 'Twitter',
         icon: '/SVGs/twitter.svg',
         href: "https://twitter.com/abneer_alves",
         shadow: "hover:shadow-blue-500/40",
         invert: false
     },
     {
-        name: "GitHub",
+        name: 'Github',
         icon: '/SVGs/github.svg',
         href: "https://github.com/abneeralves",
         shadow: "hover:shadow-white/30",
         invert: true
     },
     {
-        name: "LinkedIn",
+        name: 'Linkedin',
         icon: '/SVGs/linkedin.svg',
         href: "https://www.linkedin.com/in/abner-alves-/",
         shadow: "hover:shadow-blue-400/40",
@@ -57,7 +59,15 @@ const socials: Social[] = [
     }
 ]
 
-// Estrelas geradas uma vez (posições fixas, sem libs externas)
+const quickLinks = [
+    { name: "Início", href: "#inicio" },
+    { name: "Sobre", href: "#sobre" },
+    { name: "Projetos", href: "#projetos" },
+    { name: "Contatos", href: "#contatos" },
+    { name: "Experiência", href: "#experiencia" },
+    { name: "Habilidades", href: "#habilidades" }
+]
+
 const STARS = Array.from({ length: 60 }).map((_, i) => ({
     id: i,
     top: Math.random() * 100,
@@ -68,12 +78,137 @@ const STARS = Array.from({ length: 60 }).map((_, i) => ({
 }))
 
 export default function Footer() {
-    return (
-        <footer
-            id="contatos"
-            className="relative overflow-hidden bg-[#171330] py-32 px-5"
+    const SocialNode = ({ social, invert }: any) => (
+        <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+            group
+            relative
+            flex
+            flex-col
+            items-center
+            gap-3
+        "
         >
-            {/* CAMPO DE ESTRELAS */}
+
+            {/* Connector Dot */}
+            <div className="absolute -z-10 h-3 w-3 rounded-full bg-[#7C3AED] shadow-[0_0_12px_#7C3AED]" />
+
+            {/* Card */}
+            <div
+                className="
+                relative
+                flex
+                h-24
+                w-24
+                items-center
+                justify-center
+                overflow-hidden
+                rounded-[28px]
+                border
+                border-white/10
+                bg-[linear-gradient(145deg,rgba(35,28,75,.95),rgba(23,19,48,.95))]
+                backdrop-blur-xl
+                transition-all
+                duration-500
+                hover:-translate-y-4
+                hover:scale-110
+                hover:rotate-3
+                hover:border-[#ffd401]/40
+                hover:shadow-[0_20px_60px_-15px_rgba(255,212,1,.45)]
+            "
+            >
+
+                {/* Rotating Border */}
+                <div
+                    className="
+                    absolute
+                    inset-[-1px]
+                    rounded-[28px]
+                    bg-[conic-gradient(from_0deg,transparent,#7C3AED66,#ffd40188,#7C3AED66,transparent)]
+                    opacity-0
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:animate-spin
+                "
+                />
+
+                {/* Inner Background */}
+                <div className="absolute inset-[2px] rounded-[26px] bg-[#171330]" />
+
+                {/* Glow */}
+                <div
+                    className="
+                    absolute
+                    h-14
+                    w-14
+                    rounded-full
+                    bg-[#ffd401]/20
+                    blur-3xl
+                    opacity-0
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:scale-[2]
+                "
+                />
+
+                {/* Orbit Ring */}
+                <div
+                    className="
+                    absolute
+                    inset-[-8px]
+                    rounded-[34px]
+                    border
+                    border-[#7C3AED]/20
+                    opacity-0
+                    transition-all
+                    duration-500
+                    group-hover:opacity-100
+                    group-hover:animate-pulse
+                "
+                />
+
+                <Image
+                    src={social.icon}
+                    alt={social.name}
+                    width={32}
+                    height={32}
+                    className={`
+                    relative
+                    z-10
+                    opacity-70
+                    transition-all
+                    duration-500
+                    group-hover:scale-125
+                    group-hover:rotate-12
+                    group-hover:opacity-100
+                    ${invert ? "invert" : ""}
+                `}
+                />
+            </div>
+
+            <span
+                className={`
+                text-xs
+                text-white/45
+                transition-all
+                duration-300
+                group-hover:text-[#ffd401]
+                group-hover:-translate-y-1
+                ${Exo.className}
+            `}
+            >
+                {social.name}
+            </span>
+
+        </a>
+    )
+    return (
+        <footer id="contatos" className="relative overflow-hidden bg-[#171330] py-32 px-5">
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {STARS.map((star) => (
                     <span
@@ -93,9 +228,7 @@ export default function Footer() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center">
-                {/* HEADER */}
                 <div className="flex flex-col items-center text-center relative">
-                    {/* brilho de estrela acima do título */}
                     <div className="relative mb-3">
                         <svg width="22" height="22" viewBox="0 0 24 24" className="text-[#ffd401]" style={{ animation: "starPulse 2.4s ease-in-out infinite" }}>
                             <path
@@ -104,212 +237,373 @@ export default function Footer() {
                             />
                         </svg>
                     </div>
+
                     <span className={`text-cyan-300/60 text-xs tracking-[0.4em] uppercase mb-4 ${Exo.className}`}>
                         // Email & redes sociais
                     </span>
+
                     <div className="flex items-center gap-4">
                         <div className="w-10 sm:w-12 h-[2px] bg-[#ffd401]" />
+
                         <h2 className={`text-white text-5xl sm:text-9xl ${BebasN.className}`}>
                             Contatos
                             <span className="text-[#ffd401]">.</span>
                         </h2>
+
                         <div className="w-10 sm:w-12 h-[2px] bg-[#ffd401]" />
                     </div>
+
                     <p className={`text-slate-400 mt-4 max-w-xl text-sm sm:text-base ${Exo.className}`}>
                         Gostou dos meus projetos ou quer conversar sobre uma oportunidade?
                         Estou sempre aberto para novos desafios e conexões.
                     </p>
-                </div>
 
-                {/* EMAIL CARD — terminal Mac, mais "premium" */}
-                <div
-                    className="mt-20 w-full max-w-3xl rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_60px_-15px_rgba(124,58,237,0.25)]"
-                    data-aos="fade-up"
-                    style={{
-                        background: "rgba(255,255,255,0.04)",
-                        backdropFilter: "blur(24px)"
-                    }}
-                >
-                    <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-white/[0.03]">
-                        <div className="flex items-center gap-2">
-                            <span className="h-3 w-3 rounded-full bg-[#FF5F57]" />
-                            <span className="h-3 w-3 rounded-full bg-[#FEBC2E]" />
-                            <span className="h-3 w-3 rounded-full bg-[#28C840]" />
-                        </div>
-                        <span className={`text-white/25 text-[11px] tracking-widest ${Exo.className}`}>
-                            contato.sh
+                    <div className={`flex items-center gap-2 mt-5 text-slate-500 text-xs ${Exo.className}`}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+
+                        <span>São Paulo, Brasil</span>
+
+                        <span className="mx-1 text-slate-700">•</span>
+
+                        <span className="inline-flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#28C840] shadow-[0_0_6px_#28C840]" />
+                            Disponível para novos projetos
                         </span>
-                        <div className="w-16" />
-                    </div>
-                    <div className="px-8 py-8 text-center">
-                        <div className={`text-[12px] mb-8 space-y-1.5 text-left ${Exo.className}`}>
-                            <p>
-                                <span className="text-[#7C3AED]">abner</span>
-                                <span className="text-white/25">@portfolio</span>
-                                <span className="text-[#ffd401]">:~$</span>
-                                <span className="text-slate-300"> echo "Vamos construir algo juntos?"</span>
-                            </p>
-                            <p className="text-slate-500 pl-4">→ Vamos construir algo juntos?</p>
-                            <p>
-                                <span className="text-[#7C3AED]">abner</span>
-                                <span className="text-white/25">@portfolio</span>
-                                <span className="text-[#ffd401]">:~$</span>
-                                <span className="text-slate-300"> send-email --to abner</span>
-                            </p>
-                        </div>
-                        <a
-                            href="mailto:abneralvesmuniz76@gmail.com"
-                            className={`
-                                inline-flex
-                                items-center
-                                justify-center
-                                gap-3
-                                mt-2
-                                px-8
-                                py-4
-                                rounded-2xl
-                                bg-[#ffd401]
-                                text-[#171330]
-                                font-bold
-                                text-lg
-                                hover:scale-105
-                                hover:shadow-[0_0_30px_rgba(255,212,1,0.5)]
-                                transition-all
-                                duration-300
-                                ${Exo.className}
-                            `}
-                        >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            abneralvesmuniz76@gmail.com
-                        </a>
                     </div>
                 </div>
 
-                {/* SOCIALS — cards mais estilizados */}
-                <div
-                    className="grid grid-cols-2 lg:grid-cols-5 gap-5 mt-16 w-full max-w-6xl"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                >
-                    {socials.map((social) => (
-                        <a
-                            key={social.name}
-                            href={social.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`
-                                group
-                                relative
-                                flex
-                                flex-col
-                                items-center
-                                justify-center
-                                gap-4
-                                p-8
-                                rounded-3xl
-                                border border-white/10
-                                bg-white/[0.04]
-                                backdrop-blur-sm
-                                overflow-hidden
+                <div className="mt-32 w-full max-w-[1700px] mx-auto">
+                    <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[linear-gradient(145deg,rgba(23,19,48,0.98),rgba(12,10,30,0.96))] shadow-[0_30px_100px_-30px_rgba(124,58,237,.35)]">
+                        <div className="pointer-events-none absolute -top-32 right-0 h-[320px] w-[320px] rounded-full bg-[#7C3AED]/25 blur-[130px]" />
+
+                        <div className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-[280px] rounded-full bg-[#ffd401]/15 blur-[120px]" />
+
+                        <div className="pointer-events-none absolute top-1/2 left-1/2 h-[350px] w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[150px]" />
+
+                        <div className="relative z-10 flex flex-col lg:flex-row">
+                            <div className="flex flex-col justify-between gap-12 border-b border-white/10 p-10 lg:w-[55%] lg:border-b-0 lg:border-r lg:border-white/10">
+                                <div>
+                                    <h2 className={`mt-5 text-5xl md:text-7xl leading-[0.95] text-white ${BebasN.className}`}>
+                                        {/* OBRIGADO POR TER
+                                        <br />
+
+                                        <span className="text-[#ffd401]">
+                                            CHEGADO
+                                        </span>{" "}
+
+                                        ATÉ AQUI. */}
+
+                                        <TypeAnimation
+                            sequence={[
+                                'Obrigado por ter chegado ate aqui',
+                            ]}
+                            speed={20}
+                            repeat={Infinity}
+                        />
+                                    </h2>
+
+                                    <p className={`mt-6 max-w-[550px] text-white/60 leading-relaxed ${Exo.className}`}>
+                                        Se algum projeto chamou sua atenção ou você acredita
+                                        que podemos construir algo incrível juntos,
+                                        ficarei feliz em conversar com você.
+                                        
+                                    </p>
+                                </div>
+
+                                <GitHubCalendar
+                                    username="abneeralves"
+                                    colorScheme="dark"
+                                    fontSize={0}
+                                    theme={{
+                                        dark: [
+                                            "#171330",
+                                            "#2d1f6e",
+                                            "#5b32d4",
+                                            "#7C3AED",
+                                            "#ffd401",
+                                        ],
+                                    }}
+                                />
+
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+                                        <p className={`text-5xl leading-none text-[#ffd401] ${BebasN.className}`}>
+                                            1+
+                                        </p>
+
+                                        <span className={`mt-3 block text-sm text-white/50 ${Exo.className}`}>
+                                            anos de experiência
+                                        </span>
+                                    </div>
+
+                                    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
+                                        <p
+                                            className={`
+        text-5xl
+        leading-none
+        text-[#ffd401]
+        ${BebasN.className}
+    `}
+                                        >
+                                            <CountUp
+                                                end={10}
+                                                duration={10}
+                                                suffix="+"
+                                            />
+                                        </p>
+
+                                        <span className={`mt-3 block text-sm text-white/50 ${Exo.className}`}>
+                                            projetos concluídos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col lg:w-[45%]">
+
+                                <a href="mailto:abneralvesmuniz76@gmail.com"
+                                    className={`group flex items-center justify-between border-b border-white/10 px-10 py-8 transition-all hover:bg-white/[0.04] ${Exo.className}`}>
+
+                                    <div>
+                                        <span className="text-xs tracking-[0.4em] text-white/40 uppercase block mb-2">
+                                            Email
+                                        </span>
+
+                                        <p className="text-white/70 group-hover:text-[#ffd401] transition-colors">
+                                            abneralvesmuniz76@gmail.com
+                                        </p>
+                                    </div>
+
+                                    <span className="text-white/30 group-hover:text-[#ffd401] transition-colors text-xl">
+                                        ↗
+                                    </span>
+                                </a>
+
+                                {/* CV */}
+                                <a href="/curriculo-abner-alves.pdf" target="_blank" className={`group flex items-center justify-between border-b border-white/10 px-10 py-8 transition-all hover:bg-white/[0.04] ${Exo.className}`}>
+                                    <div>
+                                        <span className="text-xs tracking-[0.4em] text-white/40 uppercase block mb-2">
+                                            Currículo
+                                        </span>
+
+                                        <p className="text-white/70 group-hover:text-[#ffd401] transition-colors">
+                                            Download Currículo
+                                        </p>
+                                    </div>
+
+                                    <span className="text-white/30 group-hover:text-[#ffd401] transition-colors text-xl">
+                                        ↓
+                                    </span>
+                                </a>
+
+                                <a href="https://github.com/abneeralves/Portfolio" target="_blank" className={`group flex items-center justify-between border-b border-white/10 px-10 py-8 transition-all hover:bg-white/[0.04] ${Exo.className}`}>
+                                    <div>
+                                        <span className="text-xs tracking-[0.4em] text-white/40 uppercase block mb-2">
+                                            Projeto
+                                        </span>
+
+                                        <p className="text-white/70 group-hover:text-[#ffd401] transition-colors">
+                                            Esse Projeto você pode encontrar no Github
+                                        </p>
+                                    </div>
+
+                                    <span className="text-white/30 group-hover:text-[#ffd401] transition-colors text-xl">
+                                        ↓
+                                    </span>
+                                </a>
+
+                                <div className="flex flex-col gap-8 px-10 py-8 flex-1 overflow-hidden">
+
+                                    <span
+                                        className={`
+            text-xs
+            tracking-[0.45em]
+            text-white/40
+            uppercase
+            ${Exo.className}
+        `}
+                                    >
+                                        Redes sociais
+                                    </span>
+
+                                    <div className="relative flex items-center justify-center py-8">
+
+                                        {/* Linha principal */}
+                                        <div className="absolute left-[8%] right-[8%] h-[2px] bg-white/10 rounded-full overflow-hidden">
+
+                                            {/* Energia */}
+                                            <div className="social-flow absolute left-0 top-0 h-full w-40 rounded-full" />
+
+                                        </div>
+
+
+
+
+                                        <div className="relative z-10 flex items-center gap-8">
+
+                                            {socials.map((social) => (
+                                                <a
+                                                    key={social.name}
+                                                    href={social.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="
+                        group
+                        relative
+                        flex
+                        flex-col
+                        items-center
+                        gap-3
+                    "
+                                                >
+                                                    {/* conexão vertical */}
+                                                    <div className="absolute -top-8 h-8 w-[2px] bg-gradient-to-b from-transparent via-[#7C3AED]/60 to-transparent" />
+
+                                                    {/* node */}
+                                                    <div
+                                                        className="
+                            relative
+                            flex
+                            h-24
+                            w-24
+                            items-center
+                            justify-center
+                            overflow-hidden
+                            rounded-[28px]
+                            border
+                            border-white/10
+                            bg-[linear-gradient(145deg,rgba(35,28,75,.95),rgba(23,19,48,.95))]
+                            backdrop-blur-xl
+                            transition-all
+                            duration-500
+                            hover:-translate-y-4
+                            hover:scale-110
+                            hover:border-[#ffd401]/40
+                            hover:shadow-[0_25px_70px_-15px_rgba(255,212,1,.45)]
+                        "
+                                                    >
+
+                                                        {/* Borda girando */}
+                                                        <div
+                                                            className="
+                                absolute
+                                inset-[-1px]
+                                rounded-[28px]
+                                opacity-0
                                 transition-all
                                 duration-500
-                                hover:-translate-y-3
-                                hover:border-cyan-400/30
-                                hover:shadow-2xl
-                                ${social.shadow}
+                                group-hover:opacity-100
+                                bg-[conic-gradient(from_0deg,transparent,#7C3AED66,#ffd40199,#7C3AED66,transparent)]
+                                animate-spin
+                            "
+                                                        />
+
+                                                        {/* fundo */}
+                                                        <div className="absolute inset-[2px] rounded-[26px] bg-[#171330]" />
+
+                                                        {/* glow */}
+                                                        <div
+                                                            className="
+                                absolute
+                                h-16
+                                w-16
+                                rounded-full
+                                bg-[#ffd401]/20
+                                blur-3xl
+                                opacity-0
+                                transition-all
+                                duration-500
+                                group-hover:opacity-100
+                                group-hover:scale-[2]
+                            "
+                                                        />
+
+                                                        <Image
+                                                            src={social.icon}
+                                                            alt={social.name}
+                                                            width={35}
+                                                            height={35}
+                                                            className={`
+                                relative
+                                z-10
+                                opacity-70
+                                transition-all
+                                duration-500
+                                group-hover:scale-125
+                                group-hover:rotate-12
+                                group-hover:opacity-100
+                                ${social.invert ? "invert" : ""}
                             `}
-                        >
-                            {/* canto de brilho sutil no hover, sem degradê — apenas opacidade */}
-                            <div className="absolute top-0 left-0 w-16 h-16 bg-[#ffd401]/0 group-hover:bg-[#ffd401]/5 rounded-full blur-2xl transition-all duration-500" />
-                            <Image
-                                src={social.icon}
-                                alt={social.name}
-                                width={38}
-                                height={38}
-                                className={`
-                                    relative
-                                    transition-all
-                                    duration-500
-                                    group-hover:scale-110
-                                    ${social.invert ? "invert" : ""}
-                                `}
-                            />
-                            <span className={`relative text-white text-sm ${Exo.className}`}>
-                                {social.name}
-                            </span>
-                        </a>
-                    ))}
-                </div>
+                                                        />
 
-                {/* GITHUB CALENDAR */}
-                <div
-                    className="mt-20 w-full max-w-7xl rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(124,58,237,0.2)]"
-                    data-aos="fade-up"
-                    data-aos-delay="200"
-                >
-                    <div className="flex items-center justify-between px-8 py-4 border-b border-white/10">
-                        <div className="flex items-center gap-3">
-                            <div className="w-2 h-2 rounded-full bg-[#28C840] shadow-[0_0_8px_#28C840]" />
-                            <h3 className={`text-white/70 text-sm ${Exo.className}`}>
-                                Contribuições no GitHub
-                            </h3>
-                        </div>
-                        <a
-                            href="https://github.com/abneeralves"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`text-[11px] text-[#ffd401]/50 hover:text-[#ffd401] transition-colors ${Exo.className}`}
-                        >
-                            ver perfil →
-                        </a>
-                    </div>
-                    <div className="p-8 overflow-x-auto">
-                        <div className="flex justify-center min-w-max mx-auto text-zinc-500">
-                            <GitHubCalendar
-                                username="abneeralves"
-                                colorScheme="dark"
-                                fontSize={14}
-                                theme={{
-                                    dark: ["#1a1730", "#2d1f6e", "#4c35a8", "#7C3AED", "#a855f7"]
-                                }}
-                            />
+                                                    </div>
+
+                                                    <span
+                                                        className={`
+                            text-xs
+                            text-white/45
+                            transition-all
+                            duration-300
+                            group-hover:text-[#ffd401]
+                            group-hover:-translate-y-1
+                            ${Exo.className}
+                        `}
+                                                    >
+                                                        {social.name}
+                                                    </span>
+
+                                                </a>
+                                            ))}
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* FOOTER BOTTOM */}
-                <div className="w-full max-w-7xl mt-20">
+                <div className="w-full max-w-[1700px] mt-20">
                     <hr className="border-white/10" />
-                    <div className="flex flex-col lg:flex-row items-center justify-between py-8 gap-4">
+                    <div className="flex flex-col lg:flex-row items-center justify-between py-8 gap-6">
                         <div className="flex items-center gap-3">
                             <div className="w-7 h-7 rounded-full bg-[#ffd401] flex items-center justify-center flex-shrink-0">
                                 <span className="text-[#171330] text-[11px] font-black">A</span>
                             </div>
                             <p className={`text-slate-500 text-sm ${Exo.className}`}>
-                                © 2026 Abner Alves • Desenvolvedor Full Stack
+                                © 2026 Abner Alves
                             </p>
                         </div>
-                        <p className={`text-slate-600 text-sm ${Exo.className}`}>
-                            Construído com Next.js, TypeScript e Tailwind CSS
-                        </p>
+
+                        <nav className={`flex items-center gap-6 text-sm ${Exo.className}`}>
+                            {quickLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-slate-500 hover:text-[#ffd401] transition-colors"
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                        </nav>
+
+                        <div className="flex justify-center">
+                            <a href="#" className={`group inline-flex items-center gap-2 text-xs text-slate-500 hover:text-[#ffd401] transition-colors ${Exo.className}`}>
+                                <span className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#ffd401]/40 group-hover:-translate-y-0.5 transition-all duration-300">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M12 19V5M5 12l7-7 7 7" />
+                                    </svg>
+                                </span>
+                                Voltar ao topo
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            {/* KEYFRAMES — twinkle, dino correndo, brilho de estrela */}
-            <style jsx>{`
-                @keyframes twinkle {
-                    0%, 100% { opacity: 0.2; transform: scale(1); }
-                    50% { opacity: 0.9; transform: scale(1.3); }
-                }
-                @keyframes starPulse {
-                    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-                    50% { transform: scale(1.3) rotate(15deg); opacity: 1; }
-                }
-            `}</style>
         </footer>
     )
 }

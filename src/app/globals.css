@@ -158,3 +158,85 @@ header {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes starPulse {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.3) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+.social-flow-horizontal {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #7C3AED,
+        #ffd401,
+        #7C3AED,
+        transparent
+    );
+
+    filter: blur(2px);
+    animation: social-horizontal 4s linear infinite;
+}
+
+.social-flow-vertical {
+    background: linear-gradient(
+        180deg,
+        transparent,
+        #7C3AED,
+        #ffd401,
+        #7C3AED,
+        transparent
+    );
+
+    filter: blur(2px);
+    animation: social-vertical 4s linear infinite;
+}
+
+.social-flow {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #7C3AED,
+        #ffd401,
+        #7C3AED,
+        transparent
+    );
+
+    filter: blur(3px);
+
+    animation: social-flow 5s linear infinite;
+}
+
+@keyframes social-flow {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(500%);
+    }
+}
+

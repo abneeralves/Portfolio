@@ -116,7 +116,7 @@ export default function Experience() {
     }, [nodePercents])
 
     return (
-        <div id="experiencia" className="relative overflow-hidden bg-white h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none">
+        <div id='experiência' className="relative overflow-hidden bg-white h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none">
             <style>{`
                 @keyframes driftBlobOne {
                     0%, 100% { transform: translate(0, 0) scale(1); }
