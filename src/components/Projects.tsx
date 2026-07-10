@@ -56,26 +56,9 @@ const codeSymbols = [
 export default function Projects() {
     return (
         <div id="projetos" className="relative overflow-hidden bg-white h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none">
-            <style>{`
-            @keyframes driftBlobOne {
-                0%, 100% { transform: translate(0, 0) scale(1); }
-                50% { transform: translate(60px, 40px) scale(1.1); }
-            }
-            @keyframes driftBlobTwo {
-                0%, 100% { transform: translate(0, 0) scale(1); }
-                50% { transform: translate(-50px, -30px) scale(1.08); }
-            }
-            @keyframes floatSymbol {
-                0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
-                50% { transform: translateY(-22px) rotate(6deg); opacity: 0.12; }
-            }
-            .drift-blob-1 { animation: driftBlobOne 14s ease-in-out infinite; }
-            .drift-blob-2 { animation: driftBlobTwo 16s ease-in-out infinite; }
-            .float-symbol { animation: floatSymbol ease-in-out infinite; }
-        `}</style>
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#171330" fill-opacity="1" d="M0,160L34.3,186.7C68.6,213,137,267,206,245.3C274.3,224,343,128,411,128C480,128,549,224,617,224C685.7,224,754,128,823,101.3C891.4,75,960,117,1029,160C1097.1,203,1166,245,1234,218.7C1302.9,192,1371,96,1406,48L1440,0L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+                <path fill="#171330" fillOpacity="1" d="M0,160L34.3,186.7C68.6,213,137,267,206,245.3C274.3,224,343,128,411,128C480,128,549,224,617,224C685.7,224,754,128,823,101.3C891.4,75,960,117,1029,160C1097.1,203,1166,245,1234,218.7C1302.9,192,1371,96,1406,48L1440,0L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
             </svg>
 
             <div className="absolute inset-0 pointer-events-none hidden md:block">
@@ -178,7 +161,7 @@ export default function Projects() {
                                         
                                         <span className="relative">Ver mais no GitHub</span>
 
-                                        <svg className="relative size-5" fill="#000000" viewBox="0 0 32 32" xmlns="<http://www.w3.org/2000/svg>">
+                                        <svg className="relative size-5" fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M24.92 12.183c0-1.586-.604-2.864-1.585-3.83.172-.547.398-1.763-.229-3.321 0 0-1.114-.348-3.628 1.315a12.695 12.695 0 0 0-3.081-.366c-1.154 0-2.322.143-3.409.44-2.596-1.747-3.74-1.391-3.74-1.391-.748 1.847-.287 3.215-.145 3.554-.883.936-1.414 2.133-1.414 3.594 0 1.111.128 2.099.44 2.964l.325.732c.879 1.614 2.606 2.655 5.677 2.983-.434.289-.885.779-1.062 1.612-.594.28-2.475.966-3.603-.944 0 0-.633-1.148-1.842-1.235 0 0-1.174-.017-.08.722 0 0 .782.367 1.326 1.738 0 0 .705 2.342 4.114 1.593v2.417s-.076.857-.867 1.143c0 0-.469.312.034.497 0 0 2.205.174 2.205-1.604v-2.643s-.09-1.047.429-1.404v4.332s-.032 1.031-.576 1.421c0 0-.362.646.433.468 0 0 1.517-.211 1.584-1.967l.035-4.383h.363l.033 4.383c.076 1.748 1.59 1.967 1.59 1.967.793.179.429-.468.429-.468-.54-.389-.579-1.421-.579-1.421v-4.297c.52.402.436 1.369.436 1.369v2.643c0 1.777 2.2 1.604 2.2 1.604.505-.186.036-.498.036-.498-.793-.286-.867-1.143-.867-1.143v-3.461c0-1.346-.574-2.056-1.137-2.435 3.277-.318 4.845-1.368 5.572-2.99-.015.027.26-.726.26-.726.25-.859.325-1.855.325-2.963h-.002z" />
                                         </svg>
                                     </a>

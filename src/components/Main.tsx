@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import { Exo_2, Bebas_Neue } from 'next/font/google'
 import { Files, Search, GitFork, Play, Container, User, Settings, } from "lucide-react"
@@ -20,7 +20,7 @@ export default function Main() {
     const [isSrcOpen, setIsSrcOpen] = useState(true)
     const [isAppOpen, setIsAppOpen] = useState(false)
     const [isComponentsOpen, setIsComponentsOpen] = useState(true)
-    const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
+    const glowRef = useRef<HTMLDivElement>(null)
 
     return (
         <main id="sobre" className="relative flex flex-col justify-center w-full h-full bg-[#171330] py-12 sm:py-16 lg:py-20 overflow-hidden px-4 sm:px-6 lg:pl-10 2xl:pl-14 lg:pr-10 -mt-1">
@@ -47,28 +47,15 @@ export default function Main() {
 
                 <div className="group relative w-full max-w-[1300px] mt-8 sm:mt-10 mb-24 sm:mb-32 lg:mb-44 overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-200/10 bg-white/5 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/30 hover:shadow-[0_30px_80px_rgba(34,211,238,0.12)]"
                     onMouseMove={(e) => {
+                        if (!glowRef.current) return
                         const rect = e.currentTarget.getBoundingClientRect()
-
-                        setMousePosition({
-                            x: ((e.clientX - rect.left) / rect.width) * 100,
-                            y: ((e.clientY - rect.top) / rect.height) * 100,
-                        })
+                        const x = ((e.clientX - rect.left) / rect.width) * 100
+                        const y = ((e.clientY - rect.top) / rect.height) * 100
+                        glowRef.current.style.background = `radial-gradient(50px circle at ${x}% ${y}%, rgba(34,211,238,0.10), transparent 60%), linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)`
+                        glowRef.current.style.backgroundSize = 'auto, 40px 40px, 40px 40px'
                     }}
                 >
-                    <div className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                        style={{
-                            background: `
-                                radial-gradient(
-                                    50px circle at ${mousePosition.x}% ${mousePosition.y}%,
-                                    rgba(34,211,238,0.10),
-                                    transparent 60%
-                                ),
-                                linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
-                                linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px)
-                            `,
-                            backgroundSize: 'auto, 40px 40px, 40px 40px',
-                        }}
-                    />
+                    <div ref={glowRef} className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                     <div className="relative z-10">
                         <div className="relative flex items-center justify-between border-b border-white/10 bg-white/5 px-3 sm:px-6 py-3 sm:py-4">

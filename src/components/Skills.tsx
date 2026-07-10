@@ -43,20 +43,15 @@ const floatCols = [
     { items: skills.slice(0, 5), duration: 26, reverse: false },
     { items: skills.slice(5, 10), duration: 32, reverse: true },
     { items: skills.slice(10, 15), duration: 22, reverse: false },
-    { items: skills.slice(2, 7), duration: 36, reverse: true },
-    { items: skills.slice(7, 12), duration: 28, reverse: false },
-    { items: skills.slice(1, 6), duration: 30, reverse: true },
-    { items: skills.slice(4, 9), duration: 24, reverse: false },
-    { items: skills.slice(9, 14), duration: 34, reverse: true },
-    { items: skills.slice(3, 8), duration: 27, reverse: false },
-    { items: skills.slice(6, 11), duration: 31, reverse: true },
+    { items: skills.slice(2, 7), duration: 28, reverse: true },
+    { items: skills.slice(7, 12), duration: 30, reverse: false },
 ]
 
 export default function Skills() {
     return (
         <section id='habilidades' className={`relative flex flex-col items-center bg-[#171330] overflow-hidden  relative overflow-hidden h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none ${Mono.className}`}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#FFFFFF" fill-opacity="1" d="M0,160L34.3,186.7C68.6,213,137,267,206,245.3C274.3,224,343,128,411,128C480,128,549,224,617,224C685.7,224,754,128,823,101.3C891.4,75,960,117,1029,160C1097.1,203,1166,245,1234,218.7C1302.9,192,1371,96,1406,48L1440,0L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+                <path fill="#FFFFFF" fillOpacity="1" d="M0,160L34.3,186.7C68.6,213,137,267,206,245.3C274.3,224,343,128,411,128C480,128,549,224,617,224C685.7,224,754,128,823,101.3C891.4,75,960,117,1029,160C1097.1,203,1166,245,1234,218.7C1302.9,192,1371,96,1406,48L1440,0L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
             </svg>
             
             <div className="relative  flex flex-col items-center text-center px-4" data-aos="fade-up">
@@ -86,9 +81,7 @@ export default function Skills() {
                             <div className={`flex flex-col gap-10 ${col.reverse ? 'animate-float-up-rev' : 'animate-float-up'}`} style={{ animationDuration: `${col.duration}s` }}
 >
                                 {[...col.items, ...col.items].map((skill, i) => (
-                                    <div key={i} className="relative h-10 w-10 mx-auto grayscale opacity-20">
-                                        <Image src={skill.icon} alt='' fill className="object-contain" />
-                                    </div>
+                                    <img key={i} src={skill.icon} alt='' className="h-10 w-10 mx-auto grayscale opacity-20 object-contain" />
                                 ))}
                             </div>
                         </div>

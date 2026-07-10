@@ -67,20 +67,24 @@ const codeSymbols = [
 export default function Experience() {
     const timelineRef = useRef<HTMLDivElement>(null)
     const nodeRefs = useRef<(HTMLDivElement | null)[]>([])
-    const [progress, setProgress] = useState(0)
-    const [nodePercents, setNodePercents] = useState<number[]>([])
+    const progressBarRef = useRef<HTMLDivElement>(null)
+    const progressDotRef = useRef<HTMLDivElement>(null)
+    const nodePercentsRef = useRef<number[]>([])
     const [activeCount, setActiveCount] = useState(0)
     const [justArrived, setJustArrived] = useState<number | null>(null)
+    const activeCountRef = useRef(0)
+    const arrivalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const rafRef = useRef<number | null>(null)
+
     const measureNodes = useCallback(() => {
         if (!timelineRef.current) return
         const timelineRect = timelineRef.current.getBoundingClientRect()
-        const percents = nodeRefs.current.map((node) => {
+        nodePercentsRef.current = nodeRefs.current.map((node) => {
             if (!node) return 0
             const nodeRect = node.getBoundingClientRect()
             const offset = nodeRect.top - timelineRect.top + nodeRect.height / 2
             return (offset / timelineRect.height) * 100
         })
-        setNodePercents(percents)
     }, [])
 
     useEffect(() => {
@@ -91,49 +95,39 @@ export default function Experience() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (!timelineRef.current) return
-            const rect = timelineRef.current.getBoundingClientRect()
-            const windowHeight = window.innerHeight
-            const start = windowHeight * 0.5
-            const total = rect.height
-            const scrolled = start - rect.top
-            const percent = Math.min(Math.max((scrolled / total) * 100, 0), 100)
-            setProgress(percent)
-            setActiveCount((prevCount) => {
-                const reached = nodePercents.filter((p) => percent >= p).length
-                if (reached === prevCount) return prevCount
-                if (reached > prevCount) {
-                    setJustArrived(reached - 1)
-                    window.clearTimeout((window as any).__arrivalTimeout)
-                        ; (window as any).__arrivalTimeout = window.setTimeout(() => setJustArrived(null), 800)
+            if (rafRef.current !== null) return
+            rafRef.current = requestAnimationFrame(() => {
+                rafRef.current = null
+                if (!timelineRef.current) return
+                const rect = timelineRef.current.getBoundingClientRect()
+                const windowHeight = window.innerHeight
+                const scrolled = windowHeight * 0.5 - rect.top
+                const percent = Math.min(Math.max((scrolled / rect.height) * 100, 0), 100)
+                if (progressBarRef.current) progressBarRef.current.style.height = `${percent}%`
+                if (progressDotRef.current) progressDotRef.current.style.top = `${percent}%`
+                const reached = nodePercentsRef.current.filter((p) => percent >= p).length
+                if (reached !== activeCountRef.current) {
+                    if (reached > activeCountRef.current) {
+                        setJustArrived(reached - 1)
+                        if (arrivalTimeoutRef.current !== null) clearTimeout(arrivalTimeoutRef.current)
+                        arrivalTimeoutRef.current = setTimeout(() => setJustArrived(null), 800)
+                    }
+                    activeCountRef.current = reached
+                    setActiveCount(reached)
                 }
-                return reached
             })
         }
         window.addEventListener('scroll', handleScroll, { passive: true })
         handleScroll()
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [nodePercents])
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
+            if (arrivalTimeoutRef.current !== null) clearTimeout(arrivalTimeoutRef.current)
+        }
+    }, [])
 
     return (
         <div id='experiência' className="relative overflow-hidden bg-white h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none">
-            <style>{`
-                @keyframes driftBlobOne {
-                    0%, 100% { transform: translate(0, 0) scale(1); }
-                    50% { transform: translate(60px, 40px) scale(1.1); }
-                }
-                @keyframes driftBlobTwo {
-                    0%, 100% { transform: translate(0, 0) scale(1); }
-                    50% { transform: translate(-50px, -30px) scale(1.08); }
-                }
-                @keyframes floatSymbol {
-                    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
-                    50% { transform: translateY(-22px) rotate(6deg); opacity: 0.12; }
-                }
-                .drift-blob-1 { animation: driftBlobOne 14s ease-in-out infinite; }
-                .drift-blob-2 { animation: driftBlobTwo 16s ease-in-out infinite; }
-                .float-symbol { animation: floatSymbol ease-in-out infinite; }
-            `}</style>
 
             <div className="absolute inset-0 pointer-events-none hidden md:block">
                 {codeSymbols.map((item, i) => (
@@ -172,14 +166,11 @@ export default function Experience() {
 
             <div ref={timelineRef} className="relative z-10 mt-24 max-w-[1700px] mx-auto pb-20 px-5">
                 <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#171330]/10 to-transparent -translate-x-1/2 hidden md:block" />
-                <div className="absolute left-1/2 top-0 w-[3px] rounded-full bg-gradient-to-b from-[#ffd401] to-[#ffd401]/40 -translate-x-1/2 hidden md:block transition-[height] duration-150 ease-out shadow-[0_0_12px_rgba(255,212,1,0.5)]" style={{ height: `${progress}%` }} />
-                <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden md:block transition-[top] duration-150 ease-out" style={{ top: `${progress}%` }}>
-
-                    <span className="absolute inset-0 -m-4 rounded-full bg-[#ffd401]/25 blur-xl animate-pulse" />
-
-                    <span className="absolute inset-0 -m-1.5 rounded-full border border-[#ffd401]/40 animate-[spin_4s_linear_infinite]" />
-
-                    <div className="relative w-7 h-7 rounded-full bg-[#ffd401] ring-[5px] ring-white shadow-[0_0_22px_rgba(255,212,1,0.8)]" />
+                <div ref={progressBarRef} className="absolute left-1/2 top-0 w-[3px] rounded-full bg-gradient-to-b from-[#ffd401] to-[#ffd401]/40 -translate-x-1/2 hidden md:block shadow-[0_0_12px_rgba(255,212,1,0.5)]" style={{ height: '0%' }} />
+                <div ref={progressDotRef} className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden md:block" style={{ top: '0%' }}>
+                    <div className="relative w-7 h-7 rounded-full bg-[#ffd401] ring-[5px] ring-white shadow-[0_0_22px_rgba(255,212,1,0.8)]">
+                        <span className="absolute -inset-2 rounded-full border-2 border-[#ffd401]/50 animate-ping" style={{ animationDuration: '1.8s' }} />
+                    </div>
                 </div>
                 <ul className="flex flex-col gap-20 md:gap-28">
                     {projects.map((project, index) => {

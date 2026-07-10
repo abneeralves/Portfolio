@@ -1,24 +1,20 @@
-'use client'
-
-import { useEffect } from "react"
-import AOS from 'aos'
+import dynamic from 'next/dynamic'
 import Navbar from "@/components/Navbar"
 import Header from "@/components/Header"
 import Main from "@/components/Main"
 import Projects from '@/components/Projects'
 import Experience from "@/components/Experience"
 import Habilidades from "@/components/Skills"
-import Footer from "@/components/Footer"
+
+const AOSInit = dynamic(() => import('@/components/AOSInit'), { ssr: false })
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
 
 export default function Home() {
-  useEffect(() => {
-    AOS.init({ duration: 1500 })
-  }, [])
-
   return (
     <>
+      <AOSInit />
       <Navbar />
-      <Header data-aos="fade-up" />
+      <Header />
       <Main />
       <Projects />
       <Experience />

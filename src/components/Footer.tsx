@@ -1,8 +1,16 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
 import { Bebas_Neue, Exo_2 } from "next/font/google"
-import { GitHubCalendar } from "react-github-calendar"
 import CountUp from "react-countup";
 import { TypeAnimation } from 'react-type-animation'
 import Image from "next/image"
+
+const GitHubCalendar = dynamic(
+    () => import("react-github-calendar").then((m) => m.GitHubCalendar),
+    { ssr: false }
+)
 
 const BebasN = Bebas_Neue({
     subsets: ["latin"],
@@ -68,16 +76,19 @@ const quickLinks = [
     { name: "Habilidades", href: "#habilidades" }
 ]
 
-const STARS = Array.from({ length: 60 }).map((_, i) => ({
-    id: i,
-    top: Math.random() * 100,
-    left: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    delay: Math.random() * 5,
-    duration: Math.random() * 3 + 2,
-}))
-
 export default function Footer() {
+    const [stars, setStars] = useState<{ id: number; top: number; left: number; size: number; delay: number; duration: number }[]>([])
+
+    useEffect(() => {
+        setStars(Array.from({ length: 20 }).map((_, i) => ({
+            id: i,
+            top: Math.random() * 100,
+            left: Math.random() * 100,
+            size: Math.random() * 2 + 1,
+            delay: Math.random() * 5,
+            duration: Math.random() * 3 + 4,
+        })))
+    }, [])
     const SocialNode = ({ social, invert }: any) => (
         <a
             href={social.href}
@@ -210,7 +221,7 @@ export default function Footer() {
     return (
         <footer id="contatos" className="relative overflow-hidden bg-[#171330] py-32 px-5">
             <div className="absolute inset-0 z-0 pointer-events-none">
-                {STARS.map((star) => (
+                {stars.map((star) => (
                     <span
                         key={star.id}
                         className="absolute rounded-full bg-white"
@@ -301,7 +312,7 @@ export default function Footer() {
                                 'Obrigado por ter chegado ate aqui',
                             ]}
                             speed={20}
-                            repeat={Infinity}
+                            repeat={0}
                         />
                                     </h2>
 
@@ -497,7 +508,7 @@ export default function Footer() {
                                 duration-500
                                 group-hover:opacity-100
                                 bg-[conic-gradient(from_0deg,transparent,#7C3AED66,#ffd40199,#7C3AED66,transparent)]
-                                animate-spin
+                                group-hover:animate-spin
                             "
                                                         />
 

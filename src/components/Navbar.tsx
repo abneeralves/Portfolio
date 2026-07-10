@@ -25,18 +25,18 @@ export default function Navbar() {
 
                 <ul className={`hidden md:flex items-center gap-1 ${FiraCode.className}`}>
                     {NAV_ITEMS.map((item) => (
-                        <a key={item} href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`}>
-                            <li className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-2 rounded-lg cursor-pointer">
+                        <li key={item}>
+                            <a href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`} className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-2 rounded-lg cursor-pointer block">
                                 {item}
-                            </li>
-                        </a>
-                    ))}
-                    
-                    <a href="#contatos">
-                        <li className="text-sm font-semibold text-[#0A0E1A] bg-[#ffd401] hover:bg-[#B39501] transition-colors px-5 py-2 rounded-lg cursor-pointer">
-                            Contatos
+                            </a>
                         </li>
-                    </a>
+                    ))}
+
+                    <li>
+                        <a href="#contatos" className="text-sm font-semibold text-[#0A0E1A] bg-[#ffd401] hover:bg-[#B39501] transition-colors px-5 py-2 rounded-lg cursor-pointer block">
+                            Contatos
+                        </a>
+                    </li>
                 </ul>
 
                 <button onClick={toggleMenu} className="md:hidden text-sky-400 z-20">
@@ -55,17 +55,17 @@ export default function Navbar() {
             {isMenuOpen && (
                 <ul className={`md:hidden flex flex-col gap-1 mt-6 ${FiraCode.className}`}>
                     {NAV_ITEMS.map((item) => (
-                        <a key={item} href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`} onClick={closeMenu}>
-                            <li className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-3 rounded-lg cursor-pointer">
+                        <li key={item}>
+                            <a href={item === 'inicio' ? '#' : `#${item.toLowerCase()}`} onClick={closeMenu} className="text-sm text-white/55 hover:text-[#ffd401] transition-colors px-4 py-3 rounded-lg cursor-pointer block">
                                 {item}
-                            </li>
-                        </a>
-                    ))}
-                    <a href="#contatos" onClick={closeMenu}>
-                        <li className="text-sm font-semibold text-[#0A0E1A] bg-[#ffd401] hover:bg-[#B39501] transition-colors px-5 py-3 rounded-lg cursor-pointer text-center mt-2">
-                            Contatos
+                            </a>
                         </li>
-                    </a>
+                    ))}
+                    <li>
+                        <a href="#contatos" onClick={closeMenu} className="text-sm font-semibold text-[#0A0E1A] bg-[#ffd401] hover:bg-[#B39501] transition-colors px-5 py-3 rounded-lg cursor-pointer text-center mt-2 block">
+                            Contatos
+                        </a>
+                    </li>
                 </ul>
             )}
         </nav>

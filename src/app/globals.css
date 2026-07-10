@@ -37,6 +37,13 @@ header {
     width: 100%;
 }
 
+@keyframes floatSymbol {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+    50% { transform: translateY(-22px) rotate(6deg); opacity: 0.12; }
+}
+
+.float-symbol { animation: floatSymbol ease-in-out infinite; }
+
 @keyframes acenando {
     0% {
         transform: translateX(0);

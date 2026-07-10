@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "aos/dist/aos.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="PT-br">
+      <head>
+        <link rel="shortcut icon" href="/imgHeader/A.png" type="image/x-icon" />
+      </head>
       <body className={inter.className}>{children}</body>
-      <link rel="shortcut icon" href="/imgHeader/A.png" type="image/x-icon" />
     </html>
   );
 }
