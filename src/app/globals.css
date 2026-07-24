@@ -384,3 +384,44 @@ header {
         transition: none;
     }
 }
+
+/* cursor */
+/* Scroll estilo Macintosh */
+
+.mac-scrollbar::-webkit-scrollbar {
+    width: 18px;
+}
+
+.mac-scrollbar::-webkit-scrollbar-track {
+    background: #d8d8d8;
+    border-left: 2px solid #000;
+}
+
+.mac-scrollbar::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border: 2px solid #000;
+}
+
+.mac-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cfcfcf;
+}
+
+.mac-scrollbar::-webkit-scrollbar-button:single-button {
+    display: block;
+    height: 18px;
+    background: #d8d8d8;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.mac-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background:
+        linear-gradient(135deg, transparent 50%, #000 50%) center/7px 7px no-repeat,
+        #d8d8d8;
+}
+
+.mac-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+    background:
+        linear-gradient(-45deg, transparent 50%, #000 50%) center/7px 7px no-repeat,
+        #d8d8d8;
+}

@@ -49,67 +49,9 @@ function Word({ word, highlight = false, animate = false, className = '' }: Word
     )
 }
 
-function StarsLayers() {
-    return (
-        <>
-            <div
-                aria-hidden="true"
-                className="stars-layer stars-small pointer-events-none absolute inset-0"
-            />
-            <div
-                aria-hidden="true"
-                className="stars-layer stars-medium pointer-events-none absolute inset-0"
-            />
-            <div
-                aria-hidden="true"
-                className="stars-layer stars-large pointer-events-none absolute inset-0"
-            />
-        </>
-    )
-}
-
-function GlowBackground() {
-    return (
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ffd401]/[0.025] blur-[140px]"
-        />
-    )
-}
-
-function EdgeVignette() {
-    return (
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(8,5,25,0.65)_100%)]"
-        />
-    )
-}
-
-function ScrollIndicator() {
-    return (
-        <a
-            href="#sobre"
-            aria-label="Ir para a próxima seção"
-            className="group absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2"
-        >
-            <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-white/40 transition-colors duration-300 group-hover:text-white">
-                Scroll
-            </span>
-            <span className="relative h-12 w-px overflow-hidden bg-white/20">
-                <span className="scroll-indicator absolute left-0 top-0 h-5 w-full bg-[#ffd401]" />
-            </span>
-        </a>
-    )
-}
-
 export default function Header() {
     return (
-        <header id="inicio" className="relative h-screen overflow-hidden bg-[#171330]">
-            <StarsLayers />
-            <GlowBackground />
-            <EdgeVignette />
-
+        <header id="inicio" className="relative h-screen overflow-hidden">
             <div
                 className="relative z-10 flex h-full w-full items-center justify-center"
                 data-aos="fade-right"
@@ -140,8 +82,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-
-            <ScrollIndicator />
         </header>
     )
 }
