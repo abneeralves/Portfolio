@@ -56,7 +56,7 @@ export default function Navbar() {
         >
             <div
                 className={`mx-auto w-full max-w-[1500px] rounded-[24px] border px-4 py-3 transition-all duration-500 sm:px-5 ${isSurfaceElevated
-                        ? 'border-white/10 bg-[#0c0c0f]/80 shadow-[0_16px_50px_rgba(0,0,0,0.25)] backdrop-blur-2xl'
+                        ? 'border-white/10 shadow-[0_16px_50px_rgba(0,0,0,0.25)] backdrop-blur-2xl'
                         : 'border-white/[0.06] bg-white/[0.035] backdrop-blur-xl'
                     }`}
             >
