@@ -17,13 +17,8 @@ const NAV_ITEMS = [
     { label: 'Habilidades', href: '#habilidades' },
 ]
 
-// Ponto a partir do qual a navbar assume o visual "scrolled" (fundo mais opaco)
 const SCROLL_THRESHOLD = 20
-
-// Breakpoint (md) do Tailwind: acima disso o menu mobile deve ficar sempre fechado
 const DESKTOP_BREAKPOINT = 768
-
-// Classes reutilizadas nos links/botões para manter o mesmo padrão de foco em todo o componente
 const FOCUS_RING = 'outline-none focus-visible:ring-2 focus-visible:ring-white/50'
 
 export default function Navbar() {
@@ -33,7 +28,6 @@ export default function Navbar() {
     const toggleMenu = () => setIsMenuOpen((previous) => !previous)
     const closeMenu = () => setIsMenuOpen(false)
 
-    // Atualiza o visual da navbar conforme o usuário rola a página
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > SCROLL_THRESHOLD)
 
@@ -42,7 +36,6 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Fecha o menu mobile automaticamente se a tela for redimensionada para desktop
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= DESKTOP_BREAKPOINT) {
@@ -62,15 +55,18 @@ export default function Navbar() {
             className={`fixed left-0 top-0 z-50 w-full px-4 pt-4 transition-all duration-500 sm:px-6 lg:px-8 ${firaCode.className}`}
         >
             <div
-                className={`mx-auto w-full max-w-[1500px] rounded-[24px] border px-4 py-3 transition-all duration-500 sm:px-5 ${
-                    isSurfaceElevated
+                className={`mx-auto w-full max-w-[1500px] rounded-[24px] border px-4 py-3 transition-all duration-500 sm:px-5 ${isSurfaceElevated
                         ? 'border-white/10 bg-[#0c0c0f]/80 shadow-[0_16px_50px_rgba(0,0,0,0.25)] backdrop-blur-2xl'
                         : 'border-white/[0.06] bg-white/[0.035] backdrop-blur-xl'
-                }`}
+                    }`}
             >
-                <div className="flex items-center justify-between">
+                <div className="relative flex items-center justify-between">
                     <Logo onClick={closeMenu} />
-                    <DesktopNavLinks />
+
+                    <div className="absolute left-1/2 -translate-x-1/2">
+                        <DesktopNavLinks />
+                    </div>
+
                     <div className="flex items-center gap-2">
                         <ContactButton />
                         <MenuToggleButton isOpen={isMenuOpen} onClick={toggleMenu} />
@@ -87,7 +83,6 @@ type LogoProps = {
     onClick: () => void
 }
 
-// Marca/logo exibida à esquerda da navbar, com link para o topo da página
 function Logo({ onClick }: LogoProps) {
     return (
         <a
@@ -106,19 +101,10 @@ function Logo({ onClick }: LogoProps) {
                     className="h-auto w-[22px] object-contain transition-transform duration-500 group-hover:rotate-6"
                 />
             </div>
-            <div className="hidden sm:block">
-                <p className="text-xs font-semibold tracking-[-0.03em] text-white/90">
-                    Abner Muniz
-                </p>
-                <p className="mt-0.5 text-[9px] font-normal uppercase tracking-[0.16em] text-white/30">
-                    Full Stack Developer
-                </p>
-            </div>
         </a>
     )
 }
 
-// Lista de links de navegação exibida apenas em telas médias/grandes (md+)
 function DesktopNavLinks() {
     return (
         <ul className="hidden items-center rounded-full border border-white/[0.06] bg-white/[0.035] p-1 md:flex">
@@ -136,7 +122,6 @@ function DesktopNavLinks() {
     )
 }
 
-// Botão de contato exibido apenas em telas médias/grandes (md+)
 function ContactButton() {
     return (
         <a
@@ -162,7 +147,6 @@ type MenuToggleButtonProps = {
     onClick: () => void
 }
 
-// Botão "hambúrguer" que abre/fecha o menu mobile, com animação de transformação em "X"
 function MenuToggleButton({ isOpen, onClick }: MenuToggleButtonProps) {
     return (
         <button
@@ -176,19 +160,16 @@ function MenuToggleButton({ isOpen, onClick }: MenuToggleButtonProps) {
             <span className="sr-only">{isOpen ? 'Fechar menu' : 'Abrir menu'}</span>
             <div className="relative h-4 w-5">
                 <span
-                    className={`absolute left-0 top-0 h-px w-full bg-current transition-all duration-300 ${
-                        isOpen ? 'translate-y-[7px] rotate-45' : ''
-                    }`}
+                    className={`absolute left-0 top-0 h-px w-full bg-current transition-all duration-300 ${isOpen ? 'translate-y-[7px] rotate-45' : ''
+                        }`}
                 />
                 <span
-                    className={`absolute left-0 top-[7px] h-px w-full bg-current transition-all duration-300 ${
-                        isOpen ? 'scale-x-0 opacity-0' : ''
-                    }`}
+                    className={`absolute left-0 top-[7px] h-px w-full bg-current transition-all duration-300 ${isOpen ? 'scale-x-0 opacity-0' : ''
+                        }`}
                 />
                 <span
-                    className={`absolute bottom-0 left-0 h-px w-full bg-current transition-all duration-300 ${
-                        isOpen ? '-translate-y-[8px] -rotate-45' : ''
-                    }`}
+                    className={`absolute bottom-0 left-0 h-px w-full bg-current transition-all duration-300 ${isOpen ? '-translate-y-[8px] -rotate-45' : ''
+                        }`}
                 />
             </div>
         </button>
@@ -200,14 +181,12 @@ type MobileMenuProps = {
     onLinkClick: () => void
 }
 
-// Painel de navegação exibido em telas pequenas, com animação de altura ao abrir/fechar
 function MobileMenu({ isOpen, onLinkClick }: MobileMenuProps) {
     return (
         <div
             id="mobile-navigation"
-            className={`grid overflow-hidden transition-all duration-500 ease-in-out md:hidden ${
-                isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-            }`}
+            className={`grid overflow-hidden transition-all duration-500 ease-in-out md:hidden ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
         >
             <div className="min-h-0">
                 <div className="mt-4 border-t border-white/[0.06] pt-4">
