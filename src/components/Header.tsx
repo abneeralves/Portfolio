@@ -51,7 +51,7 @@ function Word({ word, highlight = false, animate = false, className = '' }: Word
 
 export default function Header() {
     return (
-        <header id="inicio" className="relative h-screen overflow-hidden">
+        <header id="inicio" className="relative h-screen overflow-hidden bg-[#171330]">
             <div
                 className="relative z-10 flex h-full w-full items-center justify-center"
                 data-aos="fade-right"
