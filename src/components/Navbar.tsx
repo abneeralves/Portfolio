@@ -40,17 +40,25 @@ const NAV_LABELS: Record<string, string> = {
     '#projetos': 'Projetos',
     '#experiencia': 'Experiência',
     '#habilidades': 'Habilidades',
-    '#contatos': 'Entrar em contato',
+    '#contatos': 'Contatos',
 }
 
 type Stat = { label: string } & (
     | { value: string }
-    | { prefix: string; from: number; to: number }
+    | { steps: string[]; stepMs?: number }
 )
 
 const STATS: Stat[] = [
-    { value: '1 ano', label: 'de experiência' },
-    { prefix: '+', from: 5, to: 10, label: 'projetos concluídos' },
+    {
+        steps: ['+5', '+6', '+7', '+8', '+9', '+10'],
+        stepMs: 520,
+        label: 'projetos concluídos',
+    },
+    {
+        steps: ['8 meses', '9 meses', '10 meses', '11 meses', '1 ano'],
+        stepMs: 650,
+        label: 'de experiência',
+    },
 ]
 
 const GITHUB_USERNAME = 'abneeralves'
@@ -125,7 +133,7 @@ const SOCIALS: { label: string; href: string; icon: ReactNode }[] = [
                 className="h-6 w-6"
                 viewBox="0 0 16 16"
             >
-                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
+                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
             </svg>
         ),
     },
@@ -273,76 +281,136 @@ type MenuOverlayProps = {
 }
 
 function MenuOverlay({ isOpen, activeHref, onClose }: MenuOverlayProps) {
+    const [lang, setLang] = useState<Lang>('pt')
+    const [theme, setTheme] = useState<Theme>('dark')
+    const toggleTheme = () => setTheme((previous) => (previous === 'dark' ? 'light' : 'dark'))
+
     return (
         <div
             id="site-menu"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação"
-            className={`fixed inset-0 z-50 ${firaCode.className} ${
-                isOpen ? 'visible' : 'invisible delay-500'
-            }`}
+            className={`fixed inset-0 z-50 ${firaCode.className} ${isOpen ? 'visible' : 'invisible delay-500'
+                }`}
         >
             <button
                 type="button"
                 tabIndex={-1}
                 aria-hidden="true"
                 onClick={onClose}
-                className={`absolute inset-0 h-full w-full cursor-default bg-black/60 backdrop-blur-[2px] transition-opacity duration-500 motion-reduce:transition-none ${
-                    isOpen ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`absolute inset-0 h-full w-full cursor-default bg-black/60 backdrop-blur-[2px] transition-opacity duration-500 motion-reduce:transition-none ${isOpen ? 'opacity-100' : 'opacity-0'
+                    }`}
             />
 
-            <LeftPanel isOpen={isOpen} onClose={onClose} />
+            <style>{`
+                .x-in { animation: x-in 550ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both; }
+                .x-out { animation: x-out 350ms ease-in both; }
+                .x-ring { animation: x-ring 600ms ease-out both; }
+                @keyframes x-in {
+                    from { opacity: 0; transform: rotate(-180deg) scale(0.3); }
+                    to { opacity: 1; transform: none; }
+                }
+                @keyframes x-out {
+                    to { opacity: 0; transform: rotate(180deg) scale(0.4); }
+                }
+                @keyframes x-ring {
+                    from { opacity: 0.9; transform: scale(1); }
+                    to { opacity: 0; transform: scale(1.7); }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .x-in, .x-out, .x-ring { animation: none; }
+                }
+            `}</style>
+
+            <LeftPanel
+                isOpen={isOpen}
+                lang={lang}
+                onLangChange={setLang}
+                theme={theme}
+                onThemeToggle={toggleTheme}
+            />
 
             <aside
-                className={`absolute right-0 top-0 flex h-full w-full flex-col bg-[#1b1b32] px-8 pb-8 pt-6 shadow-[-20px_0_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:px-14 sm:pt-8 md:w-[42%] md:min-w-[460px] md:pb-10 ${
-                    isOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
+                className={`absolute right-0 top-0 flex h-full w-full flex-col bg-[#171330] px-6 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-6 shadow-[-20px_0_60px_rgba(0,0,0,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none sm:px-14 sm:pt-8 md:w-[42%] md:min-w-[460px] md:pb-6 md:[@media(min-height:800px)]:pb-10 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
             >
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-5">
-                        <span className="text-xl font-medium text-white/80">Abner Alves Muniz</span>
+                <div
+                    className={`flex items-center justify-between transition-all duration-500 motion-reduce:transition-none ${isOpen ? 'translate-y-0 opacity-100 delay-300' : '-translate-y-3 opacity-0'
+                        }`}
+                >
+                    <span className="hidden text-xl font-medium text-white/80 md:block">
+                        Abner Alves Muniz
+                    </span>
+
+                    <div className="flex min-w-0 items-center gap-2 md:hidden">
+                        <LanguageSwitcher
+                            lang={lang}
+                            onChange={setLang}
+                            menuOpen={isOpen}
+                            buttonClassName={CHIP}
+                            compact
+                        />
+                        <ThemeToggle
+                            theme={theme}
+                            onToggle={toggleTheme}
+                            buttonClassName={CHIP}
+                            labelClassName="hidden min-[360px]:inline"
+                        />
                     </div>
 
                     <button
                         type="button"
                         onClick={onClose}
                         aria-label="Fechar menu de navegação"
-                        className={`flex h-14 w-14 items-center justify-center rounded-full bg-[#2f2e55] text-[#8b86f0] transition-all duration-300 hover:scale-105 hover:bg-[#3a3965] ${FOCUS_RING}`}
+                        className={`group relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2f2e55] sm:h-14 sm:w-14 text-[#8b86f0] transition-all duration-300 hover:scale-105 hover:bg-[#3a3965] hover:text-white active:scale-90 ${FOCUS_RING}`}
                     >
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
-                            <path
-                                d="M5 5l14 14M19 5L5 19"
-                                stroke="currentColor"
-                                strokeWidth="3.2"
-                                strokeLinecap="round"
-                            />
-                        </svg>
+                        <span
+                            aria-hidden="true"
+                            className={`pointer-events-none absolute inset-0 rounded-full border-2 border-[#8b86f0] ${isOpen ? 'opacity-0' : 'x-ring'
+                                }`}
+                        />
+                        <span className="flex transition-transform duration-300 ease-out group-hover:rotate-90 motion-reduce:transition-none">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true"
+                                className={`h-5 w-5 ${isOpen ? 'x-in' : 'x-out'}`}
+                            >
+                                <path
+                                    d="M5 5l14 14M19 5L5 19"
+                                    stroke="currentColor"
+                                    strokeWidth="3.2"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        </span>
                     </button>
                 </div>
 
-                <div className="mt-10 flex flex-1 flex-col overflow-y-auto overflow-x-hidden pb-4 sm:mt-14 md:pb-0">
-                    <ul className="mb-8 flex shrink-0 flex-col gap-1">
+                <div className="mt-6 flex min-h-0 flex-1 flex-col overflow-hidden sm:mt-8 sm:[@media(min-height:800px)]:mt-14 md:pb-0">
+                    <ul className="mb-4 flex flex-1 flex-col justify-center gap-1 md:mb-8 md:flex-none md:justify-start">
                         {MENU_ITEMS.map((item, index) => {
                             const isActive = item.href === activeHref
                             return (
                                 <li
                                     key={item.href}
-                                    style={{ transitionDelay: isOpen ? `${150 + index * 60}ms` : '0ms' }}
-                                    className={`transition-all duration-500 motion-reduce:transition-none ${
-                                        isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'
-                                    }`}
+                                    style={{
+                                        transitionDelay: isOpen
+                                            ? `${150 + index * 60}ms`
+                                            : `${(MENU_ITEMS.length - 1 - index) * 30}ms`,
+                                    }}
+                                    className={`transition-all duration-500 motion-reduce:transition-none ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'
+                                        }`}
                                 >
                                     <a
                                         href={item.href}
                                         onClick={onClose}
                                         aria-current={isActive ? 'true' : undefined}
-                                        className={`${display.className} block rounded-lg text-[clamp(2.75rem,5vw,4.5rem)] uppercase leading-[1.05] tracking-wide transition-colors duration-300 ${FOCUS_RING} ${
-                                            isActive
-                                                ? 'text-[#e6dfae]'
-                                                : 'text-[#9b95d9] hover:text-white focus-visible:text-white'
-                                        }`}
+                                        className={`${display.className} block rounded-lg text-[clamp(2.25rem,6vh,3.25rem)] md:text-[clamp(1.6rem,min(5.5vw,6.8vh),5rem)] uppercase leading-[1.02] tracking-wider transition-colors duration-300 ${FOCUS_RING} ${isActive
+                                                ? 'text-[#ffd401]'
+                                                : 'text-[#e4e1ff] hover:text-white focus-visible:text-white'
+                                            }`}
                                     >
                                         {NAV_LABELS[item.href]}
                                     </a>
@@ -359,59 +427,60 @@ function MenuOverlay({ isOpen, activeHref, onClose }: MenuOverlayProps) {
 }
 
 function ProfileInfo({ isOpen }: { isOpen: boolean }) {
-    const reveal = `transition-all duration-500 motion-reduce:transition-none ${
-        isOpen ? 'translate-y-0 opacity-100 delay-[600ms]' : 'translate-y-3 opacity-0'
-    }`
+    const reveal = `transition-all duration-500 motion-reduce:transition-none ${isOpen ? 'translate-y-0 opacity-100 delay-[600ms]' : 'translate-y-3 opacity-0'
+        }`
 
     return (
         <>
-            <section aria-label="GitHub" className={`shrink-0 ${reveal}`}>
-                <ContributionGraph isOpen={isOpen} />
+            <section aria-label="Resumo e GitHub" className={`shrink-0 ${reveal}`}>
+                <div className="[@media(max-height:699px)]:hidden md:[@media(max-height:879px)]:hidden mt-9">
+                    <ContributionGraph isOpen={isOpen} />
+                </div>
 
-                <div className="mt-6 md:hidden">
-                    <ProfileStats isOpen={isOpen} />
+                <div className="mt-2 md:hidden">
+                    <ProfileStats isOpen={isOpen} variant="cards" />
                 </div>
             </section>
 
-            <div className={`mt-auto shrink-0 pt-4 ${reveal}`}>
+            <div className={`mt-auto shrink-0 pt-6 ${reveal}`}>
                 <ProfileActions />
+                <SocialLinks variant="dock" className="mt-3 md:hidden" />
             </div>
         </>
     )
 }
 
-function CountUp({
-    from,
-    to,
+function SequenceText({
+    steps,
     active,
-    stepMs = 200,
+    stepMs = 650,
     delayMs = 500,
 }: {
-    from: number
-    to: number
+    steps: string[]
     active: boolean
     stepMs?: number
     delayMs?: number
 }) {
-    const [value, setValue] = useState(from)
+    const last = steps.length - 1
+    const [index, setIndex] = useState(0)
 
     useEffect(() => {
         if (!active) return
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            setValue(to)
+            setIndex(last)
             return
         }
 
-        let current = from
+        let current = 0
         let interval: ReturnType<typeof setInterval> | undefined
-        setValue(from)
+        setIndex(0)
 
         const timeout = setTimeout(() => {
             interval = setInterval(() => {
                 current += 1
-                setValue(current)
-                if (current >= to && interval) clearInterval(interval)
+                setIndex(current)
+                if (current >= last && interval) clearInterval(interval)
             }, stepMs)
         }, delayMs)
 
@@ -419,35 +488,78 @@ function CountUp({
             clearTimeout(timeout)
             if (interval) clearInterval(interval)
         }
-    }, [active, from, to, stepMs, delayMs])
+    }, [active, last, stepMs, delayMs])
 
-    return <>{value}</>
+    return (
+        <>
+            <style>{`
+                .seq-in {
+                    display: inline-block;
+                    animation: seq-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+                }
+                .seq-final {
+                    animation:
+                        seq-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both,
+                        seq-glow 1600ms ease-out 150ms both;
+                }
+                @keyframes seq-in {
+                    from { opacity: 0; transform: translateY(70%); filter: blur(6px); }
+                    to { opacity: 1; transform: none; filter: blur(0); }
+                }
+                @keyframes seq-glow {
+                    0% { text-shadow: 0 0 0 rgba(230, 223, 174, 0); }
+                    35% { text-shadow: 0 0 28px rgba(230, 223, 174, 0.95), 0 0 6px rgba(255, 255, 255, 0.6); }
+                    100% { text-shadow: 0 0 14px rgba(230, 223, 174, 0.35); }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .seq-in, .seq-final { animation: none; }
+                }
+            `}</style>
+            <span key={index} className={index === last && last > 0 ? 'seq-in seq-final' : 'seq-in'}>
+                {steps[index]}
+            </span>
+        </>
+    )
 }
 
-function ProfileStats({ isOpen }: { isOpen: boolean }) {
+function ProfileStats({
+    isOpen,
+    variant = 'inline',
+}: {
+    isOpen: boolean
+    variant?: 'inline' | 'cards'
+}) {
+    const isCards = variant === 'cards'
+
     return (
-        <dl className="flex flex-wrap gap-x-12 gap-y-4">
+        <dl className={isCards ? 'grid grid-cols-2 gap-2' : 'flex flex-wrap gap-x-12 gap-y-4'}>
             {STATS.map((stat) => (
-                <div key={stat.label}>
+                <div
+                    key={stat.label}
+                    className={isCards ? 'rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5' : undefined}
+                >
                     <dd
-                        className={`${display.className} text-5xl uppercase leading-none tracking-wide text-[#e6dfae] lg:text-6xl`}
+                        className={`${display.className} uppercase leading-none tracking-wide text-[#ffd401] ${isCards ? 'text-[1.75rem]' : 'text-5xl lg:text-6xl'
+                            }`}
                     >
                         {'value' in stat ? (
                             stat.value
                         ) : (
                             <>
-                                <span className="sr-only">
-                                    {stat.prefix}
-                                    {stat.to}
-                                </span>
+                                <span className="sr-only">{stat.steps[stat.steps.length - 1]}</span>
                                 <span aria-hidden="true">
-                                    {stat.prefix}
-                                    <CountUp from={stat.from} to={stat.to} active={isOpen} />
+                                    <SequenceText
+                                        steps={stat.steps}
+                                        stepMs={stat.stepMs}
+                                        active={isOpen}
+                                    />
                                 </span>
                             </>
                         )}
                     </dd>
-                    <dt className="mt-1 text-xs text-white/60">{stat.label}</dt>
+                    <dt className={isCards ? 'mt-0.5 truncate text-[11px] text-white/60' : 'mt-1 text-xs text-white/60'}>
+                        {stat.label}
+                    </dt>
                 </div>
             ))}
         </dl>
@@ -457,17 +569,20 @@ function ProfileStats({ isOpen }: { isOpen: boolean }) {
 function ProfileActions() {
     return (
         <div>
-            <p className="text-xs leading-relaxed text-white/60">
-                Este projeto também se encontra no GitHub. Dá uma olhada no código!
+            <p className="mb-3 truncate text-[11px] text-white/60 md:mb-4 md:whitespace-normal md:text-xs md:leading-relaxed md:[@media(max-height:819px)]:hidden">
+                <span className="md:hidden">Confira o código deste projeto no GitHub!</span>
+                <span className="hidden md:inline">
+                    Este projeto também se encontra no GitHub. Dá uma olhada no código!
+                </span>
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:gap-3">
                 <a
                     href={CV_URL}
                     download={CV_FILENAME}
-                    className={`inline-flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-white px-6 py-3 text-xs font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90 ${FOCUS_RING}`}
+                    className={`inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-xs font-semibold text-black md:py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90 md:gap-2.5 md:px-6 ${FOCUS_RING}`}
                 >
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
                         <path
                             d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"
                             stroke="currentColor"
@@ -476,17 +591,19 @@ function ProfileActions() {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    Baixar currículo
+                    <span className="md:hidden">Currículo</span>
+                    <span className="hidden md:inline">Baixar currículo</span>
                 </a>
 
                 <a
                     href={REPO_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex flex-1 items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-white/25 px-6 py-3 text-xs font-semibold text-white/90 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:text-white ${FOCUS_RING}`}
+                    className={`inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-4 py-2.5 text-xs font-semibold text-white/90 md:py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:text-white md:gap-2.5 md:px-6 ${FOCUS_RING}`}
                 >
                     <span className="[&>svg]:h-4 [&>svg]:w-4">{GITHUB_ICON}</span>
-                    Código no GitHub
+                    <span className="md:hidden">GitHub</span>
+                    <span className="hidden md:inline">Código no GitHub</span>
                 </a>
             </div>
         </div>
@@ -498,12 +615,13 @@ type Contribution = { date: string; count: number; level: Level }
 type LoadStatus = 'idle' | 'loading' | 'ready' | 'error'
 
 const WEEKS = 53
+const MOBILE_WEEKS = 30
 const LEVEL_CLASSES: Record<Level, string> = {
     0: 'bg-white/[0.05]',
-    1: 'bg-[#A855F7]/45',
-    2: 'bg-[#FF4FA3]',
-    3: 'bg-[#FF8C42]',
-    4: 'bg-[#FFDA79]',
+    1: 'bg-[#3f3891]',
+    2: 'bg-[#8b86f0]',
+    3: 'bg-[#22d3ee]',
+    4: 'bg-[#ffd401]',
 }
 
 const PLACEHOLDER_CELLS: Contribution[] = Array.from({ length: WEEKS * 7 }, () => ({
@@ -526,7 +644,16 @@ function formatDate(isoDate: string) {
 function ContributionGraph({ isOpen }: { isOpen: boolean }) {
     const [status, setStatus] = useState<LoadStatus>('idle')
     const [contributions, setContributions] = useState<Contribution[]>([])
+    const [isNarrow, setIsNarrow] = useState(false)
     const hasRequested = useRef(false)
+
+    useEffect(() => {
+        const query = window.matchMedia('(max-width: 767px)')
+        const update = () => setIsNarrow(query.matches)
+        update()
+        query.addEventListener('change', update)
+        return () => query.removeEventListener('change', update)
+    }, [])
 
     useEffect(() => {
         if (!isOpen || hasRequested.current) return
@@ -551,33 +678,52 @@ function ContributionGraph({ isOpen }: { isOpen: boolean }) {
             .catch(() => setStatus('error'))
     }, [isOpen])
 
+    const visible = useMemo(
+        () => (isNarrow ? contributions.slice(-MOBILE_WEEKS * 7) : contributions),
+        [isNarrow, contributions],
+    )
     const cells = useMemo(
-        () => (status === 'ready' ? buildCells(contributions) : PLACEHOLDER_CELLS),
-        [status, contributions],
+        () =>
+            status === 'ready'
+                ? buildCells(visible)
+                : PLACEHOLDER_CELLS.slice(-(isNarrow ? MOBILE_WEEKS : WEEKS) * 7),
+        [status, visible, isNarrow],
     )
     const columns = Math.ceil(cells.length / 7)
     const total = useMemo(
-        () => contributions.reduce((sum, item) => sum + item.count, 0),
-        [contributions],
+        () => visible.reduce((sum, item) => sum + item.count, 0),
+        [visible],
     )
+
+    const animate = isOpen && status === 'ready'
 
     const caption =
         status === 'ready'
-            ? `${total} contribuições no último ano`
+            ? `${total} contribuições ${isNarrow ? 'em 7 meses' : 'no último ano'}`
             : status === 'error'
-              ? 'Contribuições indisponíveis no momento'
-              : 'Carregando contribuições…'
+                ? 'Contribuições indisponíveis no momento'
+                : 'Carregando contribuições…'
 
     return (
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <div className="mb-4 flex items-center justify-between gap-4">
-                <p className="text-xs text-white/50" aria-live="polite">
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 md:rounded-2xl md:p-5">
+            <style>{`
+                .cell-in { animation: cell-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+                @keyframes cell-in {
+                    from { opacity: 0; transform: scale(0.3); }
+                    to { opacity: 1; transform: none; }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .cell-in { animation: none; }
+                }
+            `}</style>
+            <div className="mb-2 flex items-center justify-between gap-3 md:mb-4 md:gap-4">
+                <p className="truncate text-[11px] text-white/50 md:text-xs" aria-live="polite">
                     {caption}
                 </p>
 
                 <div aria-hidden="true" className="flex shrink-0 gap-1">
                     {([1, 2, 3, 4] as Level[]).map((level) => (
-                        <span key={level} className={`h-3 w-3 rounded-[2px] ${LEVEL_CLASSES[level]}`} />
+                        <span key={level} className={`h-2.5 w-2.5 rounded-[2px] md:h-3 md:w-3 ${LEVEL_CLASSES[level]}`} />
                     ))}
                 </div>
             </div>
@@ -585,9 +731,8 @@ function ContributionGraph({ isOpen }: { isOpen: boolean }) {
             <div
                 role="img"
                 aria-label={caption}
-                className={`grid grid-flow-col gap-[3px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.35),#000_45%)] ${
-                    status === 'loading' ? 'animate-pulse' : ''
-                }`}
+                className={`grid grid-flow-col gap-[2px] md:gap-[3px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.35),#000_45%)] ${status === 'loading' ? 'animate-pulse' : ''
+                    }`}
                 style={{
                     gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
                     gridTemplateRows: 'repeat(7, auto)',
@@ -604,7 +749,14 @@ function ContributionGraph({ isOpen }: { isOpen: boolean }) {
                                     ? `${cell.count} contribuições em ${formatDate(cell.date)}`
                                     : undefined
                             }
-                            className={`aspect-square rounded-[2px] ${LEVEL_CLASSES[cell.level]}`}
+                            className={`aspect-square rounded-[2px] ${LEVEL_CLASSES[cell.level]} ${animate ? 'cell-in' : ''}`}
+                            style={
+                                animate
+                                    ? {
+                                        animationDelay: `${450 + Math.floor(index / 7) * 16 + (index % 7) * 12}ms`,
+                                    }
+                                    : undefined
+                            }
                         />
                     ),
                 )}
@@ -613,114 +765,257 @@ function ContributionGraph({ isOpen }: { isOpen: boolean }) {
     )
 }
 
-type LeftPanelProps = {
-    isOpen: boolean
-    onClose: () => void
+type Lang = 'pt' | 'en'
+type Theme = 'dark' | 'light'
+
+const LANGUAGES: { code: Lang; label: string; short: string }[] = [
+    { code: 'pt', label: 'Português', short: 'PT-BR' },
+    { code: 'en', label: 'English', short: 'EN' },
+]
+
+const CHIP = 'h-9 gap-2 border border-white/10 bg-white/[0.04] py-0'
+
+const PILL_BUTTON = `inline-flex items-center gap-2.5 rounded-full px-3 py-2 text-sm font-semibold text-[#b9b4e8] transition-colors duration-300 hover:bg-white/5 hover:text-white ${FOCUS_RING}`
+
+type LanguageSwitcherProps = {
+    lang: Lang
+    onChange: (lang: Lang) => void
+    menuOpen: boolean
+    buttonClassName?: string
+    compact?: boolean
 }
 
-function LeftPanel({ isOpen, onClose }: LeftPanelProps) {
+function LanguageSwitcher({
+    lang,
+    onChange,
+    menuOpen,
+    buttonClassName = '',
+    compact = false,
+}: LanguageSwitcherProps) {
+    const [open, setOpen] = useState(false)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const current = LANGUAGES.find((item) => item.code === lang) ?? LANGUAGES[0]
+
+    useEffect(() => {
+        if (!menuOpen) setOpen(false)
+    }, [menuOpen])
+
+    useEffect(() => {
+        if (!open) return
+
+        const handlePointerDown = (event: PointerEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setOpen(false)
+            }
+        }
+
+        document.addEventListener('pointerdown', handlePointerDown)
+        return () => document.removeEventListener('pointerdown', handlePointerDown)
+    }, [open])
+
+    return (
+        <div ref={containerRef} className="relative">
+            <button
+                type="button"
+                onClick={() => setOpen((previous) => !previous)}
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                aria-label="Mudar idioma"
+                className={`${PILL_BUTTON} ${buttonClassName}`}
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="h-5 w-5"
+                >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M3 12h18" />
+                    <path d="M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
+                </svg>
+                <span>{compact ? current.short : current.label}</span>
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className={`h-4 w-4 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                >
+                    <path d="M6 9l6 6 6-6" />
+                </svg>
+            </button>
+
+            <ul
+                role="listbox"
+                aria-label="Idioma"
+                className={`absolute left-0 top-full z-20 mt-2 flex w-[min(18rem,calc(100vw-4rem))] origin-top-left flex-col gap-2 rounded-2xl border border-white/10 bg-[#171330]/95 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur transition-all duration-300 motion-reduce:transition-none ${open
+                        ? 'visible translate-y-0 scale-100 opacity-100'
+                        : 'invisible -translate-y-1 scale-95 opacity-0'
+                    }`}
+            >
+                {LANGUAGES.map((item) => {
+                    const selected = item.code === lang
+                    return (
+                        <li key={item.code} role="presentation">
+                            <button
+                                type="button"
+                                role="option"
+                                aria-selected={selected}
+                                onClick={() => {
+                                    onChange(item.code)
+                                    setOpen(false)
+                                }}
+                                className={`flex w-full items-center justify-between rounded-xl bg-white/[0.04] px-5 py-4 text-left text-sm font-semibold transition-colors duration-300 hover:bg-white/[0.08] ${FOCUS_RING} ${selected ? 'text-white' : 'text-[#b9b4e8]'
+                                    }`}
+                            >
+                                {item.label}
+                                <span
+                                    aria-hidden="true"
+                                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors duration-300 ${selected ? 'border-[#8b86f0]' : 'border-white/25'
+                                        }`}
+                                >
+                                    <span
+                                        className={`h-2 w-2 rounded-full bg-[#8b86f0] transition-transform duration-300 ${selected ? 'scale-100' : 'scale-0'
+                                            }`}
+                                    />
+                                </span>
+                            </button>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    )
+}
+
+type ThemeToggleProps = {
+    theme: Theme
+    onToggle: () => void
+    labelClassName?: string
+    buttonClassName?: string
+}
+
+function ThemeToggle({ theme, onToggle, labelClassName = '', buttonClassName = '' }: ThemeToggleProps) {
+    const isDark = theme === 'dark'
+
+    return (
+        <button
+            type="button"
+            onClick={onToggle}
+            aria-label={isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
+            className={`${PILL_BUTTON} ${buttonClassName}`}
+        >
+            <span className="relative h-5 w-5">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className={`absolute inset-0 h-5 w-5 transition-all duration-500 motion-reduce:transition-none ${isDark ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'
+                        }`}
+                >
+                    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+                </svg>
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className={`absolute inset-0 h-5 w-5 transition-all duration-500 motion-reduce:transition-none ${isDark ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'
+                        }`}
+                >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+            </span>
+            <span className={labelClassName}>{isDark ? 'Escuro' : 'Claro'}</span>
+        </button>
+    )
+}
+
+function SocialLinks({
+    className = '',
+    variant = 'plain',
+}: {
+    className?: string
+    variant?: 'plain' | 'dock'
+}) {
+    const isDock = variant === 'dock'
+
+    return (
+        <ul
+            aria-label="Redes sociais"
+            className={`flex items-center ${isDock ? 'h-11 justify-around rounded-full border border-white/10 bg-white/[0.03] px-2' : ''} ${className}`}
+        >
+            {SOCIALS.map((social) => (
+                <li key={social.label}>
+                    <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        title={social.label}
+                        className={`flex items-center justify-center rounded-full transition-all duration-300 hover:text-white ${FOCUS_RING} ${isDock
+                                ? 'h-9 w-9 text-white/55 hover:bg-white/[0.06] active:scale-90 [&>svg]:h-[17px] [&>svg]:w-[17px]'
+                                : 'h-10 w-10 text-white/80 hover:-translate-y-0.5'
+                            }`}
+                    >
+                        {social.icon}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    )
+}
+
+type LeftPanelProps = {
+    isOpen: boolean
+    lang: Lang
+    onLangChange: (lang: Lang) => void
+    theme: Theme
+    onThemeToggle: () => void
+}
+
+function LeftPanel({ isOpen, lang, onLangChange, theme, onThemeToggle }: LeftPanelProps) {
     return (
         <div
-            className={`pointer-events-none absolute inset-y-0 left-0 hidden flex-col bg-[radial-gradient(60%_50%_at_50%_45%,rgba(60,70,190,0.28)_0%,rgba(60,70,190,0)_70%),linear-gradient(180deg,#1a1540_0%,#151131_55%,#100d26_100%)] px-10 pb-10 pt-8 transition-opacity duration-500 motion-reduce:transition-none md:flex md:right-[max(42%,460px)] lg:px-14 ${
-                isOpen ? 'opacity-100 delay-150' : 'opacity-0'
-            }`}
+            className={`pointer-events-none absolute inset-y-0 left-0 hidden flex-col justify-between bg-black/30 px-10 pb-10 pt-8 transition-opacity duration-500 motion-reduce:transition-none md:flex md:right-[max(42%,460px)] lg:px-14 ${isOpen ? 'opacity-100 delay-150' : 'opacity-0'
+                }`}
         >
-            <style>{`
-                .a-glitch-layer {
-                    position: absolute;
-                    inset: 0;
-                    opacity: 0;
-                    mix-blend-mode: screen;
-                    pointer-events: none;
-                    -webkit-mask: url('/imgHeader/A.png') center / 100% 100% no-repeat;
-                    mask: url('/imgHeader/A.png') center / 100% 100% no-repeat;
-                }
-                .a-glitch-cyan { background: #35b4d0; animation: a-glitch-cyan 5s steps(1, end) infinite; }
-                .a-glitch-pink { background: #ff3d81; animation: a-glitch-pink 5s steps(1, end) infinite; }
-                .a-glitch-base { animation: a-glitch-base 5s steps(1, end) infinite; }
-                .a-glitch:hover .a-glitch-cyan,
-                .a-glitch:hover .a-glitch-pink,
-                .a-glitch:hover .a-glitch-base { animation-duration: 0.9s; }
-
-                @keyframes a-glitch-cyan {
-                    0%, 86%, 100% { opacity: 0; transform: none; clip-path: inset(0); }
-                    87% { opacity: 0.9; transform: translate(-8px, 2px); clip-path: inset(8% 0 58% 0); }
-                    90% { opacity: 0.9; transform: translate(7px, -2px); clip-path: inset(52% 0 14% 0); }
-                    93% { opacity: 0.9; transform: translate(-5px, 0); clip-path: inset(28% 0 38% 0); }
-                    96% { opacity: 0.9; transform: translate(3px, 1px); clip-path: inset(70% 0 4% 0); }
-                    98% { opacity: 0; transform: none; clip-path: inset(0); }
-                }
-                @keyframes a-glitch-pink {
-                    0%, 86%, 100% { opacity: 0; transform: none; clip-path: inset(0); }
-                    88% { opacity: 0.9; transform: translate(8px, -2px); clip-path: inset(40% 0 30% 0); }
-                    91% { opacity: 0.9; transform: translate(-7px, 2px); clip-path: inset(6% 0 66% 0); }
-                    94% { opacity: 0.9; transform: translate(5px, 0); clip-path: inset(62% 0 10% 0); }
-                    97% { opacity: 0.9; transform: translate(-3px, -1px); clip-path: inset(18% 0 50% 0); }
-                    99% { opacity: 0; transform: none; clip-path: inset(0); }
-                }
-                @keyframes a-glitch-base {
-                    0%, 86%, 100% { transform: none; }
-                    88% { transform: translateX(3px) skewX(-4deg); }
-                    91% { transform: translateX(-3px) skewX(3deg); }
-                    94% { transform: translateX(2px); }
-                    97% { transform: none; }
-                }
-                @media (prefers-reduced-motion: reduce) {
-                    .a-glitch-cyan, .a-glitch-pink, .a-glitch-base { animation: none; }
-                }
-            `}</style>
-
-            <div className="flex min-h-0 flex-1 items-center justify-center py-6">
-                <a
-                    href="#inicio"
-                    onClick={onClose}
-                    aria-label="Ir para o início"
-                    className={`a-glitch pointer-events-auto rounded-3xl transition-all duration-700 ease-out motion-reduce:transition-none ${FOCUS_RING} ${
-                        isOpen
-                            ? 'translate-y-0 scale-100 opacity-100 blur-0 delay-300'
-                            : 'translate-y-6 scale-75 opacity-0 blur-md'
+            <div
+                className={`flex h-14 items-center justify-between transition-all duration-500 motion-reduce:transition-none ${isOpen ? 'translate-y-0 opacity-100 delay-500' : '-translate-y-3 opacity-0'
                     }`}
-                >
-                    <span className="relative block w-[clamp(200px,min(28vw,40vh),460px)]">
-                        <Image
-                            src="/imgHeader/A.png"
-                            alt=""
-                            width={600}
-                            height={600}
-                            priority
-                            className="a-glitch-base h-auto w-full object-contain drop-shadow-[0_0_24px_rgba(47,128,237,0.5)]"
-                        />
-                        <span aria-hidden="true" className="a-glitch-layer a-glitch-cyan" />
-                        <span aria-hidden="true" className="a-glitch-layer a-glitch-pink" />
-                    </span>
-                </a>
+            >
+                <div className="pointer-events-auto -ml-3">
+                    <LanguageSwitcher lang={lang} onChange={onLangChange} menuOpen={isOpen} />
+                </div>
+                <div className="pointer-events-auto -mr-3">
+                    <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+                </div>
             </div>
 
             <div
-                className={`flex flex-wrap items-end justify-between gap-x-6 gap-y-8 transition-all duration-500 motion-reduce:transition-none ${
-                    isOpen ? 'translate-y-0 opacity-100 delay-500' : 'translate-y-3 opacity-0'
-                }`}
+                className={`flex flex-wrap items-end justify-between gap-x-6 gap-y-8 transition-all duration-500 motion-reduce:transition-none ${isOpen ? 'translate-y-0 opacity-100 delay-500' : 'translate-y-3 opacity-0'
+                    }`}
             >
                 <div className="pointer-events-auto">
                     <ProfileStats isOpen={isOpen} />
                 </div>
 
-                <ul aria-label="Redes sociais" className="pointer-events-auto flex items-center gap-2">
-                    {SOCIALS.map((social) => (
-                        <li key={social.label}>
-                            <a
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={social.label}
-                                title={social.label}
-                                className={`flex h-10 w-10 items-center justify-center rounded-full text-white/80 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${FOCUS_RING}`}
-                            >
-                                {social.icon}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
+                <SocialLinks className="pointer-events-auto gap-2" />
             </div>
         </div>
     )
