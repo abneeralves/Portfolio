@@ -52,6 +52,20 @@ function Word({ word, highlight = false, animate = false, className = '' }: Word
 export default function Header() {
     return (
         <header id="inicio" className="relative h-screen overflow-hidden bg-[#171330]">
+            <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 320"
+                preserveAspectRatio="none"
+                className="pointer-events-none absolute bottom-0 left-0 z-0 h-[72vh] w-full"
+            >
+                <path
+                    fill="#FFFFFF"
+                    fillOpacity="1"
+                    d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,234.7C672,203,768,117,864,96C960,75,1056,117,1152,122.7C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                />
+            </svg>
+
             <div
                 className="relative z-10 flex h-full w-full items-center justify-center"
                 data-aos="fade-right"
@@ -82,6 +96,39 @@ export default function Header() {
                     </div>
                 </div>
             </div>
+
+            {/* Indicador de rolagem */}
+            <a
+                href="#sobre"
+                aria-label="Rolar para a próxima seção"
+                className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-[#171330]"
+            >
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="scroll-arrow h-7 w-7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <path d="M6 9l6 6 6-6" />
+                </svg>
+            </a>
+
+            <style>{`
+                .scroll-arrow {
+                    animation: scroll-arrow 2s ease-in-out infinite;
+                }
+                @keyframes scroll-arrow {
+                    0%, 100% { transform: translateY(0); opacity: 0.4; }
+                    50%      { transform: translateY(8px); opacity: 1; }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .scroll-arrow { animation: none; }
+                }
+            `}</style>
         </header>
     )
 }
