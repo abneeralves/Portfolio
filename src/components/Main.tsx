@@ -2,7 +2,7 @@
 
 import { Fira_Code, Bebas_Neue } from 'next/font/google'
 import {
-    ArrowRight,
+    ArrowDown,
     Download,
     GraduationCap,
     Layers,
@@ -23,21 +23,18 @@ const display = Bebas_Neue({
 const highlights = [
     {
         icon: GraduationCap,
-        category: 'Formação',
-        title: 'Análise e Desenvolvimento de Sistemas',
-        text: 'Graduado pela UNINOVE, com estudo contínuo para evoluir a cada projeto.',
+        title: 'Formação',
+        text: 'Graduado em Análise e Desenvolvimento de Sistemas pela UNINOVE, com estudo contínuo para evoluir a cada projeto.',
     },
     {
         icon: Layers,
-        category: 'Atuação',
-        title: 'Aplicações web completas',
-        text: 'Front-end e back-end do início ao fim, cuidando de cada camada do produto.',
+        title: 'Atuação',
+        text: 'Desenvolvimento de aplicações web completas, cobrindo front-end e back-end do início ao fim.',
     },
     {
         icon: Rocket,
-        category: 'Entrega',
-        title: 'Produtos escaláveis e bem estruturados',
-        text: 'Software funcional, pensado para gerar valor real e continuar fácil de evoluir.',
+        title: 'Entrega',
+        text: 'Produtos funcionais, escaláveis e bem estruturados, pensados para gerar valor real.',
     },
 ]
 
@@ -98,13 +95,84 @@ export default function Main() {
                     </div>
                 </div>
 
-                {/* Cabeçalho dos destaques */}
-                <div className="mt-16 flex items-center justify-between gap-4 lg:mt-24">
-                    <h3
-                        className={`text-4xl font-normal tracking-wide text-[#a9b4ff] sm:text-5xl ${display.className}`}
-                    >
-                        Em resumo
-                    </h3>
+                {/* Destaques */}
+                <div className="mt-16 grid gap-5 md:grid-cols-3 lg:mt-24 lg:gap-6">
+                    {highlights.map(({ icon: Icon, title, text }) => (
+                        <section
+                            key={title}
+                            className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm lg:p-9"
+                        >
+                            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-[#a9b4ff]">
+                                <Icon aria-hidden="true" className="h-5 w-5" />
+                            </span>
+
+                            <h3
+                                className={`text-3xl font-normal tracking-wide ${display.className}`}
+                            >
+                                {title}
+                            </h3>
+
+                            <p className="text-[13px] leading-7 text-[#c9c6e0]">
+                                {text}
+                            </p>
+                        </section>
+                    ))}
+                </div>
+
+                {/* Ações */}
+                <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex flex-wrap gap-3">
+                        <a
+                            href="/CurriculoAbner.pdf"
+                            download="CurriculoAbner.pdf"
+                            className="
+                                inline-flex
+                                items-center
+                                gap-2
+                                rounded-full
+                                bg-[#a9b4ff]
+                                px-6
+                                py-3
+                                text-sm
+                                font-medium
+                                text-[#171330]
+                                transition-colors
+                                hover:bg-[#c2c9ff]
+                                focus-visible:outline
+                                focus-visible:outline-2
+                                focus-visible:outline-offset-2
+                                focus-visible:outline-[#a9b4ff]
+                            "
+                        >
+                            <Download aria-hidden="true" className="h-4 w-4" />
+                            Baixar currículo
+                        </a>
+
+                        <a
+                            href="mailto:seuemail@email.com"
+                            className="
+                                inline-flex
+                                items-center
+                                gap-2
+                                rounded-full
+                                border
+                                border-[#3a3470]
+                                px-6
+                                py-3
+                                text-sm
+                                font-medium
+                                transition-colors
+                                hover:border-[#a9b4ff]
+                                focus-visible:outline
+                                focus-visible:outline-2
+                                focus-visible:outline-offset-2
+                                focus-visible:outline-[#a9b4ff]
+                            "
+                        >
+                            <Mail aria-hidden="true" className="h-4 w-4" />
+                            Entrar em contato
+                        </a>
+                    </div>
 
                     <a
                         href="#projetos"
@@ -113,10 +181,9 @@ export default function Main() {
                             items-center
                             gap-2
                             text-sm
-                            font-medium
-                            text-[#e9e7f5]
+                            text-[#a8a4c8]
                             transition-colors
-                            hover:text-[#a9b4ff]
+                            hover:text-white
                             focus-visible:outline
                             focus-visible:outline-2
                             focus-visible:outline-offset-4
@@ -124,97 +191,7 @@ export default function Main() {
                         "
                     >
                         Ver projetos
-                        <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                    </a>
-                </div>
-
-                {/* Destaques */}
-                <div className="mt-8 grid gap-5 md:grid-cols-3 lg:gap-6">
-                    {highlights.map(
-                        ({ icon: Icon, category, title, text }) => (
-                            <article
-                                key={category}
-                                className="overflow-hidden rounded-2xl bg-[#232433]"
-                            >
-                                <div className="relative flex h-44 items-end bg-gradient-to-br from-[#3f3880] via-[#2a2459] to-[#1d1840] p-6 lg:h-52">
-                                    <Icon
-                                        aria-hidden="true"
-                                        className="absolute right-6 top-6 h-14 w-14 text-[#a9b4ff]/60"
-                                        strokeWidth={1.25}
-                                    />
-
-                                    <span
-                                        className={`text-4xl tracking-wide text-[#e9e7f5] ${display.className}`}
-                                    >
-                                        {category}
-                                    </span>
-                                </div>
-
-                                <div className="p-6 lg:p-8">
-                                    <h4 className="max-w-[26ch] text-base font-semibold leading-7 text-[#e9e7f5]">
-                                        {title}
-                                    </h4>
-
-                                    <p className="mt-4 text-[13px] leading-7 text-[#a8a4c8]">
-                                        {text}
-                                    </p>
-                                </div>
-                            </article>
-                        )
-                    )}
-                </div>
-
-                {/* Ações */}
-                <div className="mt-12 flex flex-wrap gap-3">
-                    <a
-                        href="/CurriculoAbner.pdf"
-                        download="CurriculoAbner.pdf"
-                        className="
-                            inline-flex
-                            items-center
-                            gap-2
-                            rounded-full
-                            bg-[#a9b4ff]
-                            px-6
-                            py-3
-                            text-sm
-                            font-medium
-                            text-[#171330]
-                            transition-colors
-                            hover:bg-[#c2c9ff]
-                            focus-visible:outline
-                            focus-visible:outline-2
-                            focus-visible:outline-offset-2
-                            focus-visible:outline-[#a9b4ff]
-                        "
-                    >
-                        <Download aria-hidden="true" className="h-4 w-4" />
-                        Baixar currículo
-                    </a>
-
-                    <a
-                        href="mailto:seuemail@email.com"
-                        className="
-                            inline-flex
-                            items-center
-                            gap-2
-                            rounded-full
-                            border
-                            border-[#3a3470]
-                            px-6
-                            py-3
-                            text-sm
-                            font-medium
-                            transition-colors
-                            hover:border-[#a9b4ff]
-                            focus-visible:outline
-                            focus-visible:outline-2
-                            focus-visible:outline-offset-2
-                            focus-visible:outline-[#a9b4ff]
-                        "
-                    >
-                        <Mail aria-hidden="true" className="h-4 w-4" />
-                        Entrar em contato
+                        <ArrowDown aria-hidden="true" className="h-4 w-4" />
                     </a>
                 </div>
             </div>
