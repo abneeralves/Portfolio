@@ -26,13 +26,13 @@ export default function Home() {
 
             <Main />
 
-            {/* <Projects />
+            <Projects />
 
-            <Experience />
+            {/* <Experience /> */}
 
-            <Habilidades />
+            {/* <Habilidades /> */}
 
-            <Footer /> */}
+            {/* <Footer /> */}
         </>
     )
 }
