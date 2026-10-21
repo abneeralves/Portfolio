@@ -229,21 +229,23 @@ function TopBar({ isMenuOpen, onToggle, onLogoClick }: TopBarProps) {
         >
             <nav
                 aria-label="Navegação principal"
-                className="flex items-center justify-between px-6 py-5 sm:px-10 sm:py-7 lg:px-24 [&>*]:pointer-events-auto"
+                className="px-4 pt-4 sm:px-8 sm:pt-5 lg:px-24"
             >
-                <Logo onClick={onLogoClick} />
+                <div className="pointer-events-auto flex items-center justify-between rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 backdrop-blur-md sm:px-4 sm:py-1">
+                    <Logo onClick={onLogoClick} />
 
-                <button
-                    type="button"
-                    onClick={onToggle}
-                    aria-label="Abrir menu de navegação"
-                    aria-expanded={isMenuOpen}
-                    aria-controls="site-menu"
-                    className={`group flex h-11 w-12 flex-col items-end justify-center gap-[9px] rounded-lg ${FOCUS_RING}`}
-                >
-                    <span className="h-[5px] w-10 rounded-[1px] bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:w-8" />
-                    <span className="h-[5px] w-10 rounded-[1px] bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:w-10" />
-                </button>
+                    <button
+                        type="button"
+                        onClick={onToggle}
+                        aria-label="Abrir menu de navegação"
+                        aria-expanded={isMenuOpen}
+                        aria-controls="site-menu"
+                        className={`group flex h-9 w-10 flex-col items-end justify-center gap-[6px] rounded-full ${FOCUS_RING}`}
+                    >
+                        <span className="h-[3px] w-6 rounded-full bg-white transition-all duration-300 group-hover:w-5" />
+                        <span className="h-[3px] w-6 rounded-full bg-white transition-all duration-300 group-hover:w-6" />
+                    </button>
+                </div>
             </nav>
         </header>
     )
@@ -260,7 +262,7 @@ function Logo({ onClick, className = '' }: LogoProps) {
             href="#inicio"
             onClick={onClick}
             aria-label="Ir para o início"
-            className={`group flex items-center rounded-xl transition-transform duration-300 hover:scale-[1.04] ${FOCUS_RING} ${className}`}
+            className={`group flex items-center rounded-full transition-transform duration-300 hover:scale-[1.06] ${FOCUS_RING} ${className}`}
         >
             <Image
                 src="/imgHeader/A.png"
@@ -268,7 +270,7 @@ function Logo({ onClick, className = '' }: LogoProps) {
                 width={40}
                 height={40}
                 priority
-                className="h-auto w-9 object-contain transition-transform duration-500 group-hover:rotate-6 sm:w-10"
+                className="h-auto w-7 object-contain transition-transform duration-500 group-hover:rotate-6 sm:w-8"
             />
         </a>
     )
