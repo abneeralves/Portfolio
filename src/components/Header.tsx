@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent, ReactNode } from 'react'
 import {
     motion,
@@ -11,6 +11,7 @@ import {
     useTransform,
 } from 'motion/react'
 import { Anton } from 'next/font/google'
+import LetterGlitch from './LetterGlitch'
 
 const anton = Anton({
     subsets: ['latin'],
@@ -34,9 +35,15 @@ const startOf = (word: string) => WORD_START[TYPING_ORDER.indexOf(word)]
 const TYPING_DELAY = 0.7
 const TYPING_STEP = 0.09
 const TILT_DEGREES = 4
+const XL_BREAKPOINT = 1280
+
+const WINDOW_TITLE = 'portfolio'
+const CITY = 'São Paulo'
+const TIME_ZONE = 'America/Sao_Paulo'
 
 const LETTER_CLASS = `
     hero-letter
+    pointer-events-auto
     relative
     tracking-widest
     transition-colors
@@ -52,13 +59,55 @@ const TRAFFIC_LIGHTS = [
     { label: 'Maximizar', color: '#28c840' },
 ]
 
+function useMinWidth(width: number) {
+    const [matches, setMatches] = useState<boolean | null>(null)
+
+    useEffect(() => {
+        const query = window.matchMedia(`(min-width: ${width}px)`)
+        const update = () => setMatches(query.matches)
+
+        update()
+        query.addEventListener('change', update)
+        return () => query.removeEventListener('change', update)
+    }, [width])
+
+    return matches
+}
+
+function Clock() {
+    const [time, setTime] = useState('')
+
+    useEffect(() => {
+        const format = () =>
+            new Intl.DateTimeFormat('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: TIME_ZONE,
+            }).format(new Date())
+
+        setTime(format())
+        const id = setInterval(() => setTime(format()), 15000)
+        return () => clearInterval(id)
+    }, [])
+
+    return <span className="inline-block min-w-[2.5rem] text-right tabular-nums">{time}</span>
+}
+
 type MacWindowProps = {
     children: ReactNode
+    showGlitch: boolean
+    reduceMotion: boolean
     className?: string
     bodyClassName?: string
 }
 
-function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowProps) {
+function MacWindow({
+    children,
+    showGlitch,
+    reduceMotion,
+    className = '',
+    bodyClassName = '',
+}: MacWindowProps) {
     return (
         <div
             className={`
@@ -76,22 +125,82 @@ function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowPr
                 ${className}
             `}
         >
-            <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.04] px-4 py-2.5">
-                {TRAFFIC_LIGHTS.map(({ label, color }) => (
-                    <motion.span
-                        key={label}
-                        title={label}
-                        aria-hidden="true"
-                        className="block h-3 w-3 rounded-full"
-                        style={{ backgroundColor: color }}
-                        whileHover={{ scale: 1.3 }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ type: 'spring', stiffness: 500, damping: 20 }}
-                    />
-                ))}
+            <div className="relative flex items-center justify-between border-b border-white/10 bg-white/[0.04] px-4 py-2.5">
+                <div className="relative z-10 flex items-center gap-2">
+                    {TRAFFIC_LIGHTS.map(({ label, color }) => (
+                        <motion.span
+                            key={label}
+                            title={label}
+                            aria-hidden="true"
+                            className="block h-3 w-3 rounded-full"
+                            style={{ backgroundColor: color }}
+                            whileHover={{ scale: 1.3 }}
+                            whileTap={{ scale: 0.9 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 20 }}
+                        />
+                    ))}
+                </div>
+
+                <div className="pointer-events-none absolute inset-x-0 flex justify-center">
+                    <span
+                        className="select-none rounded-full border border-white/15 bg-white/[0.06] px-4 py-1 text-[13px] font-semibold leading-none tracking-[-0.01em] text-white/70 backdrop-blur-sm"
+                        style={{
+                            fontFamily:
+                                "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif",
+                        }}
+                    >
+                        {WINDOW_TITLE}
+                    </span>
+                </div>
+
+                <div
+                    className="relative z-10 inline-flex select-none items-center gap-2 px-2 py-1 text-xs text-white/60"
+                    style={{
+                        fontFamily:
+                            "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif",
+                    }}
+                >
+                    <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#28c840] opacity-60 motion-reduce:animate-none" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#28c840]" />
+                    </span>
+                    <span className="hidden sm:inline">{CITY}</span>
+                    <Clock />
+                </div>
             </div>
 
-            <div className={`p-5 md:p-8 xl:p-10 ${bodyClassName}`}>{children}</div>
+            <div className="relative">
+                {showGlitch && (
+                    <div aria-hidden="true" className="absolute inset-0 z-0">
+                        <LetterGlitch
+                            glitchColors={['#ffffff', '#60a5fa']}
+                            glitchAmount={0.5}
+                            speed={1}
+                            flow={0.5}
+                            clickEffect="tear"
+                            baseColor="#ffffff"
+                            fontSize={13}
+                            spacing={0.8}
+                            density={0.9}
+                            baseOpacity={0.16}
+                            smooth
+                            edgeFade={0}
+                            centerFade={0}
+                            interactive={!reduceMotion}
+                            cursorRadius={140}
+                            intro={!reduceMotion}
+                            lightMode={false}
+                            characters="01"
+                        />
+                    </div>
+                )}
+
+                <div
+                    className={`pointer-events-none relative z-10 p-4 sm:p-5 md:p-8 xl:p-10 ${bodyClassName}`}
+                >
+                    {children}
+                </div>
+            </div>
         </div>
     )
 }
@@ -173,6 +282,7 @@ function Word({
 export default function Header() {
     const ref = useRef<HTMLElement>(null)
     const reduceMotion = Boolean(useReducedMotion())
+    const isXl = useMinWidth(XL_BREAKPOINT)
 
     const pointerX = useMotionValue(0)
     const pointerY = useMotionValue(0)
@@ -224,7 +334,7 @@ export default function Header() {
             </svg>
 
             <motion.div
-                className="relative z-10 flex w-full justify-center px-4 pb-8 pt-24 sm:px-6 lg:px-10"
+                className="relative z-10 flex w-full justify-center px-3 pb-8 pt-20 sm:px-6 sm:pt-24 lg:px-10"
                 style={reduceMotion ? undefined : { scale: scrollScale, opacity: scrollOpacity, y: scrollY }}
             >
                 <motion.div
@@ -236,6 +346,8 @@ export default function Header() {
                 >
                     <MacWindow
                         className="xl:hidden"
+                        showGlitch={isXl === false}
+                        reduceMotion={reduceMotion}
                         bodyClassName="flex flex-col items-center md:flex-row md:justify-center md:gap-8"
                     >
                         <div>
@@ -250,7 +362,12 @@ export default function Header() {
                         </div>
                     </MacWindow>
 
-                    <MacWindow className="hidden xl:block" bodyClassName="flex justify-center">
+                    <MacWindow
+                        className="hidden xl:block"
+                        showGlitch={isXl === true}
+                        reduceMotion={reduceMotion}
+                        bodyClassName="flex justify-center"
+                    >
                         <div>
                             <Word word={NAME[0]} reduceMotion={reduceMotion} highlight animate />
                             <Word word={NAME[1]} reduceMotion={reduceMotion} />
@@ -270,6 +387,27 @@ export default function Header() {
                     </MacWindow>
                 </motion.div>
             </motion.div>
+
+            <style>{`
+                .hero-letter {
+                    font-size: clamp(3.5rem, min(28vw, calc((100svh - 12.5rem) / 5.7)), 12rem);
+                    line-height: 0.95;
+                }
+                @media (min-width: 768px) {
+                    .hero-letter {
+                        font-size: clamp(4rem, min(14vw, calc((100svh - 14rem) / 2.85)), 12rem);
+                    }
+                }
+                @media (min-width: 1280px) {
+                    .hero-letter {
+                        font-size: clamp(
+                            6rem,
+                            min(calc((100vw - 14rem) / 6.4), calc((100svh - 16rem) / 2.85)),
+                            18rem
+                        );
+                    }
+                }
+            `}</style>
         </header>
     )
 }
