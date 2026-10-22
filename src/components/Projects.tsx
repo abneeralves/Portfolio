@@ -52,7 +52,7 @@ export default function Projects() {
     return (
         <section
             id="projetos"
-            className="relative bg-[#171330] px-5 py-24 sm:px-10 lg:px-16 lg:py-32"
+            className="relative bg-[#FFFFFF] px-5 py-24 sm:px-10 lg:px-16 lg:py-32"
         >
             <header
                 data-aos="fade-up"
