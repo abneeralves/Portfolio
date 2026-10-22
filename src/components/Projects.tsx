@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
-import { Exo_2, Bebas_Neue } from 'next/font/google'
+import { Exo_2, Bebas_Neue, Anton } from 'next/font/google'
 
 const Exo = Exo_2({ subsets: ['latin'], weight: ['400', '600'] })
 const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
+const TitleFont = Anton({ subsets: ['latin'], weight: '400' })
 
 type Project = {
     image: string
@@ -53,15 +54,42 @@ export default function Projects() {
             id="projetos"
             className="relative bg-[#171330] px-5 py-24 sm:px-10 lg:px-16 lg:py-32"
         >
-            <ul className="mx-auto flex w-full max-w-[1300px] flex-col gap-6 lg:gap-10">
+            <header
+                data-aos="fade-up"
+                className="mx-auto mb-14 flex w-full max-w-[1650px] justify-center lg:mb-20"
+            >
+                <h2
+                    className={`
+                        text-center
+                        text-4xl
+                        uppercase
+                        leading-none
+                        tracking-widest
+                        sm:text-6xl
+                        lg:text-8xl
+                        ${TitleFont.className}
+                    `}
+                >
+                    <span className="text-[#ffd401]">02</span>
+                    <span
+                        aria-hidden="true"
+                        className="mx-3 text-transparent sm:mx-5"
+                        style={{ WebkitTextStroke: '2px #ffffff' }}
+                    >
+                        /
+                    </span>
+                    <span className="outline-name">Projetos</span>
+                </h2>
+            </header>
+
+            <ul className="mx-auto flex w-full max-w-[1650px] flex-col gap-6 lg:gap-10">
                 {projects.map((project, index) => {
                     return (
                         <li
                             key={project.title}
                             data-aos="fade-up"
-                            className="group relative h-[520px] overflow-hidden rounded-[28px] bg-[#1d1840] sm:h-[540px] lg:h-[580px] lg:rounded-[36px]"
+                            className="group relative h-[520px] overflow-hidden rounded-[28px] bg-[#1d1840] sm:h-[540px] lg:h-[650px] lg:rounded-[36px]"
                         >
-                            {/* Mídia */}
                             {project.mediaType === 'video' ? (
                                 <video
                                     autoPlay
@@ -86,11 +114,9 @@ export default function Projects() {
                                 />
                             )}
 
-                            {/* Degradês para leitura do texto */}
                             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171330]/90 via-[#171330]/40 to-[#171330]/10 md:from-[#171330]/60 md:via-transparent md:to-transparent" />
                             <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-l from-[#171330]/80 via-[#171330]/25 to-transparent md:block" />
 
-                            {/* Conteúdo */}
                             <div className="absolute inset-0 flex items-end p-6 sm:p-10 md:justify-end lg:p-14">
                                 <div className="w-full max-w-md lg:max-w-lg">
                                     <p
