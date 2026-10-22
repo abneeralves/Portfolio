@@ -32,15 +32,15 @@ header {
         0 0 8px rgba(34, 211, 238, 0.25);
 }
 
-/* Header efeito */
+/* Header */
 .hero-letter {
-    font-size: clamp(3.5rem, 20vw, 9rem);
+    font-size: clamp(3.5rem, min(28vw, calc((100svh - 12.5rem) / 5.7)), 12rem);
     line-height: 0.95;
 }
 
 @media (min-width: 768px) {
     .hero-letter {
-        font-size: clamp(4rem, 12.5vw, 12rem);
+        font-size: clamp(4rem, min(14vw, calc((100svh - 14rem) / 2.85)), 12rem);
     }
 }
 
@@ -51,5 +51,4 @@ header {
                 18rem);
     }
 }
-
 /*  */

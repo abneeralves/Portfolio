@@ -11,7 +11,7 @@ import {
     useTransform,
 } from 'motion/react'
 import { Anton } from 'next/font/google'
-import LetterGlitch from './LetterGlitch'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 
 const anton = Anton({
     subsets: ['latin'],
@@ -35,7 +35,6 @@ const startOf = (word: string) => WORD_START[TYPING_ORDER.indexOf(word)]
 const TYPING_DELAY = 0.7
 const TYPING_STEP = 0.09
 const TILT_DEGREES = 4
-const XL_BREAKPOINT = 1280
 
 const WINDOW_TITLE = 'portfolio'
 const CITY = 'São Paulo'
@@ -59,21 +58,6 @@ const TRAFFIC_LIGHTS = [
     { label: 'Maximizar', color: '#28c840' },
 ]
 
-function useMinWidth(width: number) {
-    const [matches, setMatches] = useState<boolean | null>(null)
-
-    useEffect(() => {
-        const query = window.matchMedia(`(min-width: ${width}px)`)
-        const update = () => setMatches(query.matches)
-
-        update()
-        query.addEventListener('change', update)
-        return () => query.removeEventListener('change', update)
-    }, [width])
-
-    return matches
-}
-
 function Clock() {
     const [time, setTime] = useState('')
 
@@ -93,21 +77,43 @@ function Clock() {
     return <span className="inline-block min-w-[2.5rem] text-right tabular-nums">{time}</span>
 }
 
+function ScrollArrow({ className = '' }: { className?: string }) {
+    return (
+        <a
+            href="#sobre"
+            aria-label="Rolar para a próxima seção"
+            className={`pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/[0.06] text-white/80 transition-colors hover:border-[#ffd401] hover:text-[#ffd401] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd401] ${className}`}
+        >
+            <ArrowDown
+                aria-hidden="true"
+                className="h-4 w-4 animate-bounce motion-reduce:animate-none"
+            />
+        </a>
+    )
+}
+
+function ProjectsLink({ className = '' }: { className?: string }) {
+    return (
+        <a
+            href="#projetos"
+            className={`group pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.06] px-3.5 py-1.5 text-xs font-medium text-white/90 transition-colors hover:border-[#ffd401] hover:text-[#ffd401] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd401] sm:text-sm ${className}`}
+        >
+            Ver projetos
+            <ArrowUpRight
+                aria-hidden="true"
+                className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+            />
+        </a>
+    )
+}
+
 type MacWindowProps = {
     children: ReactNode
-    showGlitch: boolean
-    reduceMotion: boolean
     className?: string
     bodyClassName?: string
 }
 
-function MacWindow({
-    children,
-    showGlitch,
-    reduceMotion,
-    className = '',
-    bodyClassName = '',
-}: MacWindowProps) {
+function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowProps) {
     return (
         <div
             className={`
@@ -169,37 +175,10 @@ function MacWindow({
                 </div>
             </div>
 
-            <div className="relative">
-                {showGlitch && (
-                    <div aria-hidden="true" className="absolute inset-0 z-0">
-                        <LetterGlitch
-                            glitchColors={['#ffffff', '#60a5fa']}
-                            glitchAmount={0.5}
-                            speed={1}
-                            flow={0.5}
-                            clickEffect="tear"
-                            baseColor="#ffffff"
-                            fontSize={13}
-                            spacing={0.8}
-                            density={0.9}
-                            baseOpacity={0.16}
-                            smooth
-                            edgeFade={0}
-                            centerFade={0}
-                            interactive={!reduceMotion}
-                            cursorRadius={140}
-                            intro={!reduceMotion}
-                            lightMode={false}
-                            characters="01"
-                        />
-                    </div>
-                )}
-
-                <div
-                    className={`pointer-events-none relative z-10 p-4 sm:p-5 md:p-8 xl:p-10 ${bodyClassName}`}
-                >
-                    {children}
-                </div>
+            <div
+                className={`pointer-events-none relative p-4 sm:p-5 md:p-8 xl:p-10 ${bodyClassName}`}
+            >
+                {children}
             </div>
         </div>
     )
@@ -253,14 +232,14 @@ function Word({
                                 aria-hidden="true"
                                 className="pointer-events-none absolute right-[-0.04em] top-[10%] h-[78%] w-[0.07em] bg-[#ffd401]"
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: isLast ? [1, 0] : [0, 1, 1, 0] }}
+                                animate={{ opacity: isLast ? [1, 1, 0, 0] : [0, 1, 1, 0] }}
                                 transition={
                                     isLast
                                         ? {
                                               delay,
-                                              duration: 0.45,
-                                              repeat: 4,
-                                              repeatType: 'reverse',
+                                              duration: 1,
+                                              times: [0, 0.5, 0.5, 1],
+                                              repeat: Infinity,
                                               ease: 'linear',
                                           }
                                         : {
@@ -282,7 +261,6 @@ function Word({
 export default function Header() {
     const ref = useRef<HTMLElement>(null)
     const reduceMotion = Boolean(useReducedMotion())
-    const isXl = useMinWidth(XL_BREAKPOINT)
 
     const pointerX = useMotionValue(0)
     const pointerY = useMotionValue(0)
@@ -346,9 +324,7 @@ export default function Header() {
                 >
                     <MacWindow
                         className="xl:hidden"
-                        showGlitch={isXl === false}
-                        reduceMotion={reduceMotion}
-                        bodyClassName="flex flex-col items-center md:flex-row md:justify-center md:gap-8"
+                        bodyClassName="flex flex-col items-center pb-16 sm:pb-16 md:flex-row md:justify-center md:gap-8 md:pb-16"
                     >
                         <div>
                             <Word word={NAME[0]} reduceMotion={reduceMotion} animate />
@@ -360,14 +336,12 @@ export default function Header() {
                             <Word word={PROFESSION[0]} reduceMotion={reduceMotion} highlight />
                             <Word word={PROFESSION[1]} reduceMotion={reduceMotion} highlight />
                         </div>
+
+                        <ProjectsLink className="absolute bottom-3 left-3 sm:left-5" />
+                        <ScrollArrow className="absolute bottom-3 right-3 sm:right-5" />
                     </MacWindow>
 
-                    <MacWindow
-                        className="hidden xl:block"
-                        showGlitch={isXl === true}
-                        reduceMotion={reduceMotion}
-                        bodyClassName="flex justify-center"
-                    >
+                    <MacWindow className="hidden xl:block" bodyClassName="flex justify-center">
                         <div>
                             <Word word={NAME[0]} reduceMotion={reduceMotion} highlight animate />
                             <Word word={NAME[1]} reduceMotion={reduceMotion} />
@@ -384,30 +358,12 @@ export default function Header() {
                                 className="tracking-[0.5rem]"
                             />
                         </div>
+
+                        <ProjectsLink className="absolute right-10 top-10" />
+                        <ScrollArrow className="absolute bottom-16 right-10" />
                     </MacWindow>
                 </motion.div>
             </motion.div>
-
-            <style>{`
-                .hero-letter {
-                    font-size: clamp(3.5rem, min(28vw, calc((100svh - 12.5rem) / 5.7)), 12rem);
-                    line-height: 0.95;
-                }
-                @media (min-width: 768px) {
-                    .hero-letter {
-                        font-size: clamp(4rem, min(14vw, calc((100svh - 14rem) / 2.85)), 12rem);
-                    }
-                }
-                @media (min-width: 1280px) {
-                    .hero-letter {
-                        font-size: clamp(
-                            6rem,
-                            min(calc((100vw - 14rem) / 6.4), calc((100svh - 16rem) / 2.85)),
-                            18rem
-                        );
-                    }
-                }
-            `}</style>
         </header>
     )
 }
