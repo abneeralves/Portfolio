@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import type { PointerEvent, ReactNode } from 'react'
 import {
     motion,
@@ -19,38 +19,100 @@ const anton = Anton({
 })
 
 const NAME = ['ABNER', 'ALVES', 'MUNIZ']
-const PROFESSION = ['FULL', 'STACK', 'DEV']
-
-const TYPING_ORDER = [NAME[0], NAME[1], NAME[2], PROFESSION[2], PROFESSION[0], PROFESSION[1]]
-
-const WORD_START = TYPING_ORDER.reduce<number[]>((acc, word, index) => {
-    acc.push(index === 0 ? 0 : acc[index - 1] + TYPING_ORDER[index - 1].length)
-    return acc
-}, [])
-
-const TOTAL_LETTERS = TYPING_ORDER.reduce((sum, word) => sum + word.length, 0)
-
-const startOf = (word: string) => WORD_START[TYPING_ORDER.indexOf(word)]
-
-const TYPING_DELAY = 0.7
-const TYPING_STEP = 0.09
-const TILT_DEGREES = 4
-
+const PROFESSION = ['DEV', 'FULL', 'STACK']
+const FULL_NAME = 'Abner Alves Muniz'
+const ROLE = 'Desenvolvedor Full Stack'
 const WINDOW_TITLE = 'portfolio'
 const CITY = 'São Paulo'
 const TIME_ZONE = 'America/Sao_Paulo'
+const STACK_LINE = 'Next.js, React, TypeScript, Node.js'
+const TYPING_ORDER = [...NAME, ...PROFESSION]
+const TYPING_DELAY = 0.4
+const TYPING_STEP = 0.06
+const TILT_DEGREES = 4
+const TOTAL_LETTERS = TYPING_ORDER.reduce((sum, word) => sum + word.length, 0)
+
+const WORD_START: Record<string, number> = {}
+TYPING_ORDER.reduce((offset, word) => {
+    WORD_START[word] = offset
+    return offset + word.length
+}, 0)
+
+type Tone = 'fill' | 'outline'
+
+type LayoutConfig = {
+    tones: Record<string, Tone>
+    autoHover: string[]
+    bodyClassName: string
+    professionClassName: string
+    scrollArrowClassName: string
+}
+
+const MOBILE_LAYOUT: LayoutConfig = {
+    tones: {
+        ABNER: 'outline',
+        ALVES: 'outline',
+        MUNIZ: 'outline',
+        DEV: 'fill',
+        FULL: 'fill',
+        STACK: 'fill',
+    },
+    autoHover: ['ABNER'],
+    bodyClassName:
+        'flex flex-col items-center pb-16 sm:pb-16 md:flex-row md:justify-center md:gap-8 md:pb-16',
+    professionClassName: '',
+    scrollArrowClassName: 'absolute bottom-3 right-3 sm:right-5',
+}
+
+const DESKTOP_LAYOUT: LayoutConfig = {
+    tones: {
+        ABNER: 'fill',
+        ALVES: 'outline',
+        MUNIZ: 'outline',
+        DEV: 'outline',
+        FULL: 'outline',
+        STACK: 'fill',
+    },
+    autoHover: ['ABNER', 'STACK'],
+    bodyClassName: 'flex justify-center',
+    professionClassName: 'ml-24',
+    scrollArrowClassName: 'absolute bottom-16 right-10',
+}
+
+const DESKTOP_QUERY = '(min-width: 1280px)'
+
+function subscribeToDesktop(onChange: () => void) {
+    const media = window.matchMedia(DESKTOP_QUERY)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+}
+
+function useIsDesktop() {
+    return useSyncExternalStore(
+        subscribeToDesktop,
+        () => window.matchMedia(DESKTOP_QUERY).matches,
+        () => false,
+    )
+}
 
 const LETTER_CLASS = `
     hero-letter
     pointer-events-auto
     relative
-    tracking-widest
+    mr-[0.1em]
+    last:mr-0
+    cursor-default
     transition-colors
     duration-300
     ease-in-out
     hover:text-[#ffd401]
-    hover:cursor-pointer
 `
+
+const SYSTEM_FONT =
+    "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif"
+
+const FOCUS_RING =
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd401]'
 
 const TRAFFIC_LIGHTS = [
     { label: 'Fechar', color: '#ff5f57' },
@@ -58,19 +120,20 @@ const TRAFFIC_LIGHTS = [
     { label: 'Maximizar', color: '#28c840' },
 ]
 
+const timeFormatter = new Intl.DateTimeFormat('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: TIME_ZONE,
+})
+
 function Clock() {
     const [time, setTime] = useState('')
 
     useEffect(() => {
-        const format = () =>
-            new Intl.DateTimeFormat('pt-BR', {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone: TIME_ZONE,
-            }).format(new Date())
+        const update = () => setTime(timeFormatter.format(new Date()))
 
-        setTime(format())
-        const id = setInterval(() => setTime(format()), 15000)
+        update()
+        const id = setInterval(update, 15000)
         return () => clearInterval(id)
     }, [])
 
@@ -82,7 +145,7 @@ function ScrollArrow({ className = '' }: { className?: string }) {
         <a
             href="#sobre"
             aria-label="Rolar para a próxima seção"
-            className={`pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/[0.06] text-white/80 transition-colors hover:border-[#ffd401] hover:text-[#ffd401] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd401] ${className}`}
+            className={`pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition-colors hover:border-[#ffd401] hover:text-[#ffd401] ${FOCUS_RING} ${className}`}
         >
             <ArrowDown
                 aria-hidden="true"
@@ -92,28 +155,14 @@ function ScrollArrow({ className = '' }: { className?: string }) {
     )
 }
 
-function ProjectsLink({ className = '' }: { className?: string }) {
-    return (
-        <a
-            href="#projetos"
-            className={`group pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.06] px-3.5 py-1.5 text-xs font-medium text-white/90 transition-colors hover:border-[#ffd401] hover:text-[#ffd401] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd401] sm:text-sm ${className}`}
-        >
-            Ver projetos
-            <ArrowUpRight
-                aria-hidden="true"
-                className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-            />
-        </a>
-    )
-}
-
 type MacWindowProps = {
     children: ReactNode
+    footer?: ReactNode
     className?: string
     bodyClassName?: string
 }
 
-function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowProps) {
+function MacWindow({ children, footer, className = '', bodyClassName = '' }: MacWindowProps) {
     return (
         <div
             className={`
@@ -150,10 +199,7 @@ function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowPr
                 <div className="pointer-events-none absolute inset-x-0 flex justify-center">
                     <span
                         className="select-none rounded-full border border-white/15 bg-white/[0.06] px-4 py-1 text-[13px] font-semibold leading-none tracking-[-0.01em] text-white/70 backdrop-blur-sm"
-                        style={{
-                            fontFamily:
-                                "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif",
-                        }}
+                        style={{ fontFamily: SYSTEM_FONT }}
                     >
                         {WINDOW_TITLE}
                     </span>
@@ -161,10 +207,7 @@ function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowPr
 
                 <div
                     className="relative z-10 inline-flex select-none items-center gap-2 px-2 py-1 text-xs text-white/60"
-                    style={{
-                        fontFamily:
-                            "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif",
-                    }}
+                    style={{ fontFamily: SYSTEM_FONT }}
                 >
                     <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#28c840] opacity-60 motion-reduce:animate-none" />
@@ -180,29 +223,46 @@ function MacWindow({ children, className = '', bodyClassName = '' }: MacWindowPr
             >
                 {children}
             </div>
+
+            {footer}
+        </div>
+    )
+}
+
+function StatusBar() {
+    return (
+        <div
+            className="pointer-events-none flex select-none items-center justify-between gap-4 border-t border-white/10 bg-white/[0.03] px-4 py-2 text-xs text-white/60"
+            style={{ fontFamily: SYSTEM_FONT }}
+        >
+            <span className="truncate">{STACK_LINE}</span>
+
+            <a
+                href="#projetos"
+                className={`group pointer-events-auto inline-flex shrink-0 items-center gap-1.5 text-white/80 transition-colors hover:text-[#ffd401] ${FOCUS_RING}`}
+            >
+                Ver projetos
+                <ArrowUpRight
+                    aria-hidden="true"
+                    className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                />
+            </a>
         </div>
     )
 }
 
 type WordProps = {
     word: string
+    tone: Tone
     reduceMotion: boolean
-    highlight?: boolean
-    animate?: boolean
-    className?: string
+    autoHover?: boolean
 }
 
-function Word({
-    word,
-    reduceMotion,
-    highlight = false,
-    animate = false,
-    className = '',
-}: WordProps) {
-    const start = startOf(word)
+function Word({ word, tone, reduceMotion, autoHover = false }: WordProps) {
+    const start = WORD_START[word]
 
     return (
-        <div className="flex" aria-label={word}>
+        <div className="flex" aria-hidden="true">
             {word.split('').map((letter, index) => {
                 const position = start + index
                 const delay = TYPING_DELAY + position * TYPING_STEP
@@ -211,15 +271,13 @@ function Word({
                 return (
                     <motion.p
                         key={`${word}-${index}`}
-                        aria-hidden="true"
                         className={`
                             ${anton.className}
                             ${LETTER_CLASS}
-                            ${highlight ? 'text-[#ffd401]' : 'outline-name'}
-                            ${animate ? 'auto-hover' : ''}
-                            ${className}
+                            ${tone === 'fill' ? 'text-[#ffd401]' : 'outline-name'}
+                            ${autoHover && !reduceMotion ? 'auto-hover' : ''}
                         `}
-                        style={animate ? { animationDelay: `${index}s` } : undefined}
+                        style={autoHover && !reduceMotion ? { animationDelay: `${index}s` } : undefined}
                         initial={reduceMotion ? false : { opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.05, delay }}
@@ -229,25 +287,24 @@ function Word({
 
                         {!reduceMotion && (
                             <motion.span
-                                aria-hidden="true"
-                                className="pointer-events-none absolute right-[-0.04em] top-[10%] h-[78%] w-[0.07em] bg-[#ffd401]"
+                                className="pointer-events-none absolute right-[-0.14em] top-[10%] h-[78%] w-[0.07em] bg-[#ffd401]"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: isLast ? [1, 1, 0, 0] : [0, 1, 1, 0] }}
                                 transition={
                                     isLast
                                         ? {
-                                              delay,
-                                              duration: 1,
-                                              times: [0, 0.5, 0.5, 1],
-                                              repeat: Infinity,
-                                              ease: 'linear',
-                                          }
+                                            delay,
+                                            duration: 1,
+                                            times: [0, 0.5, 0.5, 1],
+                                            repeat: Infinity,
+                                            ease: 'linear',
+                                        }
                                         : {
-                                              delay,
-                                              duration: TYPING_STEP,
-                                              times: [0, 0.01, 0.99, 1],
-                                              ease: 'linear',
-                                          }
+                                            delay,
+                                            duration: TYPING_STEP,
+                                            times: [0, 0.01, 0.99, 1],
+                                            ease: 'linear',
+                                        }
                                 }
                             />
                         )}
@@ -258,9 +315,11 @@ function Word({
     )
 }
 
-export default function Header() {
+export default function Hero() {
     const ref = useRef<HTMLElement>(null)
     const reduceMotion = Boolean(useReducedMotion())
+    const isDesktop = useIsDesktop()
+    const layout = isDesktop ? DESKTOP_LAYOUT : MOBILE_LAYOUT
 
     const pointerX = useMotionValue(0)
     const pointerY = useMotionValue(0)
@@ -291,79 +350,63 @@ export default function Header() {
     }
 
     return (
-        <header
+        <section
             id="inicio"
             ref={ref}
             onPointerMove={handlePointerMove}
             onPointerLeave={handlePointerLeave}
             className="relative flex min-h-svh items-center justify-center overflow-hidden bg-[#171330]"
         >
-            <svg
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1440 320"
-                preserveAspectRatio="none"
-                className="pointer-events-none absolute bottom-0 left-0 z-0 h-[72vh] w-full"
-            >
-                <path
-                    fill="#171330"
-                    d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,234.7C672,203,768,117,864,96C960,75,1056,117,1152,122.7C1248,128,1344,96,1392,80L1440,64L1440,320L0,320Z"
-                />
-            </svg>
+            <h1 className="sr-only">
+                {FULL_NAME}, {ROLE}
+            </h1>
 
             <motion.div
                 className="relative z-10 flex w-full justify-center px-3 pb-8 pt-20 sm:px-6 sm:pt-24 lg:px-10"
-                style={reduceMotion ? undefined : { scale: scrollScale, opacity: scrollOpacity, y: scrollY }}
+                style={
+                    reduceMotion
+                        ? undefined
+                        : { scale: scrollScale, opacity: scrollOpacity, y: scrollY }
+                }
             >
                 <motion.div
                     className="flex w-full justify-center"
-                    style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 1400 }}
+                    style={
+                        reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 1400 }
+                    }
                     initial={reduceMotion ? false : { opacity: 0, x: -80 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ type: 'spring', stiffness: 70, damping: 16, mass: 0.9 }}
                 >
-                    <MacWindow
-                        className="xl:hidden"
-                        bodyClassName="flex flex-col items-center pb-16 sm:pb-16 md:flex-row md:justify-center md:gap-8 md:pb-16"
-                    >
+                    <MacWindow bodyClassName={layout.bodyClassName} footer={<StatusBar />}>
                         <div>
-                            <Word word={NAME[0]} reduceMotion={reduceMotion} animate />
-                            <Word word={NAME[1]} reduceMotion={reduceMotion} />
-                            <Word word={NAME[2]} reduceMotion={reduceMotion} />
-                        </div>
-                        <div>
-                            <Word word={PROFESSION[2]} reduceMotion={reduceMotion} highlight />
-                            <Word word={PROFESSION[0]} reduceMotion={reduceMotion} highlight />
-                            <Word word={PROFESSION[1]} reduceMotion={reduceMotion} highlight />
+                            {NAME.map((word) => (
+                                <Word
+                                    key={word}
+                                    word={word}
+                                    tone={layout.tones[word]}
+                                    reduceMotion={reduceMotion}
+                                    autoHover={layout.autoHover.includes(word)}
+                                />
+                            ))}
                         </div>
 
-                        <ProjectsLink className="absolute bottom-3 left-3 sm:left-5" />
-                        <ScrollArrow className="absolute bottom-3 right-3 sm:right-5" />
-                    </MacWindow>
-
-                    <MacWindow className="hidden xl:block" bodyClassName="flex justify-center">
-                        <div>
-                            <Word word={NAME[0]} reduceMotion={reduceMotion} highlight animate />
-                            <Word word={NAME[1]} reduceMotion={reduceMotion} />
-                            <Word word={NAME[2]} reduceMotion={reduceMotion} />
-                        </div>
-                        <div className="ml-24">
-                            <Word word={PROFESSION[2]} reduceMotion={reduceMotion} />
-                            <Word word={PROFESSION[0]} reduceMotion={reduceMotion} />
-                            <Word
-                                word={PROFESSION[1]}
-                                reduceMotion={reduceMotion}
-                                highlight
-                                animate
-                                className="tracking-[0.5rem]"
-                            />
+                        <div className={layout.professionClassName}>
+                            {PROFESSION.map((word) => (
+                                <Word
+                                    key={word}
+                                    word={word}
+                                    tone={layout.tones[word]}
+                                    reduceMotion={reduceMotion}
+                                    autoHover={layout.autoHover.includes(word)}
+                                />
+                            ))}
                         </div>
 
-                        <ProjectsLink className="absolute right-10 top-10" />
-                        <ScrollArrow className="absolute bottom-16 right-10" />
+                        <ScrollArrow className={layout.scrollArrowClassName} />
                     </MacWindow>
                 </motion.div>
             </motion.div>
-        </header>
+        </section>
     )
 }
