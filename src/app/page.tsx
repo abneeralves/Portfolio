@@ -30,7 +30,7 @@ export default function Home() {
 
             <Experience />
 
-            {/* <Habilidades /> */}
+            <Habilidades />
 
             {/* <Footer /> */}
         </>

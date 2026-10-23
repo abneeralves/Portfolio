@@ -52,7 +52,7 @@ export default function Projects() {
     return (
         <section
             id="projetos"
-            className="relative bg-[#FFFFFF] px-5 py-24 sm:px-10 lg:px-16 lg:py-32"
+            className="relative overflow-hidden bg-[#FFFFFF] px-5 pb-32 pt-24 sm:px-10 sm:pb-48 lg:px-16 lg:pb-64 lg:pt-32"
         >
             <header
                 data-aos="fade-up"
@@ -193,6 +193,20 @@ export default function Projects() {
                     )
                 })}
             </ul>
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 320"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-0 left-0 block h-24 w-full sm:h-40 lg:h-56"
+            >
+                <path
+                    fill="#171330"
+                    fillOpacity="1"
+                    d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                />
+            </svg>
         </section>
     )
 }

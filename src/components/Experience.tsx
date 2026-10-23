@@ -61,22 +61,8 @@ export default function Experience() {
     return (
         <section
             id="experiencia"
-            className="relative overflow-hidden bg-[#171330] px-5 pb-24 pt-32 sm:px-10 sm:pt-48 lg:px-16 lg:pb-32 lg:pt-64"
+            className="relative overflow-hidden bg-[#171330] px-5 pb-24 sm:px-10 lg:px-16"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1440 320"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-px left-0 block h-24 w-full -scale-y-100 sm:h-40 lg:h-56"
-            >
-                <path
-                    fill="#ffffff"
-                    fillOpacity="1"
-                    d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                />
-            </svg>
-
             <header
                 data-aos="fade-up"
                 className="relative mx-auto mb-14 flex w-full max-w-[1650px] justify-center lg:mb-20"
