@@ -173,8 +173,6 @@ function MacWindow({ children, footer, className = '', bodyClassName = '' }: Mac
                 border
                 border-white/15
                 bg-[#171330]
-                shadow-2xl
-                shadow-black/60
                 ring-1
                 ring-black/40
                 ${className}

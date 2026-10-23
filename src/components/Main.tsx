@@ -54,10 +54,8 @@ export default function Main() {
                 ${firaCode.className}
             `}
         >
-            {/* Conteúdo */}
-            <div className="flex w-full flex-1 items-center px-5 py-24 sm:px-10 lg:px-16 lg:py-32">
-                <div className="mx-auto w-full max-w-7xl">
-                    {/* Apresentação */}
+            <div className="flex w-full flex-1 items-center px-3 py-24 sm:px-6 lg:px-10 lg:py-32">
+                <div className="mx-auto w-full max-w-[100rem]">
                     <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
                         <h2
                             className={`
@@ -93,7 +91,6 @@ export default function Main() {
                         </div>
                     </div>
 
-                    {/* Destaques */}
                     <div className="mt-16 grid gap-5 md:grid-cols-3 lg:mt-24 lg:gap-6">
                         {highlights.map(({ icon: Icon, title, text }) => (
                             <section
@@ -120,7 +117,6 @@ export default function Main() {
                         ))}
                     </div>
 
-                    {/* Ações */}
                     <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex flex-wrap gap-3">
                             <a
@@ -201,7 +197,6 @@ export default function Main() {
                 </div>
             </div>
 
-            {/* Onda decorativa (por último, colada embaixo e nas laterais) */}
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1440 320"

@@ -1,280 +1,244 @@
-"use client"
+import Image from 'next/image'
+import { ArrowUpRight } from 'lucide-react'
+import { Exo_2, Bebas_Neue, Anton } from 'next/font/google'
 
-import Image from "next/image"
-import { Exo_2, Bebas_Neue, Anton } from "next/font/google"
-import { useCallback, useEffect, useRef, useState } from "react"
-
-const Exo = Exo_2({ subsets: ['latin'], weight: '400' })
+const Exo = Exo_2({ subsets: ['latin'], weight: ['400', '600'] })
 const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
-const anton = Anton({ subsets: ['latin'], weight: '400' })
+const TitleFont = Anton({ subsets: ['latin'], weight: '400' })
 
-type Project = {
-    image: string,
-    title: string,
-    describe: string,
-    skill: string[],
-    linkProject: string
+const COMPANY = {
+    name: 'Grupo UAU',
+    role: 'Assistente de Tecnologia',
+    image: '/imgExperience/grupouau.png',
+    link: 'https://www.grupouau.com/',
+    description: [
+        'Desenvolvedor no Grupo UAU, atuando na criação de soluções web para diferentes produtos da empresa. Participei do desenvolvimento das landing pages da Scarlet e da UAUBox, cuidando do front-end e de interfaces modernas, responsivas e alinhadas à identidade de cada marca.',
+        'Hoje, como Desenvolvedor Full Stack na UAUTeam, evoluo funcionalidades no front-end e no back-end, integro APIs, implemento regras de negócio e apoio a análise de builds, a execução das aplicações e o monitoramento de logs em ambiente de cloud.',
+    ],
 }
 
-const projects: Project[] = [
+const PRODUCTS = [
     {
-        image: '/imgExperience/experiencia-que-conecta.png',
-        title: 'Assistente de Tecnologia | Grupo UAU',
-        describe: 'Desenvolvedor do Grupo UAU, com experiência na criação de soluções web e atuação em diferentes produtos da empresa. Participei do desenvolvimento das landing pages da Scarlet e da UAUBox, sendo responsável pela construção do front-end e pela implementação de interfaces modernas, responsivas e alinhadas às necessidades do negócio. \n\n  Atualmente, atuo no desenvolvimento da UAUTeam, plataforma de afiliados do Grupo UAU, trabalhando como Desenvolvedor Full Stack. No dia a dia, desenvolvo e evoluo funcionalidades no front-end e no back-end, criando interfaces intuitivas e responsivas, realizando integrações com APIs, implementando regras de negócio, consumindo e disponibilizando serviços, além de apoiar a análise de builds, execução de aplicações e monitoramento de logs em ambiente de cloud.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg', '/SVGs/postgresql.svg'],
-        linkProject: 'https://www.grupouau.com/'
+        name: 'Scarlet',
+        describe: 'Landing page da box de beleza premium por assinatura',
+        href: 'https://scarletbox.com.br/',
     },
     {
-        image: '/imgExperience/landing-page-scarlet.jpeg',
-        title: 'Landing Page Scarlet',
-        describe: 'Landing page desenvolvida para a Scarlet, box de beleza premium por assinatura do Grupo UAU. Fui responsável pelo desenvolvimento do front-end, criando interfaces responsivas e alinhadas à identidade da marca. Também realizei a integração das imagens utilizando o Google Cloud Storage, garantindo uma entrega eficiente dos recursos e uma melhor experiência de navegação.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/typescript.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/tailwind.svg', '/SVGs/google-cloude.svg'],
-        linkProject: 'https://scarletbox.com.br/'
+        name: 'UAUBox',
+        describe: 'Landing page do serviço de assinatura de beleza personalizada',
+        href: 'https://uaubox.com.br/',
     },
     {
-        image: '/imgExperience/landing-page-uau.jpeg',
-        title: 'Landing Page UauBox',
-        describe: 'Landing page desenvolvida para a UAUBox, serviço de assinatura de beleza personalizada do Grupo UAU, que oferece recomendações de produtos de acordo com o perfil de cada assinante. Fui responsável pelo desenvolvimento do front-end, criando interfaces responsivas e alinhadas à identidade da marca. Também realizei a integração das imagens utilizando o Google Cloud Storage, garantindo uma entrega eficiente dos recursos e uma melhor experiência de navegação.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/typescript.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/tailwind.svg', '/SVGs/google-cloude.svg'],
-        linkProject: 'https://uaubox.com.br/'
+        name: 'UAUTeam',
+        describe: 'Plataforma de afiliados com cupons, analytics, gamificação e pagamento via Pix',
+        href: 'https://uauteam.vercel.app/',
     },
-    {
-        image: '/imgExperience/uau-team.png',
-        title: 'UauTeam',
-        describe: 'Atualmente atuo no desenvolvimento da UAUTeam, infraestrutura completa para marcas operarem programas de afiliados com recursos como cupons em massa, social analytics, gamificação, seeding, métricas em tempo real e pagamento automático via Pix, tudo na sua marca e no seu domínio. Participo ativamente tanto do desenvolvimento front-end quanto back-end, contribuindo na criação de novas funcionalidades, integrações e manutenção da aplicação, sempre com foco em performance, escalabilidade e experiência do usuário.',
-        skill: ['/SVGs/html.svg', '/SVGs/css.svg', '/SVGs/javascript.svg', '/SVGs/typescript.svg', '/SVGs/tailwind.svg', '/SVGs/react.svg', '/SVGs/nextjs.svg', '/SVGs/nodejs.svg', '/SVGs/nestjs.svg', '/SVGs/prisma.svg', '/SVGs/google-cloude.svg', '/SVGs/postman.svg', '/SVGs/postgresql.svg'],
-        linkProject: 'https://uauteam.vercel.app/'
-    }
 ]
 
-const codeSymbols = [
-    { symbol: '</>', top: '8%', left: '6%', size: '2.5rem', duration: '9s', delay: '0s' },
-    { symbol: '{ }', top: '22%', left: '88%', size: '2rem', duration: '11s', delay: '1.5s' },
-    { symbol: ';', top: '35%', left: '14%', size: '3.5rem', duration: '7s', delay: '0.5s' },
-    { symbol: '</>', top: '55%', left: '92%', size: '2rem', duration: '10s', delay: '2s' },
-    { symbol: '( )', top: '68%', left: '4%', size: '2.25rem', duration: '8.5s', delay: '1s' },
-    { symbol: '#', top: '80%', left: '90%', size: '3rem', duration: '9.5s', delay: '0.8s' },
-    { symbol: '</>', top: '78%', left: '20%', size: '2rem', duration: '12s', delay: '2.5s' },
-
-    { symbol: '{ }', top: '12%', left: '42%', size: '2.25rem', duration: '8s', delay: '0.7s' },
-    { symbol: ';', top: '30%', left: '60%', size: '2.75rem', duration: '10.5s', delay: '1.8s' },
-    { symbol: '</>', top: '44%', left: '45%', size: '2rem', duration: '9.2s', delay: '0.3s' },
-    { symbol: '( )', top: '58%', left: '72%', size: '2.5rem', duration: '11.5s', delay: '2.2s' },
-    { symbol: '#', top: '72%', left: '52%', size: '2.75rem', duration: '8.8s', delay: '1.2s' },
-    { symbol: '#', top: '88%', left: '45%', size: '2rem', duration: '10.8s', delay: '2.8s' },
+const SKILLS = [
+    '/SVGs/html.svg',
+    '/SVGs/css.svg',
+    '/SVGs/javascript.svg',
+    '/SVGs/typescript.svg',
+    '/SVGs/tailwind.svg',
+    '/SVGs/react.svg',
+    '/SVGs/nextjs.svg',
+    '/SVGs/nodejs.svg',
+    '/SVGs/nestjs.svg',
+    '/SVGs/prisma.svg',
+    '/SVGs/google-cloude.svg',
+    '/SVGs/postman.svg',
+    '/SVGs/postgresql.svg',
 ]
+
+const skillName = (path: string) =>
+    (path.split('/').pop() ?? '').replace('.svg', '')
+
+const FOCUS_RING =
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
 
 export default function Experience() {
-    const timelineRef = useRef<HTMLDivElement>(null)
-    const nodeRefs = useRef<(HTMLDivElement | null)[]>([])
-    const progressBarRef = useRef<HTMLDivElement>(null)
-    const progressDotRef = useRef<HTMLDivElement>(null)
-    const nodePercentsRef = useRef<number[]>([])
-    const [activeCount, setActiveCount] = useState(0)
-    const [justArrived, setJustArrived] = useState<number | null>(null)
-    const activeCountRef = useRef(0)
-    const arrivalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-    const rafRef = useRef<number | null>(null)
-
-    const measureNodes = useCallback(() => {
-        if (!timelineRef.current) return
-        const timelineRect = timelineRef.current.getBoundingClientRect()
-        nodePercentsRef.current = nodeRefs.current.map((node) => {
-            if (!node) return 0
-            const nodeRect = node.getBoundingClientRect()
-            const offset = nodeRect.top - timelineRect.top + nodeRect.height / 2
-            return (offset / timelineRect.height) * 100
-        })
-    }, [])
-
-    useEffect(() => {
-        measureNodes()
-        window.addEventListener('resize', measureNodes)
-        return () => window.removeEventListener('resize', measureNodes)
-    }, [measureNodes])
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (rafRef.current !== null) return
-            rafRef.current = requestAnimationFrame(() => {
-                rafRef.current = null
-                if (!timelineRef.current) return
-                const rect = timelineRef.current.getBoundingClientRect()
-                const windowHeight = window.innerHeight
-                const scrolled = windowHeight * 0.5 - rect.top
-                const percent = Math.min(Math.max((scrolled / rect.height) * 100, 0), 100)
-                if (progressBarRef.current) progressBarRef.current.style.height = `${percent}%`
-                if (progressDotRef.current) progressDotRef.current.style.top = `${percent}%`
-                const reached = nodePercentsRef.current.filter((p) => percent >= p).length
-                if (reached !== activeCountRef.current) {
-                    if (reached > activeCountRef.current) {
-                        setJustArrived(reached - 1)
-                        if (arrivalTimeoutRef.current !== null) clearTimeout(arrivalTimeoutRef.current)
-                        arrivalTimeoutRef.current = setTimeout(() => setJustArrived(null), 800)
-                    }
-                    activeCountRef.current = reached
-                    setActiveCount(reached)
-                }
-            })
-        }
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        handleScroll()
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-            if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
-            if (arrivalTimeoutRef.current !== null) clearTimeout(arrivalTimeoutRef.current)
-        }
-    }, [])
-
     return (
-        <div id='experiência' className="relative overflow-hidden bg-white h-full before:absolute before:inset-0 before:bg-[linear-gradient(rgba(23,19,48,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(23,19,48,0.03)_1px,transparent_1px)] before:bg-[size:50px_50px] before:pointer-events-none">
+        <section
+            id="experiencia"
+            className="relative overflow-hidden bg-[#171330] px-5 pb-24 pt-32 sm:px-10 sm:pt-48 lg:px-16 lg:pb-32 lg:pt-64"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 320"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-px left-0 block h-24 w-full -scale-y-100 sm:h-40 lg:h-56"
+            >
+                <path
+                    fill="#ffffff"
+                    fillOpacity="1"
+                    d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                />
+            </svg>
 
-            <div className="absolute inset-0 pointer-events-none hidden md:block">
-                {codeSymbols.map((item, i) => (
-                    <span
-                        key={i}
-                        className={`float-symbol absolute text-[#171330] ${anton.className}`}
-                        style={{
-                            top: item.top,
-                            left: item.left,
-                            fontSize: item.size,
-                            animationDuration: item.duration,
-                            animationDelay: item.delay,
-                            opacity: 0.05,
-                        }}
-                    >
-                        {item.symbol}
+            <header
+                data-aos="fade-up"
+                className="relative mx-auto mb-14 flex w-full max-w-[1650px] justify-center lg:mb-20"
+            >
+                <h2
+                    className={`
+                        text-center
+                        text-4xl
+                        uppercase
+                        leading-none
+                        tracking-widest
+                        sm:text-6xl
+                        lg:text-8xl
+                        ${TitleFont.className}
+                    `}
+                >
+                    <span className="text-[#ffd401]">04</span>
+                    <span aria-hidden="true" className="mx-3 text-[#ffd401] sm:mx-5">
+                        /
                     </span>
-                ))}
-            </div>
+                    <span className="text-white">Experiência</span>
+                </h2>
+            </header>
 
-            <div className="relative z-10 flex flex-col items-center mt-32" data-aos="fade-up">
-                <span className={`text-[#171330]/50 text-xs tracking-[0.4em] uppercase mb-4 ${Exo.className}`}>
-                    meu trabalho
-                </span>
-                <div className="flex items-center gap-4">
-                    <div className="w-12 h-[2px] bg-[#ffd401]" />
-                    <h2 className={`text-[#171330] sm:text-9xl text-5xl ${BebasN.className}`}>
-                        Experiências<span className="text-[#ffd401]">.</span>
-                    </h2>
-                    <div className="w-12 h-[2px] bg-[#ffd401]" />
-                </div>
-                <p className={`text-[#171330]/40 text-sm mt-3 tracking-widest uppercase ${Exo.className}`}>
-                    Trajetória profissional e projetos de destaque
-                </p>
-            </div>
+            <div className="relative mx-auto flex w-full max-w-[1650px] flex-col gap-6 lg:gap-8">
+                {/* Card principal */}
+                <article
+                    data-aos="fade-up"
+                    className="grid overflow-hidden rounded-[28px] border border-white/10 bg-[#1d1840] lg:grid-cols-[5fr_7fr] lg:rounded-[36px]"
+                >
+                    {/* Imagem */}
+                    <div className="relative h-72 sm:h-96 lg:h-auto lg:min-h-[560px]">
+                        <Image
+                            src={COMPANY.image}
+                            alt={`Grupo UAU: ${COMPANY.role}`}
+                            fill
+                            sizes="(min-width: 1024px) 42vw, 100vw"
+                            className="object-cover"
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171330] via-[#171330]/40 to-transparent" />
 
-            <div ref={timelineRef} className="relative z-10 mt-24 max-w-[1700px] mx-auto pb-20 px-5">
-                <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#171330]/10 to-transparent -translate-x-1/2 hidden md:block" />
-                <div ref={progressBarRef} className="absolute left-1/2 top-0 w-[3px] rounded-full bg-gradient-to-b from-[#ffd401] to-[#ffd401]/40 -translate-x-1/2 hidden md:block shadow-[0_0_12px_rgba(255,212,1,0.5)]" style={{ height: '0%' }} />
-                <div ref={progressDotRef} className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden md:block" style={{ top: '0%' }}>
-                    <div className="relative w-7 h-7 rounded-full bg-[#ffd401] ring-[5px] ring-white shadow-[0_0_22px_rgba(255,212,1,0.8)]">
-                        <span className="absolute -inset-2 rounded-full border-2 border-[#ffd401]/50 animate-ping" style={{ animationDuration: '1.8s' }} />
+                        <span
+                            className={`absolute left-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#171330]/70 px-3 py-1.5 text-xs text-white/80 backdrop-blur-sm lg:left-8 lg:top-8 ${Exo.className}`}
+                        >
+                            <span
+                                aria-hidden="true"
+                                className="block h-1.5 w-1.5 animate-pulse rounded-full bg-[#28c840] motion-reduce:animate-none"
+                            />
+                            Atualmente na empresa
+                        </span>
+
+                        <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8 lg:p-10">
+                            <p
+                                className={`text-xl tracking-wider text-[#ffd401] ${BebasN.className}`}
+                            >
+                                {COMPANY.role}
+                            </p>
+                            <h3
+                                className={`mt-1 text-5xl leading-none tracking-wide text-white sm:text-6xl lg:text-7xl ${BebasN.className}`}
+                            >
+                                {COMPANY.name}
+                            </h3>
+                        </div>
                     </div>
-                </div>
-                <ul className="flex flex-col gap-20 md:gap-28">
-                    {projects.map((project, index) => {
-                        const isLeft = index % 2 === 0
-                        const isActive = index < activeCount
-                        const isArriving = justArrived === index
 
-                        return (
-                            <li key={index} className="relative flex w-full">
-                                <div ref={(el) => { nodeRefs.current[index] = el }} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center">
-                                    {isArriving && (
-                                        <>
-                                            <span className="absolute w-3 h-3 rounded-full bg-[#ffd401] animate-[ping_0.8s_ease-out]" />
+                    {/* Conteúdo */}
+                    <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+                        <div className={`space-y-5 ${Exo.className}`}>
+                            <p className="text-lg leading-8 text-white/90">
+                                {COMPANY.description[0]}
+                            </p>
+                            <p className="text-base leading-7 text-white/65">
+                                {COMPANY.description[1]}
+                            </p>
+                        </div>
 
-                                            <span className="absolute w-3 h-3 rounded-full bg-[#ffd401]/70 animate-[ping_0.8s_ease-out_0.15s]" />
-                                        </>
-                                    )}
-                                    <div className={`relative rounded-full transition-all duration-300 ${isActive
-                                        ? 'w-4 h-4 bg-[#ffd401] shadow-[0_0_14px_rgba(255,212,1,0.9)] scale-110'
-                                        : 'w-3 h-3 bg-white border-2 border-[#ffd401]'
-                                        }`}
-                                    />
-                                </div>
+                        <div className="my-8 h-px w-full bg-white/10" />
 
-                                <div className={`absolute top-1/2 -translate-y-1/2 hidden md:block h-[2px] bg-gradient-to-r transition-opacity duration-300 $`}/>
-                                
-                                <span className={`pointer-events-none select-none absolute inset-y-0 hidden md:flex items-center justify-center w-1/2 text-[650px] leading-none transition-all duration-700 ${anton.className} ${isLeft ? 'right-0' : 'left-0 pr-20'
-                                    } ${isActive ? 'text-[#171330]/60 scale-105' : 'text-[#171330]/[0.05]'} ${isArriving ? 'scale-110' : ''
-                                    }`}
+                        <p
+                            className={`text-xs uppercase tracking-[0.2em] text-white/40 ${Exo.className}`}
+                        >
+                            Tecnologias
+                        </p>
+                        <ul
+                            className="mt-4 flex flex-wrap gap-2.5"
+                            aria-label="Tecnologias usadas"
+                        >
+                            {SKILLS.map((icon) => (
+                                <li
+                                    key={icon}
+                                    title={skillName(icon)}
+                                    className="rounded-xl border border-white/15 bg-white/10 p-2 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ffd401]/50 hover:bg-[#ffd401]/10 motion-reduce:transition-none"
                                 >
-                                    {String(index + 1).padStart(2, '0')}
-                                </span>
+                                    <Image
+                                        src={icon}
+                                        alt={skillName(icon)}
+                                        width={26}
+                                        height={26}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
 
-                                <div className={`relative w-full md:w-1/2 ${isLeft ? 'md:pr-16 md:mr-auto' : 'md:pl-16 md:ml-auto'}`}
-                                    data-aos={isLeft ? 'fade-right' : 'fade-left'} data-aos-offset="150" data-aos-duration="700">
-                                    <div className={`relative rounded-2xl overflow-hidden border shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#171330]/10 hover:border-[#ffd401]/40 ${isActive
-                                        ? '-translate-y-2 border-[#ffd401]/50 shadow-2xl shadow-[#ffd401]/15'
-                                        : 'border-[#171330]/5 shadow-[#171330]/5'
-                                        } ${isArriving ? 'scale-[1.015]' : ''}`}
-                                    >
-                                        <div className="relative overflow-hidden h-[300px]">
-                                            <Image
-                                                src={project.image}
-                                                alt={project.title}
-                                                width={1000}
-                                                height={1000}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                            />
+                        <a
+                            href={COMPANY.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-[#ffd401] px-7 py-3.5 text-base font-semibold text-[#171330] transition-colors hover:bg-[#ffe45c] ${FOCUS_RING} ${Exo.className}`}
+                        >
+                            Conhecer o Grupo UAU
+                            <ArrowUpRight aria-hidden="true" className="h-5 w-5" />
+                        </a>
+                    </div>
+                </article>
 
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#171330] via-[#171330]/10 to-transparent" />
-                                        </div>
+                {/* Produtos */}
+                <div data-aos="fade-up">
+                    <p
+                        className={`mb-4 text-xs uppercase tracking-[0.2em] text-white/40 ${Exo.className}`}
+                    >
+                        Produtos
+                    </p>
 
-                                        <div className="bg-[#171330] p-6 md:p-8">
-                                            <div className="w-32 h-[2px] bg-[#ffd401] mb-4" />
-
-                                            <h1 className={`text-white text-2xl md:text-3xl mb-3 leading-tight ${anton.className}`}>
-                                                {project.title}
-                                            </h1>
-
-                                            {project.describe && (
-                                                <p className={`text-white/60 text-sm mb-6 leading-relaxed whitespace-pre-line ${Exo.className}`}>
-                                                    {project.describe}
-                                                </p>
-                                            )}
-
-                                            <div className="flex gap-2 mb-6 flex-wrap">
-                                                {project.skill.map((icon, i) => (
-                                                    <div
-                                                        key={i}
-                                                        className="bg-white/5 rounded-lg p-1.5 border border-white/10 transition-colors duration-300 hover:border-[#ffd401]/50 hover:bg-[#ffd401]/10"
-                                                    >
-                                                        <Image src={icon} alt="icon" width={22} height={22} />
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            <a
-                                                href={project.linkProject}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={`group flex items-center justify-center w-full py-3 bg-[#ffd401] text-[#0A0E1A] font-semibold hover:bg-[#B39501] transition-colors duration-300 rounded-xl gap-2 text-sm tracking-wide ${Exo.className}`}
-                                            >
-                                                Saiba mais
-                                                <svg
-                                                    className="size-4 transition-transform duration-300 group-hover:translate-x-1"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                >
-                                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                                    <polyline points="12 5 19 12 12 19" />
-                                                </svg>
-                                            </a>
-                                        </div>
+                    <ul className="grid gap-4 md:grid-cols-3 lg:gap-6">
+                        {PRODUCTS.map((product, index) => (
+                            <li key={product.name}>
+                                <a
+                                    href={product.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group flex h-full flex-col justify-between gap-8 rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-[#ffd401]/60 hover:bg-white/[0.07] lg:p-8 ${FOCUS_RING}`}
+                                >
+                                    <div className="flex items-start justify-between">
+                                        <span
+                                            className={`text-xl tracking-wider text-[#ffd401] ${BebasN.className}`}
+                                        >
+                                            {String(index + 1).padStart(2, '0')}
+                                        </span>
+                                        <ArrowUpRight
+                                            aria-hidden="true"
+                                            className="h-6 w-6 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#ffd401] motion-reduce:transition-none"
+                                        />
                                     </div>
-                                </div>
+
+                                    <div>
+                                        <h4
+                                            className={`text-4xl leading-none tracking-wide text-white lg:text-5xl ${BebasN.className}`}
+                                        >
+                                            {product.name}
+                                        </h4>
+                                        <p
+                                            className={`mt-3 text-sm leading-6 text-white/60 ${Exo.className}`}
+                                        >
+                                            {product.describe}
+                                        </p>
+                                    </div>
+                                </a>
                             </li>
-                        )
-                    })}
-                </ul>
+                        ))}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </section>
     )
 }

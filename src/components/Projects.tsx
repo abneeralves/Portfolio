@@ -70,15 +70,14 @@ export default function Projects() {
                         ${TitleFont.className}
                     `}
                 >
-                    <span className="text-[#ffd401]">02</span>
+                    <span className="text-[#ffd401]">03</span>
                     <span
                         aria-hidden="true"
-                        className="mx-3 text-transparent sm:mx-5"
-                        style={{ WebkitTextStroke: '2px #ffffff' }}
+                        className="mx-3 text-[#ffd401] sm:mx-5"
                     >
                         /
                     </span>
-                    <span className="outline-name">Projetos</span>
+                    <span className="text-[#1d1840]">Projetos</span>
                 </h2>
             </header>
 
