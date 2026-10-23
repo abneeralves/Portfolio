@@ -1,71 +1,120 @@
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
 import { Exo_2, Bebas_Neue, Anton } from 'next/font/google'
 
 const Exo = Exo_2({ subsets: ['latin'], weight: ['400', '600'] })
 const BebasN = Bebas_Neue({ subsets: ['latin'], weight: '400' })
 const TitleFont = Anton({ subsets: ['latin'], weight: '400' })
 
-const COMPANY = {
-    name: 'Grupo UAU',
-    role: 'Assistente de Tecnologia',
-    image: '/imgExperience/grupouau.png',
-    link: 'https://www.grupouau.com/',
-    description: [
-        'Desenvolvedor no Grupo UAU, atuando na criação de soluções web para diferentes produtos da empresa. Participei do desenvolvimento das landing pages da Scarlet e da UAUBox, cuidando do front-end e de interfaces modernas, responsivas e alinhadas à identidade de cada marca.',
-        'Hoje, como Desenvolvedor Full Stack na UAUTeam, evoluo funcionalidades no front-end e no back-end, integro APIs, implemento regras de negócio e apoio a análise de builds, a execução das aplicações e o monitoramento de logs em ambiente de cloud.',
-    ],
+type Product = { name: string; describe: string }
+
+type TimelineItem = {
+    kind: string
+    period: string
+    title: string
+    subtitle: string
+    description: string[]
+    current?: boolean
+    products?: Product[]
+    skills?: string[]
 }
 
-const PRODUCTS = [
+const TIMELINE: TimelineItem[] = [
     {
-        name: 'Scarlet',
-        describe: 'Landing page da box de beleza premium por assinatura',
-        href: 'https://scarletbox.com.br/',
+        kind: 'Experiência atual',
+        period: '2026 – Atual',
+        title: 'Grupo UAU',
+        subtitle: 'Assistente de Tecnologia',
+        current: true,
+        description: [
+            'Desenvolvedor no Grupo UAU, atuando na criação de soluções web para diferentes produtos da empresa. Participei do desenvolvimento das landing pages da Scarlet e da UAUBox, cuidando do front-end e de interfaces modernas, responsivas e alinhadas à identidade de cada marca.',
+            'Hoje, como Desenvolvedor Full Stack na UAUTeam, evoluo funcionalidades no front-end e no back-end, integro APIs, implemento regras de negócio e apoio a análise de builds, a execução das aplicações e o monitoramento de logs em ambiente de cloud.',
+        ],
+        products: [
+            {
+                name: 'Scarlet',
+                describe: 'Desenvolvimento da landing page da box de beleza premium por assinatura',
+            },
+            {
+                name: 'UAUBox',
+                describe: 'Desenvolvimento da landing page do serviço de assinatura de beleza personalizada',
+            },
+            {
+                name: 'UAUTeam',
+                describe: 'Evolução da plataforma de afiliados com cupons, analytics, gamificação e pagamento via Pix',
+            },
+        ],
+        skills: [
+            '/SVGs/html.svg',
+            '/SVGs/css.svg',
+            '/SVGs/javascript.svg',
+            '/SVGs/typescript.svg',
+            '/SVGs/tailwind.svg',
+            '/SVGs/react.svg',
+            '/SVGs/nextjs.svg',
+            '/SVGs/nodejs.svg',
+            '/SVGs/nestjs.svg',
+            '/SVGs/prisma.svg',
+            '/SVGs/google-cloude.svg',
+            '/SVGs/postman.svg',
+            '/SVGs/postgresql.svg',
+        ],
     },
     {
-        name: 'UAUBox',
-        describe: 'Landing page do serviço de assinatura de beleza personalizada',
-        href: 'https://uaubox.com.br/',
-    },
-    {
-        name: 'UAUTeam',
-        describe: 'Plataforma de afiliados com cupons, analytics, gamificação e pagamento via Pix',
-        href: 'https://uauteam.vercel.app/',
+        kind: 'Formação',
+        period: '2023 – 2025',
+        title: 'UNINOVE',
+        subtitle: 'Análise e Desenvolvimento de Sistemas',
+        description: [
+            'Graduação em Análise e Desenvolvimento de Sistemas, onde construí a base de programação, banco de dados e engenharia de software que sustenta o meu trabalho hoje.',
+        ],
     },
 ]
 
-const SKILLS = [
-    '/SVGs/html.svg',
-    '/SVGs/css.svg',
-    '/SVGs/javascript.svg',
-    '/SVGs/typescript.svg',
-    '/SVGs/tailwind.svg',
-    '/SVGs/react.svg',
-    '/SVGs/nextjs.svg',
-    '/SVGs/nodejs.svg',
-    '/SVGs/nestjs.svg',
-    '/SVGs/prisma.svg',
-    '/SVGs/google-cloude.svg',
-    '/SVGs/postman.svg',
-    '/SVGs/postgresql.svg',
-]
+const SKILL_LABELS: Record<string, string> = {
+    html: 'HTML',
+    css: 'CSS',
+    javascript: 'JavaScript',
+    typescript: 'TypeScript',
+    tailwind: 'Tailwind',
+    react: 'React',
+    nextjs: 'Next.js',
+    nodejs: 'Node.js',
+    nestjs: 'NestJS',
+    prisma: 'Prisma',
+    'google-cloude': 'Google Cloud',
+    postman: 'Postman',
+    postgresql: 'PostgreSQL',
+}
 
-const skillName = (path: string) =>
-    (path.split('/').pop() ?? '').replace('.svg', '')
-
-const FOCUS_RING =
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
+const skillName = (path: string) => {
+    const key = (path.split('/').pop() ?? '').replace('.svg', '')
+    return SKILL_LABELS[key] ?? key
+}
 
 export default function Experience() {
     return (
         <section
             id="experiencia"
-            className="relative overflow-hidden bg-[#171330] px-5 pb-24 sm:px-10 lg:px-16"
+            className="relative overflow-hidden bg-[#171330] px-5 pb-28 sm:px-10 lg:px-16 lg:pb-36"
         >
+            <style>{`
+                @keyframes exp-spark {
+                    0% { top: -84px; opacity: 0; }
+                    12% { opacity: 1; }
+                    88% { opacity: 1; }
+                    100% { top: 100%; opacity: 0; }
+                }
+                .exp-spark {
+                    animation: exp-spark 3.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s infinite;
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .exp-spark { display: none; }
+                }
+            `}</style>
+
             <header
                 data-aos="fade-up"
-                className="relative mx-auto mb-14 flex w-full max-w-[1650px] justify-center lg:mb-20"
+                className="relative mx-auto mb-14 flex w-full max-w-[1650px] flex-col items-center gap-5 lg:mb-20"
             >
                 <h2
                     className={`
@@ -85,146 +134,158 @@ export default function Experience() {
                     </span>
                     <span className="text-white">Experiência</span>
                 </h2>
+
+                <p
+                    className={`max-w-xl text-center text-base leading-7 text-white/60 ${Exo.className}`}
+                >
+                    Minha trajetória, do que faço hoje até onde tudo começou,
+                    na faculdade.
+                </p>
             </header>
 
-            <div className="relative mx-auto flex w-full max-w-[1650px] flex-col gap-6 lg:gap-8">
-                {/* Card principal */}
-                <article
-                    data-aos="fade-up"
-                    className="grid overflow-hidden rounded-[28px] border border-white/10 bg-[#1d1840] lg:grid-cols-[5fr_7fr] lg:rounded-[36px]"
-                >
-                    {/* Imagem */}
-                    <div className="relative h-72 sm:h-96 lg:h-auto lg:min-h-[560px]">
-                        <Image
-                            src={COMPANY.image}
-                            alt={`Grupo UAU: ${COMPANY.role}`}
-                            fill
-                            sizes="(min-width: 1024px) 42vw, 100vw"
-                            className="object-cover"
-                        />
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171330] via-[#171330]/40 to-transparent" />
+            <ol className="relative mx-auto w-full max-w-[1650px]">
+                {TIMELINE.map((item, index) => {
+                    const isLast = index === TIMELINE.length - 1
+                    const isRich = Boolean(item.products || item.skills)
 
-                        <span
-                            className={`absolute left-5 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#171330]/70 px-3 py-1.5 text-xs text-white/80 backdrop-blur-sm lg:left-8 lg:top-8 ${Exo.className}`}
+                    return (
+                        <li
+                            key={`${item.title}-${item.period}`}
+                            data-aos="fade-up"
+                            className={`relative ${isLast ? '' : 'pb-6 lg:pb-10'}`}
                         >
-                            <span
+                            <div
                                 aria-hidden="true"
-                                className="block h-1.5 w-1.5 animate-pulse rounded-full bg-[#28c840] motion-reduce:animate-none"
-                            />
-                            Atualmente na empresa
-                        </span>
-
-                        <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8 lg:p-10">
-                            <p
-                                className={`text-xl tracking-wider text-[#ffd401] ${BebasN.className}`}
+                                className="pointer-events-none absolute -left-10 bottom-0 top-0 hidden w-4 lg:block"
                             >
-                                {COMPANY.role}
-                            </p>
-                            <h3
-                                className={`mt-1 text-5xl leading-none tracking-wide text-white sm:text-6xl lg:text-7xl ${BebasN.className}`}
+                                {!isLast && (
+                                    <span
+                                        className="absolute -bottom-[92px] left-1/2 top-[92px] z-0 w-[2px] -translate-x-1/2 overflow-hidden rounded-full bg-white/20"
+                                    >
+                                        {item.current && (
+                                            <span className="exp-spark absolute inset-x-0 h-[84px] bg-gradient-to-b from-transparent via-white/70 to-transparent" />
+                                        )}
+                                    </span>
+                                )}
+
+                                <span
+                                    className={`absolute left-0 top-[84px] z-10 h-4 w-4 rounded-full border-2 ring-4 ring-[#171330] ${
+                                        item.current
+                                            ? 'border-[#ffd401] bg-[#ffd401]'
+                                            : 'border-white/40 bg-[#171330]'
+                                    }`}
+                                />
+                            </div>
+
+                            <article
+                                className={`relative flex overflow-hidden rounded-[28px] bg-[#1d1840] lg:rounded-[36px] ${
+                                    isRich
+                                        ? 'min-h-[520px] sm:min-h-[540px] lg:min-h-[650px]'
+                                        : 'min-h-[340px] lg:min-h-[420px]'
+                                }`}
                             >
-                                {COMPANY.name}
-                            </h3>
-                        </div>
-                    </div>
+                                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(169,180,255,0.14),transparent_60%)]" />
 
-                    {/* Conteúdo */}
-                    <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
-                        <div className={`space-y-5 ${Exo.className}`}>
-                            <p className="text-lg leading-8 text-white/90">
-                                {COMPANY.description[0]}
-                            </p>
-                            <p className="text-base leading-7 text-white/65">
-                                {COMPANY.description[1]}
-                            </p>
-                        </div>
+                                <div className="relative grid w-full gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_minmax(0,34rem)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:p-14">
+                                    <p
+                                        className={`text-5xl leading-none tracking-wide text-white/70 sm:text-6xl lg:col-start-1 lg:row-start-1 lg:text-7xl ${BebasN.className}`}
+                                    >
+                                        {item.period}
+                                    </p>
 
-                        <div className="my-8 h-px w-full bg-white/10" />
-
-                        <p
-                            className={`text-xs uppercase tracking-[0.2em] text-white/40 ${Exo.className}`}
-                        >
-                            Tecnologias
-                        </p>
-                        <ul
-                            className="mt-4 flex flex-wrap gap-2.5"
-                            aria-label="Tecnologias usadas"
-                        >
-                            {SKILLS.map((icon) => (
-                                <li
-                                    key={icon}
-                                    title={skillName(icon)}
-                                    className="rounded-xl border border-white/15 bg-white/10 p-2 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#ffd401]/50 hover:bg-[#ffd401]/10 motion-reduce:transition-none"
-                                >
-                                    <Image
-                                        src={icon}
-                                        alt={skillName(icon)}
-                                        width={26}
-                                        height={26}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
-
-                        <a
-                            href={COMPANY.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-[#ffd401] px-7 py-3.5 text-base font-semibold text-[#171330] transition-colors hover:bg-[#ffe45c] ${FOCUS_RING} ${Exo.className}`}
-                        >
-                            Conhecer o Grupo UAU
-                            <ArrowUpRight aria-hidden="true" className="h-5 w-5" />
-                        </a>
-                    </div>
-                </article>
-
-                {/* Produtos */}
-                <div data-aos="fade-up">
-                    <p
-                        className={`mb-4 text-xs uppercase tracking-[0.2em] text-white/40 ${Exo.className}`}
-                    >
-                        Produtos
-                    </p>
-
-                    <ul className="grid gap-4 md:grid-cols-3 lg:gap-6">
-                        {PRODUCTS.map((product, index) => (
-                            <li key={product.name}>
-                                <a
-                                    href={product.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`group flex h-full flex-col justify-between gap-8 rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-[#ffd401]/60 hover:bg-white/[0.07] lg:p-8 ${FOCUS_RING}`}
-                                >
-                                    <div className="flex items-start justify-between">
-                                        <span
+                                    <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-end">
+                                        <p
                                             className={`text-xl tracking-wider text-[#ffd401] ${BebasN.className}`}
                                         >
-                                            {String(index + 1).padStart(2, '0')}
-                                        </span>
-                                        <ArrowUpRight
-                                            aria-hidden="true"
-                                            className="h-6 w-6 text-white/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#ffd401] motion-reduce:transition-none"
-                                        />
+                                            {item.kind}
+                                        </p>
+
+                                        <h3
+                                            className={`mt-1 text-5xl leading-none tracking-wide text-white sm:text-6xl lg:text-7xl ${BebasN.className}`}
+                                        >
+                                            {item.title}
+                                        </h3>
+
+                                        <p
+                                            className={`mt-3 text-lg font-semibold text-white/80 ${Exo.className}`}
+                                        >
+                                            {item.subtitle}
+                                        </p>
+
+                                        <div
+                                            className={`mt-5 space-y-4 ${Exo.className}`}
+                                        >
+                                            {item.description.map(
+                                                (paragraph, i) => (
+                                                    <p
+                                                        key={i}
+                                                        className={`text-base leading-7 ${
+                                                            i === 0
+                                                                ? 'text-white/90'
+                                                                : 'text-white/65'
+                                                        }`}
+                                                    >
+                                                        {paragraph}
+                                                    </p>
+                                                ),
+                                            )}
+                                        </div>
+
+                                        {item.skills && (
+                                            <ul
+                                                className="mt-6 flex flex-wrap gap-2"
+                                                aria-label="Tecnologias usadas"
+                                            >
+                                                {item.skills.map((icon) => (
+                                                    <li
+                                                        key={icon}
+                                                        title={skillName(icon)}
+                                                        className="rounded-lg border border-white/15 bg-white/10 p-1.5 backdrop-blur-sm"
+                                                    >
+                                                        <Image
+                                                            src={icon}
+                                                            alt={skillName(icon)}
+                                                            width={22}
+                                                            height={22}
+                                                        />
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
                                     </div>
 
-                                    <div>
-                                        <h4
-                                            className={`text-4xl leading-none tracking-wide text-white lg:text-5xl ${BebasN.className}`}
-                                        >
-                                            {product.name}
-                                        </h4>
-                                        <p
-                                            className={`mt-3 text-sm leading-6 text-white/60 ${Exo.className}`}
-                                        >
-                                            {product.describe}
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
+                                    {item.products && (
+                                        <div className="lg:col-start-1 lg:row-start-2 lg:self-end">
+                                            <p
+                                                className={`text-xl tracking-wider text-[#ffd401] ${BebasN.className}`}
+                                            >
+                                                O que fiz
+                                            </p>
+
+                                            <ul className="mt-4 grid max-w-xl gap-6">
+                                                {item.products.map((product) => (
+                                                    <li key={product.name}>
+                                                        <span
+                                                            className={`block text-4xl leading-none tracking-wide text-white ${BebasN.className}`}
+                                                        >
+                                                            {product.name}
+                                                        </span>
+                                                        <span
+                                                            className={`mt-2 block text-base leading-7 text-white/70 ${Exo.className}`}
+                                                        >
+                                                            {product.describe}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </article>
+                        </li>
+                    )
+                })}
+            </ol>
         </section>
     )
 }

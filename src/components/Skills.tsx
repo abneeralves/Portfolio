@@ -70,7 +70,7 @@ export default function Skills() {
                         ${TitleFont.className}
                     `}
                 >
-                    <span className="text-[#ffd401]">03</span>
+                    <span className="text-[#ffd401]">05</span>
                     <span aria-hidden="true" className="mx-3 text-[#ffd401] sm:mx-5">
                         /
                     </span>
@@ -133,7 +133,7 @@ export default function Skills() {
                                 key={skill.name}
                                 onMouseEnter={() => setHoveredSkill(skill.category)}
                                 onMouseLeave={() => setHoveredSkill(null)}
-                                className={`flex items-start gap-4 border-t border-white/15 py-5 transition-opacity duration-300 ${
+                                className={`flex items-start gap-4 border-b border-white/15 py-6 transition-opacity duration-300 ${
                                     isLit ? 'opacity-100' : 'opacity-20'
                                 }`}
                             >
