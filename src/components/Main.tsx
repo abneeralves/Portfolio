@@ -38,6 +38,49 @@ const highlights = [
     },
 ]
 
+const TECHNOLOGIES = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'TypeScript',
+    'React',
+    'Next.js',
+    'Tailwind',
+    'Linux',
+    'Python',
+    'Node.js',
+    'NestJS',
+    'Prisma',
+    'PostgreSQL',
+    'Google Cloud',
+    'Postman',
+]
+
+function TechList({ hidden = false }: { hidden?: boolean }) {
+    return (
+        <ul
+            aria-hidden={hidden || undefined}
+            className="flex shrink-0 items-center"
+        >
+            {TECHNOLOGIES.map((name) => (
+                <li key={name} className="flex shrink-0 items-center">
+                    <span
+                        className={`whitespace-nowrap text-3xl uppercase tracking-wide text-white sm:text-4xl ${display.className}`}
+                    >
+                        {name}
+                    </span>
+                    <span
+                        aria-hidden="true"
+                        className={`mx-6 text-3xl text-[#ffd401] sm:mx-8 sm:text-4xl ${display.className}`}
+                    >
+                        *
+                    </span>
+                </li>
+            ))}
+        </ul>
+    )
+}
+
 export default function Main() {
     return (
         <main
@@ -197,6 +240,30 @@ export default function Main() {
                 </div>
             </div>
 
+            <style>{`
+                @keyframes tech-marquee {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(-50%); }
+                }
+                @media (prefers-reduced-motion: reduce) {
+                    .tech-marquee-track { animation: none !important; }
+                }
+            `}</style>
+
+            <div
+                role="region"
+                aria-label={`Tecnologias que uso: ${TECHNOLOGIES.join(', ')}`}
+                className="w-full overflow-hidden border-b border-white/10 bg-white/[0.04] mb-20 py-4 backdrop-blur-sm sm:py-5"
+            >
+                <div
+                    className="tech-marquee-track flex w-max"
+                    style={{ animation: 'tech-marquee 40s linear infinite' }}
+                >
+                    <TechList />
+                    <TechList hidden />
+                </div>
+            </div>
+
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1440 320"
@@ -210,6 +277,8 @@ export default function Main() {
                     d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                 />
             </svg>
+
+            
         </main>
     )
 }

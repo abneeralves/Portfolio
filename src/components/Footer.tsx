@@ -13,7 +13,6 @@ const FOCUS_RING =
     'outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171330]'
 
 const EMAIL = 'abneralvesmuniz76@gmail.com'
-const THANKS = 'Obrigado por ter chegado até aqui'
 
 type Social = {
     name: string
@@ -59,7 +58,7 @@ export default function Footer() {
     return (
         <footer
             id="contatos"
-            className="relative bg-[#171330] px-5 pb-10 pt-8 sm:px-10 lg:px-16 lg:pt-12"
+            className="relative overflow-hidden bg-[#171330] px-5 pb-10 pt-8 sm:px-10 lg:px-16 lg:pt-12"
         >
             <div className="mx-auto w-full max-w-[1650px]">
                 {/* Título */}
@@ -90,28 +89,17 @@ export default function Footer() {
                 {/* Frase e email */}
                 <div
                     data-aos="fade-up"
-                    className="mx-auto flex max-w-3xl flex-col items-center text-center"
+                    className="relative mx-auto flex max-w-3xl flex-col items-center text-center"
                 >
-                    <h3
-                        className={`relative w-full text-4xl leading-[0.95] text-white sm:text-5xl lg:text-6xl ${BebasN.className}`}
-                    >
-                        <span className="sr-only">{THANKS}</span>
-                        <span aria-hidden="true" className="invisible block">
-                            {THANKS}
-                        </span>
-                        <span aria-hidden="true" className="absolute inset-0">
-                            <TypeAnimation
-                                sequence={[THANKS]}
-                                wrapper="span"
-                                speed={20}
-                                repeat={0}
-                            />
-                        </span>
-                    </h3>
+                    {/* Brilho radial */}
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute left-1/2 top-1/2 h-[260px] w-full max-w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,212,1,0.18),rgba(127,119,221,0.14)_55%,transparent)] blur-2xl sm:h-[320px]"
+                    />
 
                     <a
                         href={`mailto:${EMAIL}`}
-                        className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#ffd401] px-6 py-3.5 text-sm font-semibold text-[#171330] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ffe45c] ${FOCUS_RING} ${Exo.className}`}
+                        className={`relative z-10 mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#ffd401] px-6 py-3.5 text-sm font-semibold text-[#171330] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ffe45c] ${FOCUS_RING} ${Exo.className}`}
                     >
                         <Mail aria-hidden="true" className="h-4 w-4" />
                         {EMAIL}
