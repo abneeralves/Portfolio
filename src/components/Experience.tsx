@@ -95,7 +95,7 @@ export default function Experience() {
     return (
         <section
             id="experiencia"
-            className="relative overflow-hidden bg-[#171330] px-5 pb-28 sm:px-10 lg:px-16 lg:pb-36"
+            className="relative overflow-hidden bg-[#2f2e55] px-5 pb-32 pt-24 sm:px-10 sm:pb-48 sm:pt-32 lg:px-16 lg:pb-64 lg:pt-40"
         >
             <style>{`
                 @keyframes exp-spark {
@@ -134,16 +134,9 @@ export default function Experience() {
                     </span>
                     <span className="text-white">Experiência</span>
                 </h2>
-
-                <p
-                    className={`max-w-xl text-center text-base leading-7 text-white/60 ${Exo.className}`}
-                >
-                    Minha trajetória, do que faço hoje até onde tudo começou,
-                    na faculdade.
-                </p>
             </header>
 
-            <ol className="relative mx-auto w-full max-w-[1650px]">
+            <ol className="relative z-10 mx-auto w-full max-w-[1650px]">
                 {TIMELINE.map((item, index) => {
                     const isLast = index === TIMELINE.length - 1
                     const isRich = Boolean(item.products || item.skills)
@@ -159,32 +152,42 @@ export default function Experience() {
                                 className="pointer-events-none absolute -left-10 bottom-0 top-0 hidden w-4 lg:block"
                             >
                                 {!isLast && (
-                                    <span
-                                        className="absolute -bottom-[92px] left-1/2 top-[92px] z-0 w-[2px] -translate-x-1/2 overflow-hidden rounded-full bg-white/20"
-                                    >
+                                    <span className="absolute -bottom-[92px] left-1/2 top-[92px] z-0 w-[3px] -translate-x-1/2 overflow-hidden rounded-full bg-white/20">
                                         {item.current && (
-                                            <span className="exp-spark absolute inset-x-0 h-[84px] bg-gradient-to-b from-transparent via-white/70 to-transparent" />
+                                            <span className="exp-spark absolute inset-x-0 h-[84px] bg-gradient-to-b from-transparent via-[#ffd401] to-transparent" />
                                         )}
                                     </span>
                                 )}
 
                                 <span
-                                    className={`absolute left-0 top-[84px] z-10 h-4 w-4 rounded-full border-2 ring-4 ring-[#171330] ${
+                                    className={`absolute left-0 top-[84px] z-10 h-4 w-4 rounded-full border-2 ring-4 ring-[#2f2e55] ${
                                         item.current
                                             ? 'border-[#ffd401] bg-[#ffd401]'
-                                            : 'border-white/40 bg-[#171330]'
+                                            : 'border-white/40 bg-[#2f2e55]'
                                     }`}
                                 />
                             </div>
 
                             <article
-                                className={`relative flex overflow-hidden rounded-[28px] bg-[#1d1840] lg:rounded-[36px] ${
+                                className={`relative flex overflow-hidden rounded-[28px] bg-[#171330] lg:rounded-[36px] ${
                                     isRich
                                         ? 'min-h-[520px] sm:min-h-[540px] lg:min-h-[650px]'
                                         : 'min-h-[340px] lg:min-h-[420px]'
                                 }`}
                             >
                                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(169,180,255,0.14),transparent_60%)]" />
+
+                                <span
+                                    aria-hidden="true"
+                                    className={`pointer-events-none absolute -right-4 -top-14 select-none text-[14rem] leading-none text-transparent sm:text-[18rem] lg:-right-6 lg:text-[22rem] ${TitleFont.className}`}
+                                    style={{
+                                        WebkitTextStroke: item.current
+                                            ? '2px rgba(255, 212, 1, 0.25)'
+                                            : '2px rgba(255, 255, 255, 0.1)',
+                                    }}
+                                >
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
 
                                 <div className="relative grid w-full gap-10 p-6 sm:p-10 lg:grid-cols-[1fr_minmax(0,34rem)] lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:p-14">
                                     <p
@@ -212,23 +215,17 @@ export default function Experience() {
                                             {item.subtitle}
                                         </p>
 
-                                        <div
-                                            className={`mt-5 space-y-4 ${Exo.className}`}
-                                        >
-                                            {item.description.map(
-                                                (paragraph, i) => (
-                                                    <p
-                                                        key={i}
-                                                        className={`text-base leading-7 ${
-                                                            i === 0
-                                                                ? 'text-white/90'
-                                                                : 'text-white/65'
-                                                        }`}
-                                                    >
-                                                        {paragraph}
-                                                    </p>
-                                                ),
-                                            )}
+                                        <div className={`mt-5 space-y-4 ${Exo.className}`}>
+                                            {item.description.map((paragraph, i) => (
+                                                <p
+                                                    key={i}
+                                                    className={`text-base leading-7 ${
+                                                        i === 0 ? 'text-white/90' : 'text-white/65'
+                                                    }`}
+                                                >
+                                                    {paragraph}
+                                                </p>
+                                            ))}
                                         </div>
 
                                         {item.skills && (
@@ -286,6 +283,20 @@ export default function Experience() {
                     )
                 })}
             </ol>
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1440 320"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-px left-0 z-0 block h-24 w-full sm:h-40 lg:h-56"
+            >
+                <path
+                    fill="#171330"
+                    fillOpacity="1"
+                    d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+                />
+            </svg>
         </section>
     )
 }
