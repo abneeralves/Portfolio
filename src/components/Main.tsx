@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Fira_Code, Bebas_Neue } from 'next/font/google'
 import {
     ArrowDown,
@@ -39,21 +40,21 @@ const highlights = [
 ]
 
 const TECHNOLOGIES = [
-    'HTML',
-    'CSS',
-    'JavaScript',
-    'TypeScript',
-    'React',
-    'Next.js',
-    'Tailwind',
-    'Linux',
-    'Python',
-    'Node.js',
-    'NestJS',
-    'Prisma',
-    'PostgreSQL',
-    'Google Cloud',
-    'Postman',
+    { name: 'HTML', icon: '/SVGs/html.svg' },
+    { name: 'CSS', icon: '/SVGs/css.svg' },
+    { name: 'JavaScript', icon: '/SVGs/javascript.svg' },
+    { name: 'TypeScript', icon: '/SVGs/typescript.svg' },
+    { name: 'React', icon: '/SVGs/react.svg' },
+    { name: 'Next.js', icon: '/SVGs/nextjs.svg' },
+    { name: 'Tailwind', icon: '/SVGs/tailwind.svg' },
+    { name: 'Linux', icon: '/SVGs/linux.svg' },
+    { name: 'Python', icon: '/SVGs/python.svg' },
+    { name: 'Node.js', icon: '/SVGs/nodejs.svg' },
+    { name: 'NestJS', icon: '/SVGs/nestjs.svg' },
+    { name: 'Prisma', icon: '/SVGs/prisma.svg' },
+    { name: 'PostgreSQL', icon: '/SVGs/postgresql.svg' },
+    { name: 'Google Cloud', icon: '/SVGs/google-cloude.svg' },
+    { name: 'Postman', icon: '/SVGs/postman.svg' },
 ]
 
 function TechList({ hidden = false }: { hidden?: boolean }) {
@@ -62,18 +63,25 @@ function TechList({ hidden = false }: { hidden?: boolean }) {
             aria-hidden={hidden || undefined}
             className="flex shrink-0 items-center"
         >
-            {TECHNOLOGIES.map((name) => (
-                <li key={name} className="flex shrink-0 items-center">
+            {TECHNOLOGIES.map(({ name, icon }) => (
+                <li
+                    key={name}
+                    className="flex shrink-0 items-center gap-3 pr-14 sm:gap-4 sm:pr-20"
+                >
+                    <Image
+                        src={icon}
+                        alt=""
+                        width={40}
+                        height={40}
+                        onError={(event) => {
+                            event.currentTarget.style.display = 'none'
+                        }}
+                        className="h-8 w-8 shrink-0 sm:h-10 sm:w-10"
+                    />
                     <span
                         className={`whitespace-nowrap text-3xl uppercase tracking-wide text-white sm:text-4xl ${display.className}`}
                     >
                         {name}
-                    </span>
-                    <span
-                        aria-hidden="true"
-                        className={`mx-6 text-3xl text-[#ffd401] sm:mx-8 sm:text-4xl ${display.className}`}
-                    >
-                        *
                     </span>
                 </li>
             ))}
@@ -252,7 +260,7 @@ export default function Main() {
 
             <div
                 role="region"
-                aria-label={`Tecnologias que uso: ${TECHNOLOGIES.join(', ')}`}
+                aria-label={`Tecnologias que uso: ${TECHNOLOGIES.map((tech) => tech.name).join(', ')}`}
                 className="w-full overflow-hidden border-b border-white/10 bg-white/[0.04] mb-20 py-4 backdrop-blur-sm sm:py-5"
             >
                 <div
@@ -277,8 +285,6 @@ export default function Main() {
                     d="M0,128L48,138.7C96,149,192,171,288,160C384,149,480,107,576,90.7C672,75,768,85,864,101.3C960,117,1056,139,1152,128C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                 />
             </svg>
-
-            
         </main>
     )
 }
